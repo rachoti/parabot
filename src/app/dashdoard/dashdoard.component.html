@@ -1,0 +1,166 @@
+<nav class="navbar fixed-top bg-dark flex-md-nowrap p-0 shadow ">
+  <a id="mySidebar1" class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
+  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+          <a href="javascript:void(0);" (click)="logout()">Sign out</a>
+      </li>
+  </ul>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+
+      <nav id="mySidebar" class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-sticky">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link active" routerLink="/dashboard">
+                          <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link">
+                          <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';">{{actdata1}}</button>
+                          <div [hidden]="isShowDiv1">
+                              <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Count</button><br>
+                              <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';">Retention </button><br>
+                              <button routerLink="/timezone" class="button button4 innerbtn" style="font-family: 'Aleo';">TimeZone </button><br>
+                          </div>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link">
+                          <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';">{{actdata2}}</button>
+                          <div [hidden]="isShowDiv2">
+                              <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Percentile</button><br>
+                              <button class="button button4 innerbtn" style="font-family: 'Aleo';">Retention Percentile</button><br>
+                          </div>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link">
+                          <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
+                          <div [hidden]="isShowDiv3">
+                              <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
+                              <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';">Word Cloud</button><br>
+                          </div>
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link">
+                          <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';">{{actdata4}}</button>
+                          <div [hidden]="isShowDiv4">
+                              <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';">Gender</button><br>
+                              <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';">Geo Map</button><br>
+                          </div>
+                      </a>
+                  </li>
+
+              </ul>
+
+          </div>
+      </nav>
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Dashboard</h1>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                  <div class="btn-group mr-2">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                  </div>
+                  <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+          <span data-feather="calendar"></span>
+          This week
+        </button>
+              </div>
+          </div>
+          <div>
+              <div class="row card-deck mt-4">
+                  <div class="col-sm-6">
+                      <div id="shadow" class="card border border-light" style="height: 300px;">
+                          <div class="card-body">
+                              <h5 class="card-title bttm">Message activity</h5>
+                              <i id="sInfo"><small>Last seven days</small></i>
+                              <div class="row">
+                                  <div id="outCount">
+                                      <!-- &#9679; -->
+                                      <p id="outCountTitle"> <small>Incoming Message</small></p>
+                                      <p id="outCountP">{{this.userMessageCount}}&#160;&#160; &#65130;<small>{{userMessPercent}}</small></p>
+                                  </div>
+                                  <div id="outCount">
+                                      <p id="outCountTitle"> <small>Outgoing Message</small></p>
+                                      <p id="outCountP">{{this.wizardMessageCount}}&#160;&#160; &#65130;<small>{{WizardMessPercent}}</small></p>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div id="outCount">
+                                      <p id="outCountTitle"><small> Total Message</small></p>
+                                      <p id="outCountP">{{this.totalMessageCount}}&#160;&#160; <small>{{percentage}}</small></p>
+                                  </div>
+                                  <div id="outCount">
+                                      <p id="outCountTitle"><small>Todays Total Message</small></p>
+                                      <p id="outCountP">{{this.totalTodayMessageCount}}&#160;&#160; <small>{{percentage}}</small></p>
+                                  </div>
+                              </div>
+
+                              <button routerLink="/messagecount" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View Message activity report</i> ></button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div id="shadow" class="card border border-light" style="height: 300px;">
+                          <div class="card-body">
+                              <h5 class="card-title bttm">User Activity</h5>
+                              <i id="sInfo"><small>Last seven days</small></i>
+                              <div class="row">
+                                  <div id="outCount">
+                                      <p id="outCountTitle"> <small>New Users</small></p>
+                                      <p id="outCountP">{{this.newUserCount}}&#160;&#160; &#65130;<small>{{Useractpercentage}}</small></p>
+                                  </div>
+                                  <div id="outCount">
+                                      <p id="outCountTitle"> <small>Returning Users</small></p>
+                                      <p id="outCountP">{{this.returnUserCount}}&#160;&#160; &#65130;<small>{{returnactpercentage}}</small></p>
+                                  </div>
+                              </div>
+                              <div class="row">
+                                  <div id="outCount">
+                                      <p id="outCountTitle"><small> Lifetime Users</small></p>
+                                      <p id="outCountP">{{this.lifetimeUserCount}}&#160;&#160; <small>{{percentage}}</small></p>
+                                  </div>
+
+                              </div>
+                              <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row card-deck mt-4">
+                  <div class="col-sm-6">
+                      <div id="shadow" class="card border-light" style="height: 250px;">
+                          <div class="card-body">
+                              <h5 class="card-title">Live Message Rate</h5>
+                              <div class="card-body">
+                                  <svg id="svg"></svg>
+                              </div>
+                              <button routerLink="/liveMessage" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">Live Message Rate report</i> ></button>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-sm-6">
+                      <div id="shadow" class="card border-light" style="height: 250px;">
+                          <div class="card-body">
+                              <h5 class="card-title">Word Cloud</h5>
+                              <div><img id="recentTrans" src="../../assets/recentTrans.png" /></div>
+                              <button routerLink="/recentTrans" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View Word Cloud report</i> ></button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </main>
+  </div>
+</div>
