@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import * as d3 from "d3";
 import { Router } from '@angular/router';
 import { TimezoneService } from './timezone.service';
-import { combineLatest } from 'rxjs';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-timezone',
   templateUrl: './timezone.component.html',
   styleUrls: ['./timezone.component.css']
-})
+}) 
 export class TimezoneComponent implements OnInit {
   isShowDiv1 = true;  
   isShowDiv2 = true; 
