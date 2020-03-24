@@ -208,27 +208,17 @@ export class TimezoneComponent implements OnInit {
       for(let i=res.length-1;i>=0;i--){
         var outputArray = []; 
           
-        // Count variable is used to add the 
-        // new unique value only once in the 
-        // outputArray. 
+      
         var count = 0; 
           
-        // Start variable is used to set true 
-        // if a repeated duplicate value is  
-        // encontered in the output array. 
+      
         var start = false; 
         var lookup = {};
          
         var result = [];
         
        
-          var name = res[i].timezone;
-        
-          if (!(name in lookup)) {
-            lookup[name] = 1;
-            result.push(name);
-          }
-        
+         
         for (let j = 0; j < res.length; j++) { 
             for (let k = 0; k < outputArray.length; k++) { 
                 if ( res[j].timezone == outputArray[k] ) { 

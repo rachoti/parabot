@@ -72,17 +72,114 @@ export class MessageInComponent implements OnInit {
   }
   
   dateChangerEnd(enddate: string){
-    this.endDate=enddate;
-    this.startDate1;
-    this.inputStartDate=this.startDate1;
-    this.inputEndDate=this.endDate;
+    var lineData = [];
+    var markup;
+    var tableBody;
+    var tableHead;
+    let lineNo = 0;
+  this.endDate=enddate;
+  this.startDate1;
+  this.inputStartDate=this.startDate1;
+  this.inputEndDate=this.endDate;
+  var date_diff_indays = function(date1, date2) {
+    
+    let dt1 = new Date(date1);
+    
+    let dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+    }
+    
+   
     this._httpService.getMessageCount().subscribe((res:any[])=>{
+      let c=0;
+      var outputArray = []; 
         
     
-       
+      var count = 0; 
+       var aa; 
       
-    });
-  }
+      var start = false; 
+      var lookup = {};
+       
+      var result = [];
+      
+     
+      $("table tbody tr").remove();
+      
+      for (let j = 0; j < res.length; j++) { 
+          for (let k = 0; k < outputArray.length; k++) { 
+              if ( res[j].text == outputArray[k] ) { 
+                  start = true; 
+              } 
+          } 
+          count++; 
+          if (count == 1 && start == false && res[j].text!=0) { 
+              outputArray.push(res[j].text); 
+          } 
+          start = false; 
+          count = 0; 
+        }
+     
+    
+   
+      
+      let arr=[];
+      let index=0;
+      
+      //console.log(outputArray)
+      
+    
+
+     for(let i=0;i<outputArray.length;i++)
+     {
+       var yahooOnly = res.filter(function (entry) {
+         return entry.text === outputArray[i];
+
+         
+     });
+     
+    //console.log(yahooOnly)
+   index=0
+    for(var j=0;j<yahooOnly.length;j++){
+      
+      //console.log(new Date(this.startDate1))
+      //console.log(new Date(yahooOnly[j].date).toLocaleDateString())
+     if((new Date(yahooOnly[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
+        break;
+     }
+      index++;
+    }
+    
+    var sum_user1=0;
+    var sum_msg1=0;
+  
+    for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
+     
+      sum_user1+=yahooOnly[z].count;
+      
+      
+    }
+    
+    aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
+    markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+ sum_user1+ "</td></tr>"; 
+    tableBody = $("table tbody"); 
+    tableHead=$("shadow")
+    tableHead.append(aa)
+    tableBody.append(markup); 
+    lineNo++; 
+    c++;
+     }
+  //console.log(index)
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+      
+    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+ 
+    
+  });
+
+}
+  
+  
   constructor(private _httpService:MessageInService) { }
 
   ngOnInit() {
@@ -101,12 +198,51 @@ export class MessageInComponent implements OnInit {
         this.inputEndDate=this.endDate;
        for (let i=0;i<res.length;i++)
        {
-        markup = "<tr><td>"+ res[i].text+ "</td><td>"+ res[i].count+ "</td></tr>"; 
+        var outputArray = []; 
+          
+      
+        var count = 0; 
+          
+      
+        var start = false; 
+        var lookup = {};
+         
+        var result = [];
+        for (let j = 0; j < res.length; j++) { 
+          for (let k = 0; k < outputArray.length; k++) { 
+              if ( res[j].text == outputArray[k] ) { 
+                  start = true; 
+              } 
+          } 
+          count++; 
+          if (count == 1 && start == false && res[j].text!=0) { 
+              outputArray.push(res[j].text); 
+          } 
+          start = false; 
+          count = 0; 
+        }}
+        
+       for (let i=0;i<outputArray.length;i++)
+       {
+        var yahooOnly = res.filter(function (entry) {
+          return entry.text === outputArray[i];
+          
+      }
+      );
+     
+      var sum_msg=0;
+      for(let j=yahooOnly.length-1;j>=0;j--)
+      {
+        sum_msg+=yahooOnly[j].count
+
+      }
+        markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+sum_msg + "</td></tr>"; 
         tableBody = $("table tbody"); 
         tableBody.append(markup); 
         lineNo++; 
         c++;
        }
+       
       });  
     
     }
