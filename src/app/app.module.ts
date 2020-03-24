@@ -18,6 +18,7 @@ import { TimezoneComponent } from './timezone/timezone.component';
 import { TranSearchComponent } from './tran-search/tran-search.component';
 import { UseractivityComponent } from './useractivity/useractivity.component';
 import { RouterModule, Routes } from '@angular/router';
+import { MessageInComponent } from './message-in/message-in.component';
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
@@ -30,8 +31,9 @@ const appRoutes: Routes = [
   { path: 'retention', component: RetentionComponent,canActivate: [AuthGuard] },
   { path: 'genderview', component: GenderviewComponent,canActivate: [AuthGuard] },
   { path: 'geomap', component: GeomapComponent,canActivate: [AuthGuard] },
-  { path: 'sentiment', component: SentimentComponent,canActivate: [AuthGuard] }
-  //{ path: 'timezone', component: TimezoneComponent,canActivate: [AuthGuard] }
+  { path: 'sentiment', component: SentimentComponent,canActivate: [AuthGuard] },
+  { path: 'timezone', component: TimezoneComponent,canActivate: [AuthGuard] },
+  { path: 'message_in', component: MessageInComponent,canActivate: [AuthGuard] },
   ];
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ const appRoutes: Routes = [
     SentimentComponent,
     TimezoneComponent,
     TranSearchComponent,
-    UseractivityComponent
+    UseractivityComponent,
+    MessageInComponent
   ],
   imports: [
     RouterModule.forRoot(
