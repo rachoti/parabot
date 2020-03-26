@@ -8,12 +8,17 @@ export class SentimentService {
   constructor(private http:HttpClient) { }
 
   getSentimentDays(){
-    return this.http.get('http://142.102.27.100:8867/');
+    return this.http.get('http://localhost:9991/');
   }
   getMessageCount(){
-    return this.http.get('http://142.102.27.100:9975/');
+    return this.http.get('http://localhost:9991/');
       }
+
+
   getfulldate(){
-    return this.http.get('http://142.102.27.100:8855/');
+    return this.http.get('http://localhost:9991/');
+
+
+
      }
 }

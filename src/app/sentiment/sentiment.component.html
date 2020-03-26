@@ -81,10 +81,10 @@
 
                           <div class="btn-group mr-2">
                                   <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
-                                  <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
+                                  <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}"  /> &#160;&#160;&#160;
                               
-                              <button (click)="myFunc()"  class="btn btn-sm btn-outline-secondary">Day</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary">Week</button>
+                              <button (click)="dateChangerEnd(enddate.value)"  class="btn btn-sm btn-outline-secondary">Day</button>
+                              <button (click)="dateChangerEndWeek(enddate.value)" class="btn btn-sm btn-outline-secondary">Week</button>
                               <button type="button" class="btn btn-sm btn-outline-secondary">Month</button>
                           </div>
                       </div>
@@ -97,27 +97,6 @@
                       <svg id="svg"></svg>
                   </div>
               </div>
-              <div class="card mt-4" style="height:500px">
-
-                      <div id="shadow" class="card-body">
-                          <h4 id="margin0">Average Engaged Users</h4>
-                          <div id="pieMaleInfo">
-                              <h5 id="alignCenter">Male Users Info</h5>
-                              <div id="colorFillMale"></div>
-                              <p class="p">Male Users</p>
-                              <p class="pa">{{ d1 }}</p>
-                              <p class="percentage"> &#65130; <small>{{malePercentVal}}</small> </p>
-  
-                          </div>
-                          <div id="chart"></div>
-                          <div id="pieFemaleInfo">
-                              <h5 id="alignCenter">Female Users Info</h5>
-                              <div id="colorFillFeMale"></div>
-                              <p class="p">Female Users</p>
-                              <p class="pa">{{ d2 }}</p>
-                              <p class="percentage"> &#65130; <small>{{femalePercentVal}}</small></p>
-  
-                          </div>
-                      </div>
-                  </div>
+             
+                      
 
