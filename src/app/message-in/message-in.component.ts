@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageInService } from './message-in.service';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-message-in',
   templateUrl: './message-in.component.html',
@@ -161,7 +162,7 @@ export class MessageInComponent implements OnInit {
     }
     
     aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
-    markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+ sum_user1+ "</td></tr>"; 
+    markup = "<tr><td><a href="+"/messageinchat/"+outputArray[i]+"/"+this.inputStartDate+"/"+this.inputEndDate+">"+outputArray[i]+ "</a></td><td>"+ sum_user1+ "</td></tr>"; 
     tableBody = $("table tbody"); 
     tableHead=$("shadow")
     tableHead.append(aa)
@@ -180,7 +181,7 @@ export class MessageInComponent implements OnInit {
 }
   
   
-  constructor(private _httpService:MessageInService) { }
+  constructor(private router: Router,private _httpService:MessageInService) { }
 
   ngOnInit() {
     
@@ -236,7 +237,7 @@ export class MessageInComponent implements OnInit {
         sum_msg+=yahooOnly[j].count
 
       }
-        markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+sum_msg + "</td></tr>"; 
+        markup = "<tr><td><a href="+"/messageinchat/"+outputArray[i]+"/"+this.inputStartDate+"/"+this.inputEndDate+">"+ outputArray[i]+ "</a></td><td>"+sum_msg + "</td></tr>"; 
         tableBody = $("table tbody"); 
         tableBody.append(markup); 
         lineNo++; 
