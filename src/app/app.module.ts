@@ -19,7 +19,11 @@ import { TranSearchComponent } from './tran-search/tran-search.component';
 import { UseractivityComponent } from './useractivity/useractivity.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MessageInComponent } from './message-in/message-in.component';
+<<<<<<< HEAD
 import { MessageOutComponent } from './message-out/message-out.component';
+=======
+import {MessageInChatComponent} from './message-in-chat/message-in-chat.component'
+>>>>>>> e3bceb7ff7616189f75ef664c9066da8f098ef47
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
@@ -35,7 +39,11 @@ const appRoutes: Routes = [
   { path: 'sentiment', component: SentimentComponent,canActivate: [AuthGuard] },
   { path: 'timezone', component: TimezoneComponent,canActivate: [AuthGuard] },
   { path: 'message_in', component: MessageInComponent,canActivate: [AuthGuard] },
+<<<<<<< HEAD
   { path: 'message_out', component: MessageOutComponent,canActivate: [AuthGuard] }
+=======
+  { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
+>>>>>>> e3bceb7ff7616189f75ef664c9066da8f098ef47
   ];
 @NgModule({
   declarations: [
@@ -53,7 +61,11 @@ const appRoutes: Routes = [
     TranSearchComponent,
     UseractivityComponent,
     MessageInComponent,
+<<<<<<< HEAD
     MessageOutComponent
+=======
+    MessageInChatComponent
+>>>>>>> e3bceb7ff7616189f75ef664c9066da8f098ef47
   ],
   imports: [
     RouterModule.forRoot(
