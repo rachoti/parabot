@@ -41,7 +41,7 @@
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
                           <div [hidden]="isShowDiv3">
-                              <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
+                              <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
                               <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';">Word Cloud</button><br>
                           </div>
                       </a>
@@ -78,28 +78,22 @@
 
 
           <div>
-              <div class="card ">
-                  <div id="shadow" class="card-body">
-                      <div class="btn-toolbar mb-2 mb-md-0">
-
-                          <div class="btn-group mr-2">
-                              <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
-                              <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
-                          </div>
-                      </div>
-                  </div>
-              </div>
+             
 
             
               <div class="card mt-4" style="overflow:auto;">
                   <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
-                      <i id="sInfo"><small>{{inputStartDate}}-{{inputEndDate}}</small></i>
+                      <!--<i id="sInfo"><small>{{inputStartDate}}-{{inputEndDate}}</small></i>-->
                       <table class="table table-striped">
                           
                           <thead>
                               <tr>
-                                  <th scope="col">Message</th>
+                                  <th scope="col">Date</th>
+                                  <th scope="col">User</th>
+                                  <th scope="col">Chat ID</th>
                                   <th scope="col">Count</th>
+                                  <th scope="col">Synopsis</th>
+                                  
                                   
                                   
                               </tr>

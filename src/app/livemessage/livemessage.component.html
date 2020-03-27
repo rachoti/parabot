@@ -41,7 +41,7 @@
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
                           <div [hidden]="isShowDiv3">
-                              <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
+                              <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
                               <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';">Word Cloud</button><br>
                           </div>
                       </a>

@@ -25,6 +25,8 @@
                             <div [hidden]="isShowDiv1">
                                 <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Count</button><br>
                                 <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';">Retention </button><br>
+                                <button routerLink="/message_out" class="button button4 innerbtn" style="font-family: 'Aleo';">Message Out </button><br>
+
                             </div>
                         </a>
                     </li>
@@ -41,7 +43,7 @@
                         <a class="nav-link">
                             <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
                             <div [hidden]="isShowDiv3">
-                                <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
+                                <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
                                 <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';">Word Cloud</button><br>
                             </div>
                         </a>
