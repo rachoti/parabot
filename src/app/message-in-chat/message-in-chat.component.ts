@@ -9,9 +9,15 @@ import { MessageInChatService } from './message-in-chat.service';
   styleUrls: ['./message-in-chat.component.css']
 })
 export class MessageInChatComponent implements OnInit {
-text;
+temp_start;
+temp_end;
 
-  constructor(private router:ActivatedRoute,private _httpService:MessageInChatService) { }
+
+
+  constructor(private router:ActivatedRoute,private _httpService:MessageInChatService) { 
+    this.temp_start=this.router.snapshot.paramMap.get("id2");
+    this.temp_end=this.router.snapshot.paramMap.get("id3");
+  }
 
   ngOnInit() {
     var lineData = [];
@@ -35,6 +41,8 @@ text;
    text=this.router.snapshot.paramMap.get("id1");
    start_date=this.router.snapshot.paramMap.get("id2");
    end_date=this.router.snapshot.paramMap.get("id3");
+   console.log(start_date)
+   console.log(end_date)
  this._httpService.getMessageChatCount().subscribe((res:any[])=>{
     var diff=date_diff_indays(start_date,end_date);
     //console.log(diff)
@@ -55,18 +63,23 @@ text;
      }
       index++;
     }
-   
-    for(var z=index;z<=date_diff_indays(start_date,end_date)+index;z++)
+   console.log(new Date(yahooOnly[0].date).toLocaleDateString())
+   console.log(new Date(end_date).toLocaleDateString())
+    for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
     {
-     
-    markup = "<tr><td>"+(new Date(yahooOnly[z].date).getDate())+"-0"+(new Date(yahooOnly[z].date).getMonth()+1)+"-"+(new Date(yahooOnly[z].date).getFullYear())+"</td><td>"+yahooOnly[z].user_id+"</td><td>"+yahooOnly[z].chat_id+"</td><td>"+yahooOnly[z].count+"</td><td><a href=#>"+"Read entire chat"+"</a></td></tr>"; 
+      if(yahooOnly[z].chat_id=='No chats')
+      {
+        continue;
+      }
+     else{
+    markup = "<tr><td>"+(new Date(yahooOnly[z].date).getDate())+"-0"+(new Date(yahooOnly[z].date).getMonth()+1)+"-"+(new Date(yahooOnly[z].date).getFullYear())+"</td><td>"+yahooOnly[z].user_id+"</td><td>"+yahooOnly[z].chat_id+"</td><td>"+yahooOnly[z].count+"</td><td><a href=/chatdisplayin>"+"Read entire chat"+"</a></td></tr>"; 
     tableBody = $("table tbody"); 
     tableHead=$("shadow")
     //tableHead.append(aa)
     tableBody.append(markup); 
     lineNo++; 
     c++;
-    }
+    }}
   });
   }
 }
