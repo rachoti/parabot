@@ -24,7 +24,8 @@ import { MessageOutComponent } from './message-out/message-out.component';
 
 import {MessageInChatComponent} from './message-in-chat/message-in-chat.component';
 import { MessageOutChatComponent } from './message-out-chat/message-out-chat.component';
-import { ChatDisplayInComponent } from './chat-display-in/chat-display-in.component'
+import { ChatDisplayInComponent } from './chat-display-in/chat-display-in.component';
+import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.component'
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
@@ -46,6 +47,8 @@ const appRoutes: Routes = [
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
   { path: 'chatdisplayin/:id1/:id2', component: ChatDisplayInComponent,canActivate: [AuthGuard] },
+ { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
+  
   ];
 @NgModule({
   declarations: [
@@ -70,7 +73,9 @@ const appRoutes: Routes = [
 
     MessageOutChatComponent,
 
-    ChatDisplayInComponent
+    ChatDisplayInComponent,
+
+    ChatDisplayOutComponent
 
   ],
   imports: [

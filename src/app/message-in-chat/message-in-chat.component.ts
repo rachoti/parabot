@@ -94,7 +94,7 @@ temp_end;
       chats=[]
       for(var row1=0;row1<chat_id_chats_list[row].length;row1++)
       {
-        if(chat_id_chats_list[row][row1].text1==text)
+        if(chat_id_chats_list[row][row1].text1==text && chat_id_chats_list[row][row1].converser=='user')
         {
           
        // chats=chat_id_chats_list[row][row1-1].text+"\n"+chat_id_chats_list[row][row1].text+"\n"+chat_id_chats_list[row][row1+1].text;

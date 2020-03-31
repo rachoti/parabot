@@ -1,111 +1,120 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-  <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-          <a href="javascript:void(0);" (click)="logout()">Sign out</a>
-      </li>
-  </ul>
-</nav>
-
-<div class="container-fluid">
-  <div class="row">
-
-      <nav id="mySidebar" class="col-md-2 d-none d-md-block bg-dark sidebar">
-          <div class="sidebar-sticky">
-              <ul class="nav flex-column">
-                  <li class="nav-item">
-                      <a class="nav-link active" routerLink="/dashboard">
-                          <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';">{{actdata1}}</button>
-                          <div [hidden]="isShowDiv1">
-                              <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Count</button><br>
-                              <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';">Retention </button><br>
-                          </div>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';">{{actdata2}}</button>
-                          <div [hidden]="isShowDiv2">
-                              <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Percentile</button><br>
-                              <button class="button button4 innerbtn" style="font-family: 'Aleo';">Retention Percentile</button><br>
-                          </div>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
-                          <div [hidden]="isShowDiv3">
-                              <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
-                              <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';">Word Cloud</button><br>
-                          </div>
-                      </a>
-                  </li>
-                  <li class="nav-item">
-                      <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';">{{actdata4}}</button>
-                          <div [hidden]="isShowDiv4">
-                              <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';">Gender</button><br>
-                              <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';">Geo Map</button><br>
-                          </div>
-                      </a>
-                  </li>
-
-              </ul>
-
-          </div>
-      </nav>
-
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <span class="bold">Message Out</span>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a href="javascript:void(0);" (click)="logout()">Sign out</a>
+        </li>
+    </ul>
+  </nav>
+  
+  <div class="container-fluid">
+    <div class="row">
+  
+        <nav id="mySidebar" class="col-md-2 d-none d-md-block bg-dark sidebar">
+            <div class="sidebar-sticky">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link active" routerLink="/dashboard">
+                            <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';">{{actdata1}}</button>
+                            <div [hidden]="isShowDiv1">
+                                <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Count</button><br>
+                                <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';">Retention </button><br>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';">{{actdata2}}</button>
+                            <div [hidden]="isShowDiv2">
+                                <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Message Percentile</button><br>
+                                <button class="button button4 innerbtn" style="font-family: 'Aleo';">Retention Percentile</button><br>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
+                            <div [hidden]="isShowDiv3">
+                                <button class=" button button4 innerbtn" style="font-family: 'Aleo';">Sentiment</button><br>
+                                <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';">Word Cloud</button><br>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';">{{actdata4}}</button>
+                            <div [hidden]="isShowDiv4">
+                                <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';">Gender</button><br>
+                                <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';">Geo Map</button><br>
+                            </div>
+                        </a>
+                    </li>
+  
+                </ul>
+  
+            </div>
+        </nav>
+  
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <span class="bold">Message In</span>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                  <span data-feather="calendar"></span>
+                  This week
+                </button>
+                </div>
+            </div>
+  
+  
+            <div>
+                <div class="card ">
+                    <div id="shadow" class="card-body">
+                        <div class="btn-toolbar mb-2 mb-md-0">
+  
+                            <div class="btn-group mr-2">
+                                <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
+                                <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
+                            </div>
+                        </div>
+                    </div>
+                </div>
+  
               
-          </div>
-
-
-          <div>
-              <div class="card ">
-                  <div id="shadow" class="card-body">
-                      <div class="btn-toolbar mb-2 mb-md-0">
-
-                          <div class="btn-group mr-2">
-                              <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
-                              <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-            
-              <div class="card mt-4" style="overflow:auto;">
-                  <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
-                      <i id="sInfo"><small>{{inputStartDate}}-{{inputEndDate}}</small></i>
-                      <table class="table table-striped">
-                          
-                          <thead>
-                              <tr>
-                                  <th scope="col">Message</th>
-                                  <th scope="col">Count</th>
-                                  
-                                  
-                              </tr>
-                          </thead>
-                          <tbody>
-
-                          </tbody>
-                      </table>
-                  </div>
-              </div>
-
-              <br>
-          </div>
-
-      </main>
+                <div class="card mt-4" style="overflow:auto;">
+                    <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
+                        <i id="sInfo"><small>From {{inputStartDate}} TO {{inputEndDate}}</small></i>
+                        <table class="table table-striped">
+                            
+                            <thead>
+                                <tr>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Count</th>
+                                    
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+  
+                <br>
+            </div>
+  
+        </main>
+    </div>
   </div>
-</div>
-
+  

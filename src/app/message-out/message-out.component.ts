@@ -171,7 +171,7 @@ export class MessageOutComponent implements OnInit {
     c++;
      }
   //console.log(index)
-    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
       
     this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
  
@@ -192,7 +192,7 @@ export class MessageOutComponent implements OnInit {
       let c=0;
       this._httpService.getMessageCount().subscribe((res:any[])=>{
         
-        this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+        this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
         
         this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
         this.inputStartDate= this.startDate;
@@ -248,7 +248,9 @@ export class MessageOutComponent implements OnInit {
     
     }
 
-  }
+}
+
+  
 
 
 

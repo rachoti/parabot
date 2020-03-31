@@ -1,18 +1,17 @@
-import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
-import { ChatDisplayInService } from './chat-display-in.service';
-import * as $ from 'jquery';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
-import { and } from '@angular/router/src/utils/collection';
-
+import { ChatDisplayOutService } from './chat-display-out.service';
+import * as $ from 'jquery';
 @Component({
-  selector: 'app-chat-display-in',
-  templateUrl: './chat-display-in.component.html',
-  styleUrls: ['./chat-display-in.component.css']
+  selector: 'app-chat-display-out',
+  templateUrl: './chat-display-out.component.html',
+  styleUrls: ['./chat-display-out.component.css']
 })
-export class ChatDisplayInComponent implements OnInit {
-chat_id;
+export class ChatDisplayOutComponent implements OnInit {
+
+  chat_id;
 text;
-  constructor(private router:ActivatedRoute,private _httpService:ChatDisplayInService) {
+  constructor(private router:ActivatedRoute,private _httpService:ChatDisplayOutService) {
     this.chat_id=this.router.snapshot.paramMap.get("id1");
     this.text=this.router.snapshot.paramMap.get("id2");
     
@@ -39,7 +38,7 @@ text;
     //console.log(yahooOnly)
     for(var z=0;z<yahooOnly.length ;z++)
     {
-      if(yahooOnly[z].text1==temp_text && yahooOnly[z].converser=='user')
+      if(yahooOnly[z].text1==temp_text && yahooOnly[z].converser=='wizard')
       {
         markup = '<tr><td>'+yahooOnly[z].converser+'</td><td><span style="background-color: #FFFF00">'+yahooOnly[z].text+"</span></td></tr>"; 
         tableBody = $("table tbody"); 

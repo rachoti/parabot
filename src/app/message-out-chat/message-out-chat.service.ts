@@ -8,7 +8,11 @@ export class MessageOutChatService {
 
   constructor(private http:HttpClient) { }
 
-  getMessageChatCount(){
-    return this.http.get('http://localhost:9906/');
+  getMessageChatoutCount(){
+    return this.http.get('http://localhost:9904/');
   }
+  getSomeChatout()
+{
+  return this.http.get('http://localhost:9905/');
+}
 }
