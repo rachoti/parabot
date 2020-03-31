@@ -45,7 +45,7 @@ const appRoutes: Routes = [
 
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
-  { path: 'chatdisplayin', component: ChatDisplayInComponent,canActivate: [AuthGuard] },
+  { path: 'chatdisplayin/:id1/:id2', component: ChatDisplayInComponent,canActivate: [AuthGuard] },
   ];
 @NgModule({
   declarations: [

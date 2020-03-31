@@ -5,15 +5,11 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class MessageInChatService {
+export class ChatDisplayInService {
 
   constructor(private http:HttpClient) { }
-  getMessageChatCount(){
-    return this.http.get('http://localhost:9901/');
+  getEntireChat(){
+    return this.http.get('http://localhost:9902/');
       
-}
-getSomeChat()
-{
-  return this.http.get('http://localhost:9902/');
 }
 }
