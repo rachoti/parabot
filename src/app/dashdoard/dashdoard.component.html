@@ -1,6 +1,7 @@
 <nav class="navbar fixed-top bg-dark flex-md-nowrap p-0 shadow ">
   <a id="mySidebar1" class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
+  
   <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
           <a href="javascript:void(0);" (click)="logout()">Sign out</a>
@@ -19,7 +20,7 @@
                           <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Different activities in parabot ">
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';">{{actdata1}}</button>
                           <div [hidden]="isShowDiv1">
@@ -30,7 +31,7 @@
                           </div>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Total retention and message percentage" >
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';">{{actdata2}}</button>
                           <div [hidden]="isShowDiv2">
@@ -39,7 +40,7 @@
                           </div>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Total words and sentiment">
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
                           <div [hidden]="isShowDiv3">
@@ -48,7 +49,7 @@
                           </div>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="total number of people represented in a map">
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';">{{actdata4}}</button>
                           <div [hidden]="isShowDiv4">

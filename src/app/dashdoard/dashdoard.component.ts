@@ -66,6 +66,13 @@ export class DashdoardComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
+  router1(search)
+  {
+    
+ this.router.navigate(['/searchpagenew/'+search])
+    
+
+  }
   constructor(private router: Router,private _httpService:DashboardserviceService,public authService: AuthService) { }
   
   ngOnInit() {
