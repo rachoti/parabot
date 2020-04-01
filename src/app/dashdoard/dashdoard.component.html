@@ -19,7 +19,7 @@
                           <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Different activities in parabot ">
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';">{{actdata1}}</button>
                           <div [hidden]="isShowDiv1">
@@ -31,7 +31,7 @@
                           </div>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Total retention and message percentage" >
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';">{{actdata2}}</button>
                           <div [hidden]="isShowDiv2">
@@ -40,7 +40,7 @@
                           </div>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="Total words and sentiment">
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';">{{actdata3}}</button>
                           <div [hidden]="isShowDiv3">
@@ -49,7 +49,7 @@
                           </div>
                       </a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="total number of people represented in a map">
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';">{{actdata4}}</button>
                           <div [hidden]="isShowDiv4">
