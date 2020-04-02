@@ -150,6 +150,12 @@ svg.append('text')
       .attr('y', -5)             
 	});       
   }
+
+
+
+ 
+
+
   logout(): void {
     console.log("Logout");
     this.authService.logout();
