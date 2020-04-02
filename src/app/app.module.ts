@@ -32,6 +32,7 @@ import { SearchPageNewComponent } from './search-page-new/search-page-new.compon
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
+
   { path: 'login', component: LoginComponent},
   { path: 'tranSearch', component: TranSearchComponent,canActivate: [AuthGuard] },
   { path: 'messagecount', component: MessagecountComponent,canActivate: [AuthGuard] },
@@ -51,8 +52,9 @@ const appRoutes: Routes = [
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
   { path: 'chatdisplayin/:id1/:id2', component: ChatDisplayInComponent,canActivate: [AuthGuard] },
  { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
- { path: 'searchpage/:id1', component: SearchPageComponent,canActivate: [AuthGuard] },
- { path: 'searchpagenew/:id1', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ { path: 'searchpage', component: SearchPageComponent,canActivate: [AuthGuard] },
+ { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ 
   ];
 @NgModule({
   declarations: [
@@ -91,8 +93,10 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true } ,
+    // <-- debugging purposes only
     ),
+   
     RouterModule,
     BrowserModule,
     FormsModule,

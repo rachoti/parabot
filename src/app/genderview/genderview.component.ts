@@ -63,6 +63,14 @@ export class GenderviewComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/genderview'])
+    
+
+  }
   dateChanger(startdate: string){
     this.startDate1=startdate;
     this.datePicCount+=1;

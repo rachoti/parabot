@@ -60,7 +60,15 @@ export class MessagecountComponent implements OnInit {
     
   }
 
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/messagecount'])
+    
 
+  }
+ 
   ngOnInit() {
 
 	var lineData = [];

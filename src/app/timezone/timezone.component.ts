@@ -71,6 +71,14 @@ export class TimezoneComponent implements OnInit {
     
     this.datePicCount+=1;
   }
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/timezone'])
+    
+
+  }
   
   dateChangerEnd(enddate: string){
     var lineData = [];

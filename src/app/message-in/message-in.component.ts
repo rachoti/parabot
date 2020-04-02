@@ -71,7 +71,14 @@ export class MessageInComponent implements OnInit {
     this.datePicCount+=1;
 
   }
-  
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/message_in'])
+    
+
+  }
   dateChangerEnd(enddate: string){
     var lineData = [];
     var markup;

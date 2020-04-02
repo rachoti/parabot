@@ -55,7 +55,14 @@ export class LivemessageComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
-  
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/liveMessage'])
+    
+
+  }
   constructor(private router: Router,private _httpService:LivemessageService,public authService: AuthService) { }
 
   ngOnInit() {
