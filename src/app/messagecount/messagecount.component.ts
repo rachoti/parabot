@@ -60,7 +60,15 @@ export class MessagecountComponent implements OnInit {
     
   }
 
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/messagecount'])
+    
 
+  }
+ 
   ngOnInit() {
 
 	var lineData = [];
@@ -142,6 +150,12 @@ svg.append('text')
       .attr('y', -5)             
 	});       
   }
+
+
+
+ 
+
+
   logout(): void {
     console.log("Logout");
     this.authService.logout();

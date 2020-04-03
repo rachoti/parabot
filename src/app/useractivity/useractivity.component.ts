@@ -55,6 +55,14 @@ export class UseractivityComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/useractivity'])
+    
+
+  }
   constructor(private router: Router,public authService: AuthService) { 
     
   }

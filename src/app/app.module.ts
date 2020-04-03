@@ -19,16 +19,20 @@ import { TranSearchComponent } from './tran-search/tran-search.component';
 import { UseractivityComponent } from './useractivity/useractivity.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MessageInComponent } from './message-in/message-in.component';
-
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MessageOutComponent } from './message-out/message-out.component';
 
 import {MessageInChatComponent} from './message-in-chat/message-in-chat.component';
 import { MessageOutChatComponent } from './message-out-chat/message-out-chat.component';
 import { ChatDisplayInComponent } from './chat-display-in/chat-display-in.component';
-import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.component'
+import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.component';
+import { SearchPageComponent } from './search-page/search-page.component';
+import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
+
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
+
   { path: 'login', component: LoginComponent},
   { path: 'tranSearch', component: TranSearchComponent,canActivate: [AuthGuard] },
   { path: 'messagecount', component: MessagecountComponent,canActivate: [AuthGuard] },
@@ -48,7 +52,9 @@ const appRoutes: Routes = [
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
   { path: 'chatdisplayin/:id1/:id2', component: ChatDisplayInComponent,canActivate: [AuthGuard] },
  { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
-  
+ { path: 'searchpage', component: SearchPageComponent,canActivate: [AuthGuard] },
+ { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ 
   ];
 @NgModule({
   declarations: [
@@ -75,20 +81,29 @@ const appRoutes: Routes = [
 
     ChatDisplayInComponent,
 
-    ChatDisplayOutComponent
+    ChatDisplayOutComponent,
+
+    SearchPageComponent,
+
+    SearchPageNewComponent,
+   
+
 
   ],
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true } ,
+    // <-- debugging purposes only
     ),
+   
     RouterModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

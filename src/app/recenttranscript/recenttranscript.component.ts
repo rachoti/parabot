@@ -56,6 +56,14 @@ export class RecenttranscriptComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/recentTrans'])
+    
+
+  }
   constructor(private router: Router,private _httpService:RecenttransService,public authService: AuthService) { }
 
   ngOnInit() {

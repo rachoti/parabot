@@ -92,6 +92,14 @@ export class GeomapComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/geomap'])
+    
+
+  }
   constructor(private router: Router,private _httpService:GeomapService,public authService: AuthService) { 
     
   }

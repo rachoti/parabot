@@ -296,6 +296,14 @@ this._httpService.getExistingMonthCount().subscribe((res:any[])=>{
 });
 
 }
+router1(search)
+{
+  
+  
+this.router.navigate(['/searchpagenew/'+search+'/retention'])
+  
+
+}
     logout(): void {
       console.log("Logout");
       this.authService.logout();
