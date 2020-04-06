@@ -28,6 +28,7 @@ import { ChatDisplayInComponent } from './chat-display-in/chat-display-in.compon
 import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
+import { TranscriptComponent } from './transcript/transcript.component';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
   { path: 'message_in', component: MessageInComponent,canActivate: [AuthGuard] },
 
   { path: 'message_out', component: MessageOutComponent,canActivate: [AuthGuard] },
+  { path: 'transcript', component: TranscriptComponent,canActivate: [AuthGuard] },
 
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
@@ -86,6 +88,8 @@ const appRoutes: Routes = [
     SearchPageComponent,
 
     SearchPageNewComponent,
+
+    TranscriptComponent,
    
 
 

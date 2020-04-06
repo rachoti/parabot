@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
-  <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+  <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
   <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
           <a href="javascript:void(0);" (click)="logout()">Sign out</a>
@@ -61,9 +61,8 @@
 
                             <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="individual's gender identity ">Gender</button><br>
                             <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Location of people represented in a map">Geo Map</button><br>
-                            <button routerLink="/timezone" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Gives the timezone of different places ">TimeZone </button><br>
 
-                          
+                            <button routerLink="/timezone" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Gives the timezone of different places ">TimeZone </button><br>
 
                           </div>
 
@@ -77,11 +76,11 @@
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <span class="bold">Demographics</span>
+              <span class="bold">Transcript</span>
               <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
                       <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                      <button (click)="dateChangerEndexport(enddate.value)" class="btn btn-sm btn-outline-secondary">Export</button>
                   </div>
                   <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
                 <span data-feather="calendar"></span>
@@ -97,22 +96,33 @@
                       <div class="btn-toolbar mb-2 mb-md-0">
 
                           <div class="btn-group mr-2">
-                              <input type="date" #CstartDate class="form-control" name="CstartDate" id="CstartDate" required [(ngModel)]="mod.CstartDate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" /> &#160;&#160;&#160;
-                              <input type="date" #CendDate class="form-control" name="CendDate" id="CendDate" required [(ngModel)]="mod.CendDate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" /> &#160;&#160;&#160;
-                              <input type="text" #Cwords class="form-control" name="Cwords" required [(ngModel)]="mod.Cwords" id="words" placeholder="Keyword.." /> &#160;&#160;&#160;
-                              <button (click)="SearchKey(Cwords.value)">Search</button>
+                              <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
+                              <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
                           </div>
                       </div>
                   </div>
               </div>
 
-              <div class="card mt-4" style="height:500px">
+            
+              <div class="card mt-4" style="overflow:auto;">
+                  <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
+                      <i id="sInfo"><small>From {{inputStartDate}} TO {{inputEndDate}}</small></i>
+                      <table class="table table-striped">
+                          
+                          <thead>
+                              <tr>
+                                  <th scope="col">Chat_ID</th>
+                                  <th scope="col">User_ID</th>
+                                  
+                                  
+                              </tr>
+                          </thead>
+                          <tbody>
 
-                  <div id="shadow" class="card-body">
-
+                          </tbody>
+                      </table>
                   </div>
               </div>
-
 
               <br>
           </div>
