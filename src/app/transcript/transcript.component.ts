@@ -99,7 +99,7 @@ export class TranscriptComponent implements OnInit {
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
     }
     
-   
+    $("table tbody tr").remove();
     this._httpService.getMessageCount().subscribe((res:any[])=>{
       var index=0;
       for(var j=0;j<res.length;j++){
