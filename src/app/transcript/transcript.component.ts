@@ -85,6 +85,7 @@ export class TranscriptComponent implements OnInit {
     var markup;
     var tableBody;
     var tableHead;
+    var c=0;
     let lineNo = 0;
   this.endDate=enddate;
   this.startDate1;
@@ -100,82 +101,51 @@ export class TranscriptComponent implements OnInit {
     
    
     this._httpService.getMessageCount().subscribe((res:any[])=>{
-      let c=0;
-      var outputArray = []; 
+      var index=0;
+      for(var j=0;j<res.length;j++){
+    
+        //console.log(new Date(this.startDate1))
+        //console.log(new Date(yahooOnly[j].date).toLocaleDateString())
+       if((new Date(res[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
+          break;
+       }
+        index++;
+      }
+      console.log(index)
+      console.log(this.endDate)
+      console.log(res[0].date)
+      for(var z=index;(new Date(res[z].date))<=(new Date(this.endDate));z++)
+      {
         
-    
-      var count = 0;
-       var aa; 
-      
-      var start = false; 
-      var lookup = {};
-       
-      var result = [];
-      
-     
-      $("table tbody tr").remove();
-      
-      for (let j = 0; j < res.length; j++) { 
-          for (let k = 0; k < outputArray.length; k++) { 
-              if ( res[j].chat_id == outputArray[k] ) { 
-                  start = true; 
-              } 
-          } 
-         count++; 
-          if (count == 1 && start == false) { 
-              outputArray.push(res[j].chat_id); 
-          } 
-          start = false; 
-          count = 0;
+        if(res[z].chat_id=='No chats')
+        {
+          continue;
         }
-     
-    
-  // console.log(outputArray)
-      
-      let arr=[];
-      let index=0;
-      
-      
-      
-    
-
-     for(let i=0;i<outputArray.length;i++)
-     {
-       var yahooOnly = res.filter(function (entry) {
-         return entry.chat_id === outputArray[i];
-
-         
-     });
-     
-  console.log(yahooOnly)
-   index=0
-  /*  for(var j=0;j<yahooOnly.length;j++){
-      
-      //console.log(new Date(this.startDate1))
-      //console.log(new Date(yahooOnly[j].date).toLocaleDateString())
-     if((new Date(yahooOnly[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
-        break;
-     }
-      index++;
-    }
-
-    
-
-  console.log(index)*/
-
-   /*  for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+1;z++){
-       console.log(yahooOnly[z])
-     }*/
-   /* aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
-    markup = "<tr><td>"+yahooOnly[z].chat_id+ "</a></td><td>"+ yah+ "</td></tr>"; 
-    tableBody = $("table tbody"); 
-    tableHead=$("shadow")
-    tableHead.append(aa)
-    tableBody.append(markup); 
-    lineNo++; 
-    c++;*/
-              }
-  //console.log(index)
+        else
+        {
+         markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+"</td><td>"+res[z].user_id+"</td></tr>"  
+        tableBody = $("table tbody"); 
+        tableHead=$("shadow")
+        //tableHead.append(aa)
+        tableBody.append(markup); 
+        lineNo++; 
+        c++;
+        }
+        /*if(res[z].chat_id=='No chats')
+        {
+          continue;
+        }
+       else{
+        
+        markup = "<tr><td>"+new Date(res[z].date)+ "</td<td>"+ res[z].chat_id+ "</td><td>"+ res[z].user_id+ "</td></tr>"; 
+  
+      tableBody = $("table tbody"); 
+      tableHead=$("shadow")
+      //tableHead.append(aa)
+      tableBody.append(markup); 
+      lineNo++; 
+      c++;*/
+       }  
     this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
       
     this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
@@ -194,6 +164,7 @@ export class TranscriptComponent implements OnInit {
       var markup;
       var tableBody;
       let lineNo = 0;
+      var tableHead;
       let c=0;
       this._httpService.getMessageCount().subscribe((res:any[])=>{
         console.log(res[0].date)
@@ -204,59 +175,34 @@ export class TranscriptComponent implements OnInit {
         this.inputStartDate= this.startDate;
         this.inputEndDate=this.endDate;
       });
-      this._httpService.getMessageCount().subscribe((res:any[])=>{
+      this._httpService.get_transcript_7_days().subscribe((res:any[])=>{
         let c=0;
-  
-       for (let i=0;i<res.length;i++)
-       {
-        var outputArray = []; 
-          
-      
-        var count = 0; 
-          
-      
-        var start = false; 
-        var lookup = {};
-         
-        var result = [];
-        for (let j = 0; j < res.length; j++) { 
-          for (let k = 0; k < outputArray.length; k++) { 
-              if ( res[j].chat_id == outputArray[k] ) { 
-                  start = true; 
-              } 
-          } 
-          /*count++; 
-          if (count == 1 && start == false && res[j].chat_id!=0) { 
-              outputArray.push(res[j].chat_id); 
-          } 
-          start = false; 
-          count = 0; */
-        }}
         
-       for (let i=0;i<outputArray.length;i++)
-       {
-        var yahooOnly = res.filter(function (entry) {
-          return entry.chat_id === outputArray[i];
+   
+      
+        for(var z=0;z<res.length;z++)
+        {
           
-      }
-      );
-     
-      var sum_msg=0;
-      for(let j=yahooOnly.length-1;j>=0;j--)
-      {
-        sum_msg+=yahooOnly[j].count
-
-      }
-       /* markup = "<tr><td><a href="+"/messageinchat/"+encodeURI(outputArray[i])+"/"+this.inputStartDate+"/"+this.inputEndDate+">"+ outputArray[i]+ "</a></td><td>"+sum_msg + "</td></tr>"; 
-        tableBody = $("table tbody"); 
-        tableBody.append(markup); 
-        lineNo++; 
-        c++;
-        */
-       }
-       
-      });  
-    
+          
+          if(res[z].chat_id=='No chats')
+          {
+            continue;
+          }
+          else
+          {
+           markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+"</td><td>"+res[z].user_id+"</td></tr>"  
+          tableBody = $("table tbody"); 
+          tableHead=$("shadow")
+          //tableHead.append(aa)
+          tableBody.append(markup); 
+          lineNo++; 
+          c++;
+          }
+        }
+  
+      });
+        
+      
     }
 
     dateChangerEndexport(enddate: string){

@@ -11,4 +11,8 @@ export class TranscriptserviceService {
     return this.http.get('http://localhost:9915/');
       
 }
+get_transcript_7_days(){
+  return this.http.get('http://localhost:9906/');
+    
+}
 }
