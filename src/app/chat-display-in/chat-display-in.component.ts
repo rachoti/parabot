@@ -4,6 +4,7 @@ import * as $ from 'jquery';
 import { ActivatedRoute } from "@angular/router";
 import { ExportToCsv } from 'export-to-csv';
 import { and } from '@angular/router/src/utils/collection';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-display-in',
@@ -13,10 +14,18 @@ import { and } from '@angular/router/src/utils/collection';
 export class ChatDisplayInComponent implements OnInit {
 chat_id;
 text;
-  constructor(private router:ActivatedRoute,private _httpService:ChatDisplayInService) {
+  constructor(private router:ActivatedRoute,private _httpService:ChatDisplayInService,private router2: Router) {
     this.chat_id=this.router.snapshot.paramMap.get("id1");
     this.text=this.router.snapshot.paramMap.get("id2");
     
+   }
+   router1(search)
+   {
+     
+     
+  this.router2.navigate(['/searchpagenew/'+search+'/message_in'])
+     
+ 
    }
 
   ngOnInit() {

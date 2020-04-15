@@ -3,6 +3,7 @@ import * as $ from 'jquery';
 import { ActivatedRoute } from "@angular/router";
 import { MessageInChatService } from './message-in-chat.service';
 import { ExportToCsv } from 'export-to-csv';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-message-in-chat',
@@ -15,11 +16,18 @@ temp_end;
 
 
 
-  constructor(private router:ActivatedRoute,private _httpService:MessageInChatService) { 
+  constructor(private router2: Router,private router:ActivatedRoute,private _httpService:MessageInChatService) { 
     this.temp_start=this.router.snapshot.paramMap.get("id2");
     this.temp_end=this.router.snapshot.paramMap.get("id3");
   }
+  router1(search)
+  {
+    
+    
+ this.router2.navigate(['/searchpagenew/'+search+'/message_in'])
+    
 
+  }
   ngOnInit() {
     var lineData = [];
     var markup;

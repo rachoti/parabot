@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { ChatDisplayOutService } from './chat-display-out.service';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-chat-display-out',
   templateUrl: './chat-display-out.component.html',
@@ -11,12 +12,19 @@ export class ChatDisplayOutComponent implements OnInit {
 
   chat_id;
 text;
-  constructor(private router:ActivatedRoute,private _httpService:ChatDisplayOutService) {
+  constructor(private router:ActivatedRoute,private _httpService:ChatDisplayOutService,private router2: Router) {
     this.chat_id=this.router.snapshot.paramMap.get("id1");
     this.text=this.router.snapshot.paramMap.get("id2");
     
    }
-
+   router1(search)
+   {
+     
+     
+  this.router2.navigate(['/searchpagenew/'+search+'/message_out'])
+     
+ 
+   }
   ngOnInit() {
     var temp_chat_id;
     var temp_text;
