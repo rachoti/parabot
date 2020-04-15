@@ -29,6 +29,8 @@ import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.com
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
 import { TranscriptComponent } from './transcript/transcript.component';
+import { TransnextComponent } from './transnext/transnext.component';
+
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -56,6 +58,7 @@ const appRoutes: Routes = [
  { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
  { path: 'searchpage', component: SearchPageComponent,canActivate: [AuthGuard] },
  { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ { path: 'transnext/:id1', component: TransnextComponent,canActivate: [AuthGuard] },
  
   ];
 @NgModule({
@@ -90,6 +93,10 @@ const appRoutes: Routes = [
     SearchPageNewComponent,
 
     TranscriptComponent,
+
+    TransnextComponent,
+
+  
    
 
 

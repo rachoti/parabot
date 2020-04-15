@@ -123,7 +123,7 @@ export class TranscriptComponent implements OnInit {
         }
         else
         {
-         markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+"</td><td>"+res[z].user_id+"</td></tr>"  
+         markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+'<br><a href=/transnext/'+res[z].chat_id+'>(Read chats)'+"</a></td><td>"+res[z].user_id+"</td></tr>"  
         tableBody = $("table tbody"); 
         tableHead=$("shadow")
         //tableHead.append(aa)
@@ -190,7 +190,7 @@ export class TranscriptComponent implements OnInit {
           }
           else
           {
-           markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+"</td><td>"+res[z].user_id+"</td></tr>"  
+           markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+'<br><a href=/transnext/'+res[z].chat_id+'>(Read chats)'+"</a></td><td>"+res[z].user_id+"</td></tr>"  
           tableBody = $("table tbody"); 
           tableHead=$("shadow")
           //tableHead.append(aa)
