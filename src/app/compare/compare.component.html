@@ -1,7 +1,6 @@
-<nav class="navbar fixed-top bg-dark flex-md-nowrap p-0 shadow ">
-  <a id="mySidebar1" class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
   <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
-  
   <ul class="navbar-nav px-3">
       <li class="nav-item text-nowrap">
           <a href="javascript:void(0);" (click)="logout()">Sign out</a>
@@ -12,7 +11,7 @@
 <div class="container-fluid">
   <div class="row">
 
-      <nav id="mySidebar" class="col-md-2 d-none d-md-block sidebar">
+      <nav id="mySidebar" class="col-md-2 d-none d-md-block bg-dark sidebar">
           <div class="sidebar-sticky">
               <ul class="nav flex-column">
                   <li class="nav-item">
@@ -40,7 +39,7 @@
                     <a class="nav-link">
                         <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Total retention and message percentage" >{{actdata2}}</button>
                         <div [hidden]="isShowDiv2">
-                            <button   routerLink="/compare" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
+                            <button class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
                             <button class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates. ">Retention Percentile</button><br>
                         </div>
                     </a>
@@ -78,101 +77,45 @@
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">Dashboard</h1>
+              <span class="bold">Compare</span>
               <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
                       <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                      <button (click)="dateChangerEndexport(enddate.value)" class="btn btn-sm btn-outline-secondary">Export</button>
                   </div>
                   <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-          <span data-feather="calendar"></span>
-          This week
-        </button>
+                <span data-feather="calendar"></span>
+                This week
+              </button>
               </div>
           </div>
+
+
           <div>
-              <div class="row card-deck mt-4">
-                  <div class="col-sm-6">
-                      <div id="shadow" class="card border border-light" style="height: 300px;">
-                          <div class="card-body">
-                              <h5 class="card-title bttm">Message activity</h5>
-                              <i id="sInfo"><small>Last seven days</small></i>
-                              <div class="row">
-                                  <div id="outCount">
-                                      <!-- &#9679; -->
-                                      <p id="outCountTitle"> <small>Incoming Message</small></p>
-                                      <p id="outCountP">{{this.userMessageCount}}&#160;&#160; &#65130;<small>{{userMessPercent}}</small></p>
-                                  </div>
-                                  <div id="outCount">
-                                      <p id="outCountTitle"> <small>Outgoing Message</small></p>
-                                      <p id="outCountP">{{this.wizardMessageCount}}&#160;&#160; &#65130;<small>{{WizardMessPercent}}</small></p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div id="outCount">
-                                      <p id="outCountTitle"><small> Total Message</small></p>
-                                      <p id="outCountP">{{this.totalMessageCount}}&#160;&#160; <small>{{percentage}}</small></p>
-                                  </div>
-                                  <div id="outCount">
-                                      <p id="outCountTitle"><small>Todays Total Message</small></p>
-                                      <p id="outCountP">{{this.totalTodayMessageCount}}&#160;&#160; <small>{{percentage}}</small></p>
-                                  </div>
-                              </div>
-
-                              <button routerLink="/messagecount" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View Message activity report</i> ></button>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-6">
-                      <div id="shadow" class="card border border-light" style="height: 300px;">
-                          <div class="card-body">
-                              <h5 class="card-title bttm">User Activity</h5>
-                              <i id="sInfo"><small>Last seven days</small></i>
-                              <div class="row">
-                                  <div id="outCount">
-                                      <p id="outCountTitle"> <small>New Users</small></p>
-                                      <p id="outCountP">{{this.newUserCount}}&#160;&#160; &#65130;<small>{{Useractpercentage}}</small></p>
-                                  </div>
-                                  <div id="outCount">
-                                      <p id="outCountTitle"> <small>Returning Users</small></p>
-                                      <p id="outCountP">{{this.returnUserCount}}&#160;&#160; &#65130;<small>{{returnactpercentage}}</small></p>
-                                  </div>
-                              </div>
-                              <div class="row">
-                                  <div id="outCount">
-                                      <p id="outCountTitle"><small> Lifetime Users</small></p>
-                                      <p id="outCountP">{{this.lifetimeUserCount}}&#160;&#160; <small>{{percentage}}</small></p>
-                                  </div>
-
-                              </div>
-                              <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
+              <div class="card ">
+                  <div id="shadow" class="card-body">
+                    <p>Bot1</p>
+                    <p id="bot2">Bot2</p>
+                      <div class="btn-toolbar mb-2 mb-md-0">
+                       
+                          <div class="btn-group mr-2">
+                            
+                              <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
+                              <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
                           </div>
                       </div>
                   </div>
               </div>
 
-              <div class="row card-deck mt-4">
-                  <div class="col-sm-6">
-                      <div id="shadow" class="card border-light" style="height: 250px;">
-                          <div class="card-body">
-                              <h5 class="card-title">Live Message Rate</h5>
-                              <div class="card-body">
-                                  <svg id="svg"></svg>
-                              </div>
-                              <button routerLink="/liveMessage" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">Live Message Rate report</i> ></button>
-                          </div>
-                      </div>
-                  </div>
-                  <div class="col-sm-6">
-                      <div id="shadow" class="card border-light" style="height: 250px;">
-                          <div class="card-body">
-                              <h5 class="card-title">Word Cloud</h5>
-                              <div><img id="recentTrans" src="../../assets/recentTrans.png" /></div>
-                              <button routerLink="/recentTrans" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View Word Cloud report</i> ></button>
-                          </div>
-                      </div>
+            
+              <div class="card mt-4" style="overflow:auto;">
+                  <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
+                      
+                    <div #barChart id="bar-chart"></div>
                   </div>
               </div>
+
+              <br>
           </div>
 
       </main>

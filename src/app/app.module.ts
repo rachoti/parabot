@@ -30,6 +30,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
 import { TranscriptComponent } from './transcript/transcript.component';
 import { TransnextComponent } from './transnext/transnext.component';
+import { CompareComponent } from './compare/compare.component';
 
 
 const appRoutes: Routes = [
@@ -59,6 +60,7 @@ const appRoutes: Routes = [
  { path: 'searchpage', component: SearchPageComponent,canActivate: [AuthGuard] },
  { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
  { path: 'transnext/:id1', component: TransnextComponent,canActivate: [AuthGuard] },
+ { path: 'compare', component: CompareComponent,canActivate: [AuthGuard] },
  
   ];
 @NgModule({
@@ -95,6 +97,8 @@ const appRoutes: Routes = [
     TranscriptComponent,
 
     TransnextComponent,
+
+    CompareComponent,
 
   
    
