@@ -1,3 +1,4 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
   <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
@@ -111,7 +112,9 @@
               <div class="card mt-4" style="overflow:auto;">
                   <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
                       
-                    <div #barChart id="bar-chart"></div>
+                  
+                        <svg id="svg"></svg>
+                   
                   </div>
               </div>
 
