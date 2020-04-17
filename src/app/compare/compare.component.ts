@@ -74,34 +74,28 @@ var fin=[final[0][0],final[1][0]]
 
 var lineData=[];
 for(let i=0;i<fin.length;i++){
-  var obj ={date:(new Date(fin[i].date).getFullYear())+"-0"+(new Date(fin[i].date).getMonth()+1)+"-"+(new Date(fin[i].date).getDate()-1),count:fin[i].count};
+  var obj ={date:(new Date(fin[i].date).getFullYear())+"-0"+(new Date(fin[i].date).getMonth()+1)+"-"+(new Date(fin[i].date).getDate()),count:fin[i].count};
   lineData.push(obj);
 }
 console.log(lineData.map(function(d) { return new Date(d.date); }))
 var height  = 400;
 var width   = 1000;
 var hEach   = 40;
+var i=0;
 
-var margin = {top: 15, right: 40, bottom: 20, left: 300};
+var myColor = d3.scaleOrdinal().domain(lineData[i=i+1])
+  .range(["black", "grey"])
+var margin = {top: 15, right: 40, bottom: 20, left: 450};
 
 width =     width - margin.left - margin.right;
 height =    height - margin.top - margin.bottom;
 
 
 //remove and create svg
-var buildlegendvalues =
-[{
-  "1.0": "#79abbd",
-  "2.0": "#6784b4",
-  
-}]
 
-  var bl = 0;
-  function getByIndex(buildlegendvalues, index) {
-    bl++
-    return buildlegendvalues[Object.keys(buildlegendvalues)[index]];
-  }
-var svg = d3.select('svg')
+
+var svg = d3.select('#div_template')
+.append("svg")
 .attr("width",  width + margin.left + margin.right)
 .attr("height", height + margin.top + margin.bottom)
 .append("g")
@@ -125,15 +119,65 @@ svg.append("g")
   .call(d3.axisLeft(y));
 
 // Bars
+var Tooltip = d3.select('#div_template')
+.append('div')
+.style("opacity", 0)
+.attr("class", "tooltip")
+.style("background-color", "white")
+.style("border", "solid")
+.style("border-width", "2px")
+.style("border-radius", "5px")
+.style("padding", "5px")
+  // Three function that change the tooltip when user hover / move / leave a cell
+  var mouseover = function(d) {
+    console.log("mouse hover")
+    Tooltip
+      .style("opacity", 1)
+    d3.select(this)
+      .style("stroke", "black")
+      .style("opacity", 1)
+  }
+  var mousemove = function(d) {
+    Tooltip
+      .html("Date: " + d.date+"<br>Count: "+d.count)
+      .style("left", (d3.mouse(this)[0]+500) + "px")
+      .style("top", (d3.mouse(this)[1]-50) + "px")
+  }
+  var mouseleave = function(d) {
+    Tooltip
+      .style("opacity", 0)
+    d3.select(this)
+      .style("stroke", "none")
+      .style("opacity", 1)
+  }
 svg.selectAll("mybar")
   .data(lineData)
   .enter()
-  .append("rect")
+   .append("rect")
     .attr("x", function(d) { return x(d.date); })
     .attr("y", function(d) { return y(d.count); })
     .attr("width", 150)
     .attr("height", function(d) { return height - y(d.count); })
-    .attr("fill", "#69b3a2")
+    .attr("fill", function(d){ return myColor(d.date) })
+    .on("mouseover", mouseover)
+    .on("mousemove", mousemove)
+    .on("mouseleave", mouseleave)
+    
+  
+
+    var size = 17;
+    svg.append("rect").
+    attr("x", 420)
+    .attr("y",15) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("width", size)
+    .attr("height", size).style("fill", "black")
+    svg.append("rect").
+    attr("x", 420)
+    .attr("y",45) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("width", size)
+    .attr("height", size).style("fill", "grey")
+    svg.append("text").attr("x", 460).attr("y", 30).text("Bot1").style("font-size", "20px").attr("alignment-baseline","right")
+    svg.append("text").attr("x", 460).attr("y", 60).text("Bot2").style("font-size", "20px").attr("alignment-baseline","right")
 /*var x = d3.scaleTime().range([0, width]);
 
 x.domain(d3.extent(fin, function(d) { return d.date; }));

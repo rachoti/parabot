@@ -179,7 +179,6 @@ body {
     color: rgb(3, 3, 3);
 }
 
-
 .navbar .form-control {
     padding: .75rem 1rem;
     border-width: 0;
@@ -295,17 +294,6 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     top: 53px;
     left: 78px;
 }
-#enddate{
-    
-    position: absolute;
-    top: 1px;
-    left:1150px;
-}
-#bot2
-{ position: absolute;
-    top: 25px;
-    left:1170px;
-}
 
 #pieMaleInfo {
     position: absolute;
@@ -322,6 +310,9 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 
 #alignCenter {
     text-align: center;
+}
+#alignright {
+    text-align: right;
 }
 
 #colorFillMale {
