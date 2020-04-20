@@ -30,6 +30,7 @@ import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
 import { TranscriptComponent } from './transcript/transcript.component';
 import { TransnextComponent } from './transnext/transnext.component';
+import { UnhandledMessageComponent } from './unhandled-message/unhandled-message.component';
 
 
 const appRoutes: Routes = [
@@ -51,6 +52,7 @@ const appRoutes: Routes = [
 
   { path: 'message_out', component: MessageOutComponent,canActivate: [AuthGuard] },
   { path: 'transcript', component: TranscriptComponent,canActivate: [AuthGuard] },
+  { path: 'unhandled', component: UnhandledMessageComponent,canActivate: [AuthGuard] },
 
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
@@ -95,6 +97,8 @@ const appRoutes: Routes = [
     TranscriptComponent,
 
     TransnextComponent,
+
+    UnhandledMessageComponent,
 
   
    
