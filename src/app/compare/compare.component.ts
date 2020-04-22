@@ -133,12 +133,13 @@ export class CompareComponent implements OnInit {
         if(a==res.length-1)
         break;
      }
- 
+ var max=Math.max(sum1,sum2)
+ var range=max+1;
 
     var final=[]
     
-    var line1={date:startDate1+"\t\t\tTO\t\t\t "+endDate1,count:sum1} 
-    var line2={date:startDate2+"\t\tTO\t\t "+endDate2,count:sum2} 
+    var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,count:sum1} 
+    var line2={date:startDate2+"\t\tto\t\t "+endDate2,count:sum2} 
 
 final.push(line1,line2)
 
@@ -157,9 +158,8 @@ var hEach   = 40;
 var i=0;
 
 var myColor = d3.scaleOrdinal().domain(lineData[i=i+1])
-  .range(["black", "grey"])
+.range(["blue","orange"]);
 var margin = {top: 15, right: 40, bottom: 60, left: 450};
-
 width =     width - margin.left - margin.right;
 height =    height - margin.top - margin.bottom;
 
@@ -181,23 +181,38 @@ var x = d3.scaleBand()
 svg.append("g")
 
 .attr("transform", "translate(0," + height + ")")
+.style("font-weight","bold")
+.style("font-size","13px")
 .call(d3.axisBottom(x).tickSizeOuter(0))
 
-svg.append("g")
-.style("font-weight","bold")
+/*svg.append("g")
+.style("font-weight","bold")*/
 // Add Y axis
 var y = d3.scaleLinear()
   .domain([0, 11])
   .range([ height+2, 0]);
 svg.append("g")
+.style("font-weight","bold")
+.style("font-size","15px")
   .call(d3.axisLeft(y))
-  .style("font-weight","bold");
-  svg.append("text")      // text label for the x axis
-        .attr("x", 205 )
-        .attr("y", 370 )
-        .style("text-anchor", "middle").
-        style("font-weight","bold")
-        .text("Date");
+  svg.append("text")
+  .attr("text-anchor", "end")
+  .attr("x", width-80)
+  .attr("y", height + margin.top + 20)
+  .text("Date")
+  .style("font-weight","bold")
+  .style("font-size","20px");
+        
+  svg.append("text")
+  .attr("text-anchor", "end")
+  .attr("transform", "rotate(-90)")
+  .attr("y", -margin.left+420)
+  .attr("x", -margin.top+30)
+  .text("Count")
+  .style("font-weight","bold")
+  .style("font-size","20px");
+     
+ 
 
 // Bars
 var Tooltip = d3.select('#div_template')
@@ -231,6 +246,10 @@ var Tooltip = d3.select('#div_template')
       .style("stroke", "none")
       .style("opacity", 1)
   }
+
+
+
+      
 svg.selectAll("mybar")
   .data(lineData)
   .enter()
@@ -240,26 +259,27 @@ svg.selectAll("mybar")
     .attr("width", 150)
     .attr("height", function(d) { return height - y(d.count); })
     .attr("fill", function(d){ return myColor(d.date) })
+  
     .on("mouseover", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseleave)
-    
+   
   
 
     var size = 17;
     svg.append("rect").
-    attr("x", 420)
-    .attr("y",15) // 100 is where the first dot appears. 25 is the distance between dots
+    attr("x", 60)
+    .attr("y",350) // 100 is where the first dot appears. 25 is the distance between dots
     .attr("width", size)
-    .attr("height", size).style("fill", "black")
+    .attr("height", size).style("fill", "blue")
     
     svg.append("rect").
-    attr("x", 420)
-    .attr("y",45) // 100 is where the first dot appears. 25 is the distance between dots
+    attr("x", 240)
+    .attr("y",350) // 100 is where the first dot appears. 25 is the distance between dots
     .attr("width", size)
-    .attr("height", size).style("fill", "grey")
-    svg.append("text").attr("x", 460).attr("y", 30).text("Bot1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
-    svg.append("text").attr("x", 460).attr("y", 60).text("Bot2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+    .attr("height", size).style("fill", "orange")
+    svg.append("text").attr("x", 90).attr("y", 365).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+    svg.append("text").attr("x", 270).attr("y", 365).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
 
 });
    
@@ -305,13 +325,19 @@ svg.selectAll("mybar")
           if(a==res.length-1)
         break;
        }
-       console.log(sum2)
-   
+      var max=Math.max(sum1,sum2)
+       var range=max;
+      for(var c=0;(range%10)!=0;c++)
+      {
+          range++;
+      }
+    console.log(range)
+
   
       var final=[]
       
-      var line1={date:startDate1+"\t\t\tTO\t\t\t "+endDate1,count:sum1} 
-      var line2={date:startDate2+"\t\tTO\t\t "+endDate2,count:sum2} 
+      var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,count:sum1} 
+      var line2={date:startDate2+"\t\tto\t\t "+endDate2,count:sum2} 
   
   final.push(line1,line2)
   
@@ -330,7 +356,7 @@ svg.selectAll("mybar")
   var i=0;
   
   var myColor = d3.scaleOrdinal().domain(lineData[i=i+1])
-    .range(["black", "grey"])
+  .range(["blue","orange"]);
   var margin = {top: 15, right: 40, bottom: 60, left: 450};
   
   width =     width - margin.left - margin.right;
@@ -354,24 +380,36 @@ svg.selectAll("mybar")
   svg.append("g")
   
   .attr("transform", "translate(0," + height + ")")
+  .style("font-weight","bold")
+.style("font-size","13px")
   .call(d3.axisBottom(x).tickSizeOuter(0))
   
   svg.append("g")
   .style("font-weight","bold")
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, 45])
+    .domain([0, range])
     .range([ height, 0]);
   svg.append("g")
     .call(d3.axisLeft(y))
     .style("font-weight","bold");
-    svg.append("text")      // text label for the x axis
-          .attr("x", 205 )
-          .attr("y", 370 )
-          .style("text-anchor", "middle").
-          style("font-weight","bold")
-          .text("Date");
-  
+    svg.append("text")
+  .attr("text-anchor", "end")
+  .attr("x", width-80)
+  .attr("y", height + margin.top + 20)
+  .text("Date")
+  .style("font-weight","bold")
+  .style("font-size","20px");
+        
+  svg.append("text")
+  .attr("text-anchor", "end")
+  .attr("transform", "rotate(-90)")
+  .attr("y", -margin.left+420)
+  .attr("x", -margin.top+30)
+  .text("Count")
+  .style("font-weight","bold")
+  .style("font-size","20px");
+     
   // Bars
   var Tooltip = d3.select('#div_template')
   .append('div')
@@ -418,21 +456,20 @@ svg.selectAll("mybar")
       .on("mouseleave", mouseleave)
       
     
-  
       var size = 17;
       svg.append("rect").
-      attr("x", 420)
-      .attr("y",15) // 100 is where the first dot appears. 25 is the distance between dots
+      attr("x", 60)
+      .attr("y",350) // 100 is where the first dot appears. 25 is the distance between dots
       .attr("width", size)
-      .attr("height", size).style("fill", "black")
+      .attr("height", size).style("fill", "blue")
       
       svg.append("rect").
-      attr("x", 420)
-      .attr("y",45) // 100 is where the first dot appears. 25 is the distance between dots
+      attr("x", 240)
+      .attr("y",350) // 100 is where the first dot appears. 25 is the distance between dots
       .attr("width", size)
-      .attr("height", size).style("fill", "grey")
-      svg.append("text").attr("x", 460).attr("y", 30).text("Bot1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
-      svg.append("text").attr("x", 460).attr("y", 60).text("Bot2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+      .attr("height", size).style("fill", "orange")
+      svg.append("text").attr("x", 90).attr("y", 365).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+      svg.append("text").attr("x", 270).attr("y", 365).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
   
   });
      
@@ -486,11 +523,17 @@ svg.selectAll("mybar")
          console.log("aaa"+temp1)
          var summm2=sum2/temp2;
         
-    
+    var max=Math.max(Math.round(summm1),Math.round(summm2))
+    var range=max;
+    for(var c=0;(range%100)!=0;c++)
+    {
+        range++;
+    }
+    console.log(range)
         var final=[]
         
-        var line1={date:startDate1+"\t\t\tTO\t\t\t "+endDate1,count:Math.round(summm1)} 
-        var line2={date:startDate2+"\t\tTO\t\t "+endDate2,count:Math.round(summm2)} 
+        var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,count:Math.round(summm1)} 
+        var line2={date:startDate2+"\t\tto\t\t "+endDate2,count:Math.round(summm2)} 
     
     final.push(line1,line2)
     
@@ -509,7 +552,7 @@ svg.selectAll("mybar")
     var i=0;
     
     var myColor = d3.scaleOrdinal().domain(lineData[i=i+1])
-      .range(["black", "grey"])
+    .range(["blue","orange"]);
     var margin = {top: 15, right: 40, bottom: 60, left: 450};
     
     width =     width - margin.left - margin.right;
@@ -533,24 +576,36 @@ svg.selectAll("mybar")
     svg.append("g")
     
     .attr("transform", "translate(0," + height + ")")
+    .style("font-weight","bold")
+.style("font-size","13px")
     .call(d3.axisBottom(x).tickSizeOuter(0))
     
     svg.append("g")
     .style("font-weight","bold")
     // Add Y axis
     var y = d3.scaleLinear()
-      .domain([0, 2000])
+      .domain([0, range])
       .range([ height, 0]);
     svg.append("g")
       .call(d3.axisLeft(y))
       .style("font-weight","bold");
-      svg.append("text")      // text label for the x axis
-            .attr("x", 205 )
-            .attr("y", 370 )
-            .style("text-anchor", "middle").
-            style("font-weight","bold")
-            .text("Date");
-    
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width-80)
+      .attr("y", height + margin.top + 20)
+      .text("Date")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+            
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+420)
+      .attr("x", -margin.top+30)
+      .text("Count")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+         
     // Bars
     var Tooltip = d3.select('#div_template')
     .append('div')
@@ -599,19 +654,20 @@ svg.selectAll("mybar")
       
     
         var size = 17;
-        svg.append("rect").
-        attr("x", 420)
-        .attr("y",15) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("width", size)
-        .attr("height", size).style("fill", "black")
-        
-        svg.append("rect").
-        attr("x", 420)
-        .attr("y",45) // 100 is where the first dot appears. 25 is the distance between dots
-        .attr("width", size)
-        .attr("height", size).style("fill", "grey")
-        svg.append("text").attr("x", 460).attr("y", 30).text("Bot1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
-        svg.append("text").attr("x", 460).attr("y", 60).text("Bot2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+        var size = 17;
+    svg.append("rect").
+    attr("x", 60)
+    .attr("y",350) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("width", size)
+    .attr("height", size).style("fill", "blue")
+    
+    svg.append("rect").
+    attr("x", 240)
+    .attr("y",350) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("width", size)
+    .attr("height", size).style("fill", "orange")
+    svg.append("text").attr("x", 90).attr("y", 365).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+    svg.append("text").attr("x", 270).attr("y", 365).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
     
     });
        
