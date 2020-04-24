@@ -18,4 +18,8 @@ getMessageCount(){
   return this.http.get('http://localhost:9909/');
     
 }
+getUserCount(){
+  return this.http.get('http://localhost:9912/');
+    
+}
 }

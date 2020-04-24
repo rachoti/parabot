@@ -282,12 +282,12 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 #pieFemaleInfo {
     position: absolute;
     right: 40px;
-    top: 130px;
+    top: 430px;
     height: 380px;
     width: 250px;
 }
 
-.p {
+#p {
     margin-top: 0;
     margin-bottom: 1rem;
     position: absolute;
@@ -295,10 +295,19 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     left: 78px;
 }
 
+#p1 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 53px;
+    left: 78px;
+}
+
+
 #pieMaleInfo {
     position: absolute;
     left: 40px;
-    top: 130px;
+    top: 430px;
     height: 380px;
     width: 250px;
 }
@@ -310,27 +319,33 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 
 #alignCenter {
     text-align: center;
+    font-weight: bold;
+}
+#alignCenter1
+{
+    text-align: center;
+    font-weight: bold;
+
 }
 #alignright {
     text-align: right;
 }
 
 #colorFillMale {
-    margin-top: 2rem;
+    margin-top: -1.7rem;
     width: 15px;
     height: 15px;
-    background-color: #ff7f0e;
-    margin-left: 57px;
-    border: 1px solid black;
+    margin-left: -5px;
+   
 }
 
 #colorFillFeMale {
-    margin-top: 2rem;
+    margin-top: -1.7rem;
     width: 15px;
     height: 15px;
-    background-color: #1f77b4;
-    margin-left: 57px;
-    border: 1px solid black;
+   
+    margin-left: -5px;
+    
 }
 
 .fa {
@@ -340,11 +355,18 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: 100;
 }
 
-.pa {
+#pa {
     position: absolute;
     font-size: 26px;
-    top: 82px;
-    left: 115px;
+    top: 40px;
+    left: 100px;
+    font-weight: bold;
+}
+#pa1 {
+    position: absolute;
+    font-size: 26px;
+    top: 40px;
+    left: 100px;
     font-weight: bold;
 }
 
