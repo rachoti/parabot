@@ -22,4 +22,10 @@ getUserCount(){
   return this.http.get('http://localhost:9912/');
     
 }
+getGenderCount(){
+  return this.http.get('http://localhost:9910/');
+    
+}
+
+
 }

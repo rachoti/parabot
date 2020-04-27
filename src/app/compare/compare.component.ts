@@ -109,6 +109,10 @@ export class CompareComponent implements OnInit {
   }
   sum1;
   sum2;
+  sum1_m;
+  sum1_f;
+  sum2_m;
+  sum2_f;
   private createChart(startDate1,endDate1,startDate2,endDate2): void {
   //private createChart(): void{
    /* var startDate1=this.startDate1;
@@ -723,75 +727,212 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
        
       }
       private createChart3(startDate1,endDate1,startDate2,endDate2): void {
-        var margin = {top: 10, right: 30, bottom: 20, left: 50},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+        var index1=0;
+        var index2=0;
+        this._httpService.getGenderCount().subscribe((res:any[])=>{
+          for(var i=0;i<res.length;i++)
+         {
+          
+          if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate1).toLocaleDateString())){
+            break;
+         }
+          index1++;
+         }
+         for(var i=0;i<res.length;i++)
+         {
+          
+          if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate2).toLocaleDateString())){
+            break;
+         }
+          index2++;
+         }
+         this.sum1_m=0;
+         this.sum1_f=0;
+         for(var z=index1;(new Date(res[z].date))<=(new Date(endDate1)) ;z++)
+         {
+         
+            this.sum1_m+=res[z].Male;;
+            if(z==res.length-1)
+            break;
+         }
+         for(var z=index1;(new Date(res[z].date))<=(new Date(endDate1)) ;z++)
+         {
+         
+            this.sum1_f+=res[z].Female;;
+            if(z==res.length-1)
+            break;
+         }
+         this.sum2_m=0;
+         this.sum2_f=0;
+         for(var a=index2;(new Date(res[a].date))<=(new Date(endDate2));a++)
+         {
+            this.sum2_m+=res[a].Male;
+            if(a==res.length-1)
+            break;
+         }
+         for(var a=index2;(new Date(res[a].date))<=(new Date(endDate2));a++)
+         {
+            this.sum2_f+=res[a].Female;
+            if(a==res.length-1)
+            break;
+         }
+         
+         console.log(this.sum1_m)
+         console.log(this.sum1_f)
+         console.log(this.sum2_m)
+         console.log(this.sum2_f)
+         var final=[]
+        
+        var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,male:this.sum1_m,female:this.sum1_f} 
+        var line2={date:startDate2+"\t\tto\t\t "+endDate2,male:this.sum2_m,female:this.sum2_f}
+        final.push(line1,line2)
+    
+        //var fin=[final[0][0],final[1][0]]
+        
+        var lineData=[];
+        for(let i=0;i<final.length;i++){
+          var obj ={date:final[i].date,male:final[i].male,female:final[i].female};
+         
+          lineData.push(obj);
+        }
+        console.log(lineData)
+        
+       var container = d3.select('#div_template'),
+      width = 920,
+      height = 380,
+      margin = {top: 25, right: 40, bottom: 50, left:500},
+      //{top: 15, right: 40, bottom: 100, left:500};
+      barPadding = .2,
+      axisTicks = {qty: 5, outerSize: 0, dateFormat: '%m-%d'};
+      var svg = container
+     .append("svg")
+     .attr("width", width)
+     .attr("height", height)
+     .append("g")
+     .attr("transform", `translate(${margin.left},${margin.top})`);
+     var xScale0 = d3.scaleBand().range([0, width - margin.left - margin.right]).padding(barPadding)
+     var xScale1 = d3.scaleBand()
+     var yScale = d3.scaleLinear().range([height - margin.top - margin.bottom, 0])
+     var xAxis = d3.axisBottom(xScale0).tickSizeOuter(axisTicks.outerSize);
+     var yAxis = d3.axisLeft(yScale).ticks(axisTicks.qty).tickSizeOuter(axisTicks.outerSize);
+     xScale0.domain(lineData.map(d => d.date))
+     xScale1.domain(['male', 'female']).range([0, xScale0.bandwidth()])
+     yScale.domain([0, d3.max(lineData, d => d.male > d.female ? d.male : d.female)])
+     var Tooltip = d3.select('#div_template')
+    .append('div')
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "white")
+    .style("border", "solid")
+    .style("border-width", "2px")
+    .style("border-radius", "5px")
+    .style("padding", "5px")
+      // Three function that change the tooltip when user hover / move / leave a cell
+      var mouseover = function(d) {
+       
+        Tooltip
+          .style("opacity", 1)
+        d3.select(this)
+          .style("stroke", "black")
+          .style("opacity", 1)
+      }
+      var mousemove = function(d) {
+        Tooltip
+          .html("Date: " + d.date+"<br>Count: "+d.male)
+          .style("left", (d3.mouse(this)[0]+500) + "px")
+          .style("top", (d3.mouse(this)[1]+150) + "px")
+      }
+      var mouseleave = function(d) {
+        Tooltip
+          .style("opacity", 0)
+        d3.select(this)
+          .style("stroke", "none")
+          .style("opacity", 1)
+      }
+      var mouseover1 = function(d) {
+       
+        Tooltip
+          .style("opacity", 1)
+        d3.select(this)
+          .style("stroke", "black")
+          .style("opacity", 1)
+      }
+      var mousemove1 = function(d) {
+        Tooltip
+          .html("Date: " + d.date+"<br>Count: "+d.female)
+          .style("left", (d3.mouse(this)[0]+500) + "px")
+          .style("top", (d3.mouse(this)[1]+150) + "px")
+      }
+      var mouseleave1 = function(d) {
+        Tooltip
+          .style("opacity", 0)
+        d3.select(this)
+          .style("stroke", "none")
+          .style("opacity", 1)
+      }
+     var date = svg.selectAll(".date")
+  .data(lineData)
+  .enter().append("g")
+  .attr("class", "date")
+  .attr("transform", d => `translate(${xScale0(d.date)},0)`)
 
-// append the svg object to the body of the page
-var svg = d3.select("#div_template")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          "translate(" + margin.left + "," + margin.top + ")");
+    // Bars
+    
+  date.selectAll(".bar.male")
+  .data(d => [d])
+  .enter()
+  .append("rect")
+  .attr("class", "bar male")
+.style("fill","blue")
 
-// Parse the Data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/data_stacked.csv", function(data) {
 
-  // List of subgroups = header of the csv files = soil condition here
-  var subgroups =["Nitrogen","normal","stress"]
-  console.log(subgroups)
-
-  // List of groups = species here = value of the first column called group -> I show them on the X axis
-  var groups = d3.map(data, function(d){return(d.group)}).keys()
-  console.log(groups)
-
-  // Add X axis
-  var x = d3.scaleBand()
-      .domain(groups)
-      .range([0, width])
-      .padding([0.2])
+  .attr("x", d => xScale1('male'))
+  .attr("y", d => yScale(d.male))
+  .attr("width", xScale1.bandwidth())
+  .attr("height", d => {
+    return height - margin.top - margin.bottom - yScale(d.male)
+  })
+  .on("mouseover", mouseover)
+  .on("mousemove", mousemove)
+  .on("mouseleave", mouseleave)
+ ;
+ 
+date.selectAll(".bar.female")
+  .data(d => [d])
+  .enter()
+  .append("rect")
+  .attr("class", "bar female")
+.style("fill","red")
+  .attr("x", d => xScale1('female'))
+  .attr("y", d => yScale(d.female))
+  .attr("width", xScale1.bandwidth())
+  .attr("height", d => {
+    return height - margin.top - margin.bottom - yScale(d.female)
+  })
+  .on("mouseover", mouseover1)
+  .on("mousemove", mousemove1)
+  .on("mouseleave", mouseleave1)
   svg.append("g")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).tickSize(0));
+     .attr("class", "x axis")
+     .attr("transform", 'translate(0,305)')
+     .call(xAxis);
+     svg.append("g")
+     .attr("class", "y axis")
+     .call(yAxis);
+    
+     document.getElementById("alignCenter").textContent = "";
+     document.getElementById("alignCenter1").textContent = "";
+     document.getElementById("pa").textContent = " ";
+     document.getElementById("pa1").textContent = " ";
+     document.getElementById("colorFillMale").style.background = "";
+     document.getElementById("colorFillFeMale").style.background = "";
+     document.getElementById("colorFillMale").style.border ="";
+     document.getElementById("colorFillFeMale").style.border ="";
+     
+     
+        
+});      
 
-  // Add Y axis
-  var y = d3.scaleLinear()
-    .domain([0, 40])
-    .range([ height, 0 ]);
-  svg.append("g")
-    .call(d3.axisLeft(y));
-
-  // Another scale for subgroup position?
-  var xSubgroup = d3.scaleBand()
-    .domain(subgroups)
-    .range([0, x.bandwidth()])
-    .padding([0.05])
-
-  // color palette = one color per subgroup
-  var color = d3.scaleOrdinal()
-    .domain(subgroups)
-    .range(['#e41a1c','#377eb8','#4daf4a'])
-
-  // Show the bars
-  svg.append("g")
-    .selectAll("g")
-    // Enter in data = loop group per group
-    .data(data)
-    .enter()
-    .append("g")
-      .attr("transform", function(d) { return "translate(" + x(d.group) + ",0)"; })
-    .selectAll("rect")
-    .data(function(d) { return subgroups.map(function(key) { return {key: key, value: d[key]}; }); })
-    .enter().append("rect")
-      .attr("x", function(d) { return xSubgroup(d.key); })
-      .attr("y", function(d) { return y(d.value); })
-      .attr("width", xSubgroup.bandwidth())
-      .attr("height", function(d) { return height - y(d.value); })
-      .attr("fill", function(d) { return color(d.key); });
-
-})
       }
       private createChart4(startDate1,endDate1,startDate2,endDate2): void {
 
