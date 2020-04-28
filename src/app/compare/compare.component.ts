@@ -8,6 +8,7 @@ import { CompareService } from './compare.service';
   styleUrls: ['./compare.component.css']
 })
 export class CompareComponent implements OnInit {
+  aa;
   startDate="2017-01-01";
   endDate="";
   inputStartDate="";
@@ -122,7 +123,7 @@ export class CompareComponent implements OnInit {
     var index1=0;
     var index2=0;
     this._httpService.getNewUserCount().subscribe((res:any[])=>{
-      
+      this.aa=res[0].date;
      for(var i=0;i<res.length;i++)
      {
       
@@ -776,7 +777,17 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
             if(a==res.length-1)
             break;
          }
-         
+         var max1=Math.max(this.sum1_m,this.sum1_f,this.sum2_m,this.sum2_f)
+        console.log(max1)
+        var range=max1;
+        for(var c=0;(range%5)!=0;c++)
+        {
+            range++;
+        }
+        console.log(range)
+    
+        // var max=Math.max(max1,max2)
+         //console.log(max)
          console.log(this.sum1_m)
          console.log(this.sum1_f)
          console.log(this.sum2_m)
@@ -800,10 +811,10 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
        var container = d3.select('#div_template'),
       width = 920,
       height = 380,
-      margin = {top: 25, right: 40, bottom: 50, left:500},
+      margin = {top: 25, right: 40, bottom: 100, left:500},
       //{top: 15, right: 40, bottom: 100, left:500};
       barPadding = .2,
-      axisTicks = {qty: 5, outerSize: 0, dateFormat: '%m-%d'};
+      axisTicks = {qty: 6, outerSize: 0, dateFormat: '%m-%d'};
       var svg = container
      .append("svg")
      .attr("width", width)
@@ -812,9 +823,10 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
      .attr("transform", `translate(${margin.left},${margin.top})`);
      var xScale0 = d3.scaleBand().range([0, width - margin.left - margin.right]).padding(barPadding)
      var xScale1 = d3.scaleBand()
+     console.log(height - margin.top - margin.bottom)
      var yScale = d3.scaleLinear().range([height - margin.top - margin.bottom, 0])
      var xAxis = d3.axisBottom(xScale0).tickSizeOuter(axisTicks.outerSize);
-     var yAxis = d3.axisLeft(yScale).ticks(axisTicks.qty).tickSizeOuter(axisTicks.outerSize);
+     var yAxis = d3.axisLeft(yScale).ticks(10).tickSizeOuter(axisTicks.outerSize);
      xScale0.domain(lineData.map(d => d.date))
      xScale1.domain(['male', 'female']).range([0, xScale0.bandwidth()])
      yScale.domain([0, d3.max(lineData, d => d.male > d.female ? d.male : d.female)])
@@ -838,7 +850,7 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
       }
       var mousemove = function(d) {
         Tooltip
-          .html("Date: " + d.date+"<br>Count: "+d.male)
+          .html("Date: " + d.date+"<br>Male Count: "+d.male)
           .style("left", (d3.mouse(this)[0]+500) + "px")
           .style("top", (d3.mouse(this)[1]+150) + "px")
       }
@@ -859,7 +871,7 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
       }
       var mousemove1 = function(d) {
         Tooltip
-          .html("Date: " + d.date+"<br>Count: "+d.female)
+          .html("Date: " + d.date+"<br>Feamale Count: "+d.female)
           .style("left", (d3.mouse(this)[0]+500) + "px")
           .style("top", (d3.mouse(this)[1]+150) + "px")
       }
@@ -877,13 +889,31 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
   .attr("transform", d => `translate(${xScale0(d.date)},0)`)
 
     // Bars
-    
+    svg.append("text")
+    .attr("text-anchor", "end")
+   // .attr("x", 90)
+   // .attr("y",325)
+    .attr("x", width-710)
+     .attr("y", height-margin.top-30)
+    .text("Date")
+    .style("font-weight","bold")
+    .style("font-size","20px");
+          
+          
+    svg.append("text")
+    .attr("text-anchor", "end")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left+450)
+    .attr("x", -margin.top-80)
+    .text("Count")
+    .style("font-weight","bold")
+    .style("font-size","20px");
   date.selectAll(".bar.male")
   .data(d => [d])
   .enter()
   .append("rect")
   .attr("class", "bar male")
-.style("fill","blue")
+.style("fill","green")
 
 
   .attr("x", d => xScale1('male'))
@@ -914,10 +944,15 @@ date.selectAll(".bar.female")
   .on("mouseleave", mouseleave1)
   svg.append("g")
      .attr("class", "x axis")
-     .attr("transform", 'translate(0,305)')
+     .attr("transform", 'translate(0,255)')
+     .style("font-weight","bold")
+     .style("font-size","13px")
      .call(xAxis);
      svg.append("g")
      .attr("class", "y axis")
+     .style("font-weight","bold")
+     .style("font-size","13px")
+     
      .call(yAxis);
     
      document.getElementById("alignCenter").textContent = "";
@@ -928,8 +963,29 @@ date.selectAll(".bar.female")
      document.getElementById("colorFillFeMale").style.background = "";
      document.getElementById("colorFillMale").style.border ="";
      document.getElementById("colorFillFeMale").style.border ="";
+     document.getElementById("alignCenter_b1").textContent = "Bot 1 Gender Count";
+     document.getElementById("alignCenter_b2").textContent = "Bot 2 Gender Count";
+     document.getElementById("colorFillMale_b1").style.border = "1px solid black";
+     document.getElementById("colorFillMale_b2").style.border = "1px solid black";
+     document.getElementById("colorFillMale_b1").style.background = "Green";
+     document.getElementById("colorFillMale_b2").style.background = "Green";
+     document.getElementById("p_b1").textContent="Male Users: "+this.sum1_m;
+     document.getElementById("p_b2").textContent="Male Users: "+this.sum2_m;
+     document.getElementById("colorFillMale_b3").style.border = "1px solid black";
+     document.getElementById("colorFillMale_b4").style.border = "1px solid black";
+     document.getElementById("colorFillMale_b3").style.background = "Red";
+     document.getElementById("colorFillMale_b4").style.background = "Red";
+     document.getElementById("p_b3").textContent="Female Users: "+this.sum1_f;
+     document.getElementById("p_b4").textContent="Feamle Users: "+this.sum2_f;
+
      
      
+     var size = 17;
+    
+     
+    
+     svg.append("text").attr("x", 75).attr("y", 295).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+     svg.append("text").attr("x", 250).attr("y", 295).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")   
         
 });      
 
@@ -1135,6 +1191,7 @@ date.selectAll(".bar.female")
         svg.append("text").attr("x", 270).attr("y", 325).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
     
     });
+   
       }
 
 

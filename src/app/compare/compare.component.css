@@ -286,25 +286,60 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     height: 380px;
     width: 250px;
 }
-
-#p {
-    margin-top: 0;
-    margin-bottom: 1rem;
+#pieMaleInfo_b2 {
     position: absolute;
-    top: 53px;
-    left: 78px;
+    right: 100px;
+    top: 430px;
+    height: 380px;
+    width: 250px;
 }
 
-#p1 {
+#p_b1 {
     margin-top: 0;
     margin-bottom: 1rem;
     position: absolute;
     top: 53px;
     left: 78px;
+    font-weight: bold;
+
+}
+#p_b2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 53px;
+    left: 78px;
+    font-weight: bold;
+
+}
+#p_b3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 99px;
+    left: 78px;
+    font-weight: bold;
+
+}
+#p_b4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 99px;
+    left: 78px;
+    font-weight: bold;
+
 }
 
 
 #pieMaleInfo {
+    position: absolute;
+    left: 40px;
+    top: 430px;
+    height: 380px;
+    width: 250px;
+}
+#pieMaleInfo_b1 {
     position: absolute;
     left: 40px;
     top: 430px;
@@ -327,6 +362,17 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: bold;
 
 }
+#alignCenter_b1 {
+    text-align: right;
+    font-weight: bold;
+}
+#alignCenter_b2
+{
+    text-align: right;
+    font-weight: bold;
+
+}
+
 #alignright {
     text-align: right;
 }
@@ -347,7 +393,38 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     margin-left: -5px;
     
 }
+#colorFillMale_b1 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+    margin-left: 57px;
+   
+}
 
+#colorFillMale_b2 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+   
+    margin-left: 57px;
+    
+}
+#colorFillMale_b3 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+    margin-left: 57px;
+   
+}
+
+#colorFillMale_b4 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+   
+    margin-left: 57px;
+    
+}
 .fa {
     font-size: 18px;
     margin-top: 44px;
