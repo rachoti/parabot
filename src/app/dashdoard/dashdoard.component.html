@@ -1,28 +1,88 @@
-<nav class="navbar fixed-top bg-dark flex-md-nowrap p-0 shadow ">
-  <a id="mySidebar1" class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
-  <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
-  
-  <ul class="navbar-nav px-3">
-      <li class="nav-item text-nowrap">
-          <a href="javascript:void(0);" (click)="logout()">Sign out</a>
-      </li>
-  </ul>
-</nav>
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
+    <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
 
+    <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+            <a href="javascript:void(0);" (click)="logout()">Sign out</a>
+        </li>
+    </ul>
+</nav>
 <div class="container-fluid">
   <div class="row">
 
-      <nav id="mySidebar" class="col-md-2 d-none d-md-block sidebar">
-          <div class="sidebar-sticky">
+    <nav id="mySidebar" class="col-md-2 d-none d-md-block sidebar">
+        <div class="sidebar-sticky">
               <ul class="nav flex-column">
+              <!--
                   <li class="nav-item">
                       <a class="nav-link active" routerLink="/dashboard">
-                          <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
+                          <span data-feather="home"></span>  <span class="sr-only">(current)</span>
                       </a>
                   </li>
+              -->    
+              <br>
                   <li class="nav-item" >
                     <a class="nav-link">
-                        <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Different activities in parabot ">{{actdata1}}</button>
+                        
+                    <input class="btn btn-sm btn-outline-secondary dropdown-toggle " (click)=toggleDisplayDiv1() type="text" id="country" name="country" value="{{actdata1}}" readonly>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle " (click)=toggleDisplayDiv1() type="text" id="country" name="country" value="{{actdata1}}" ></button><br><br>
+
+                    <div [hidden]="isShowDiv1">
+                        <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Count</button><br>
+                        <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates.  ">Retention </button><br>
+                        
+                        <button routerLink="/message_in" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="the total number of incoming messages ">Message In </button><br>
+                        <button routerLink="/message_out" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="the total number of outgoing messages  ">Message Out </button><br>
+</div>
+
+                </a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link">
+                    <input class="btn btn-sm btn-outline-secondary dropdown-toggle" (click)=toggleDisplayDiv2() type="text" id="country" name="country" value="{{actdata2}}" readonly>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" (click)=toggleDisplayDiv2() type="text" id="country" name="country" value="{{actdata2}}" readonly></button><br><br>
+
+                    <div [hidden]="isShowDiv2">
+                        <button   routerLink="/compare" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
+                        <button class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates. ">Retention Percentile</button><br>
+</div>
+
+                </a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link">
+                    <input class="btn btn-sm btn-outline-secondary dropdown-toggle" (click)=toggleDisplayDiv3() type="text" id="country" name="country" value="{{actdata3}}" readonly>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" (click)=toggleDisplayDiv3() type="text" id="country" name="country" value="{{actdata3}}" readonly></button><br><br>
+
+                    <div [hidden]="isShowDiv3">
+                        <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Understanding the emotion behind the users message ">Sentiment</button><br>
+                        <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Find the most common words your bot receives or sends with Word Cloud ">Word Cloud</button><br>
+                        <button routerLink="/transcript" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="The total messages in a given range ">Transcript</button><br>
+                        <button routerLink="/unhandled" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Messages which are not handled by the bot ">Unhandled Messages</button><br>
+                        <button routerLink="/abandon" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Users abandon the bot conversation ">Abandon Messages</button><br>
+                    </div>
+
+                </a>
+                </li>
+                <li class="nav-item" >
+                    <a class="nav-link">
+                    <input class="btn btn-sm btn-outline-secondary dropdown-toggle" (click)=toggleDisplayDiv4() type="text" id="country" name="country" value="{{actdata4}}" readonly>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" (click)=toggleDisplayDiv4() type="text" id="country" name="country" value="{{actdata4}}" readonly></button><br><br>
+
+                    <div [hidden]="isShowDiv4">
+
+                        <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="individual's gender identity ">Gender</button><br>
+                        <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Location of people represented in a map">Geo Map</button><br>
+
+                        <button routerLink="/timezone" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 18px;" data-toggle="tooltip" data-placement="bottom" title="Gives the timezone of different places ">TimeZone </button><br>
+
+                      </div>
+
+                </a>
+                </li>
+                  <!--  <a class="nav-link">
+                        <a class="btn btn-sm btn-outline-secondary dropdown-toggle" id="bbbb" (click)=toggleDisplayDiv1() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Different activities in parabot ">{{actdata1}}</a>
                         <div [hidden]="isShowDiv1">
 
                             <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Count</button><br>
@@ -72,12 +132,13 @@
                     </a>
                 </li>
 
-
+            -->
               </ul>
-
+            
           </div>
+          
       </nav>
-
+   
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
               <h1 class="h2">Dashboard</h1>

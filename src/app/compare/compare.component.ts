@@ -189,6 +189,20 @@ height =    height - margin.top - margin.bottom;
 
 
 //remove and create svg
+document.getElementById("alignCenter_b1").textContent = "";
+document.getElementById("alignCenter_b2").textContent = "";
+document.getElementById("colorFillMale_b1").style.border = "";
+document.getElementById("colorFillMale_b2").style.border = "";
+document.getElementById("colorFillMale_b1").style.background = "";
+document.getElementById("colorFillMale_b2").style.background = "";
+document.getElementById("p_b1").textContent="";
+document.getElementById("p_b2").textContent="";
+document.getElementById("colorFillMale_b3").style.border = "";
+document.getElementById("colorFillMale_b4").style.border = "";
+document.getElementById("colorFillMale_b3").style.background = "";
+document.getElementById("colorFillMale_b4").style.background = "";
+document.getElementById("p_b3").textContent="";
+document.getElementById("p_b4").textContent="";
 document.getElementById("alignCenter").textContent = "Bot 1 New User Count";
 document.getElementById("alignCenter1").textContent = "Bot 2 New User Count";
 document.getElementById("pa").textContent = this.sum1;
@@ -397,6 +411,20 @@ svg.selectAll("mybar")
   
   
   //remove and create svg
+  document.getElementById("alignCenter_b1").textContent = "";
+document.getElementById("alignCenter_b2").textContent = "";
+document.getElementById("colorFillMale_b1").style.border = "";
+document.getElementById("colorFillMale_b2").style.border = "";
+document.getElementById("colorFillMale_b1").style.background = "";
+document.getElementById("colorFillMale_b2").style.background = "";
+document.getElementById("p_b1").textContent="";
+document.getElementById("p_b2").textContent="";
+document.getElementById("colorFillMale_b3").style.border = "";
+document.getElementById("colorFillMale_b4").style.border = "";
+document.getElementById("colorFillMale_b3").style.background = "";
+document.getElementById("colorFillMale_b4").style.background = "";
+document.getElementById("p_b3").textContent="";
+document.getElementById("p_b4").textContent="";
   document.getElementById("alignCenter").textContent = "Bot 1 Returning User Count";
 
 
@@ -606,6 +634,20 @@ document.getElementById("colorFillFeMale").style.border ="1px solid black";
     this.summm1=Math.round(this.summm1);
     this.summm2=Math.round(this.summm2)
     //remove and create svg
+    document.getElementById("alignCenter_b1").textContent = "";
+document.getElementById("alignCenter_b2").textContent = "";
+document.getElementById("colorFillMale_b1").style.border = "";
+document.getElementById("colorFillMale_b2").style.border = "";
+document.getElementById("colorFillMale_b1").style.background = "";
+document.getElementById("colorFillMale_b2").style.background = "";
+document.getElementById("p_b1").textContent="";
+document.getElementById("p_b2").textContent="";
+document.getElementById("colorFillMale_b3").style.border = "";
+document.getElementById("colorFillMale_b4").style.border = "";
+document.getElementById("colorFillMale_b3").style.background = "";
+document.getElementById("colorFillMale_b4").style.background = "";
+document.getElementById("p_b3").textContent="";
+document.getElementById("p_b4").textContent="";
     document.getElementById("alignCenter").textContent = "Bot 1 Message Count";
 
 
@@ -1065,6 +1107,20 @@ date.selectAll(".bar.female")
     
     
     //remove and create svg
+    document.getElementById("alignCenter_b1").textContent = "";
+document.getElementById("alignCenter_b2").textContent = "";
+document.getElementById("colorFillMale_b1").style.border = "";
+document.getElementById("colorFillMale_b2").style.border = "";
+document.getElementById("colorFillMale_b1").style.background = "";
+document.getElementById("colorFillMale_b2").style.background = "";
+document.getElementById("p_b1").textContent="";
+document.getElementById("p_b2").textContent="";
+document.getElementById("colorFillMale_b3").style.border = "";
+document.getElementById("colorFillMale_b4").style.border = "";
+document.getElementById("colorFillMale_b3").style.background = "";
+document.getElementById("colorFillMale_b4").style.background = "";
+document.getElementById("p_b3").textContent="";
+document.getElementById("p_b4").textContent="";
     document.getElementById("alignCenter").textContent = "Bot 1 Total User Count";
     document.getElementById("alignCenter1").textContent = "Bot 2 Total User Count";
     document.getElementById("pa").textContent = this.sum1;

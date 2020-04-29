@@ -231,17 +231,45 @@ body {
 .bttm {
     margin-bottom: 0px;
 }
-
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+  }
 #recentTrans {
     height: 150px;
     width: 400px;
 }
 
 #mySidebar {
-    background-color: #222324;
+    background: rgb(0, 0, 0); /* Fallback color */
+  background: rgba(36, 37, 37,1) /* Black background with 0.5 opacity */
 }
 
 #mySidebar1 {
-    background-color: #ffffff;
+    background-color: rgba(0,0,0,1);
     color: black;
+}
+input[type="text"],
+select.form-control {
+
+
+width: 190px !important;
+
+font-size: 22px !important;
+    text-align: left;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  border-bottom: 2px double #000000;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+input[type="text"]:focus,
+select.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
