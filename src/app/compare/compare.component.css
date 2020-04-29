@@ -160,7 +160,7 @@ body {
 }
 
 #shadow {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #messbtn {
@@ -282,23 +282,67 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 #pieFemaleInfo {
     position: absolute;
     right: 40px;
-    top: 130px;
+    top: 430px;
+    height: 380px;
+    width: 250px;
+}
+#pieMaleInfo_b2 {
+    position: absolute;
+    right: 100px;
+    top: 430px;
     height: 380px;
     width: 250px;
 }
 
-.p {
+#p_b1 {
     margin-top: 0;
     margin-bottom: 1rem;
     position: absolute;
     top: 53px;
     left: 78px;
+    font-weight: bold;
+
 }
+#p_b2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 53px;
+    left: 78px;
+    font-weight: bold;
+
+}
+#p_b3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 99px;
+    left: 78px;
+    font-weight: bold;
+
+}
+#p_b4 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 99px;
+    left: 78px;
+    font-weight: bold;
+
+}
+
 
 #pieMaleInfo {
     position: absolute;
     left: 40px;
-    top: 130px;
+    top: 430px;
+    height: 380px;
+    width: 250px;
+}
+#pieMaleInfo_b1 {
+    position: absolute;
+    left: 40px;
+    top: 430px;
     height: 380px;
     width: 250px;
 }
@@ -310,29 +354,77 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 
 #alignCenter {
     text-align: center;
+    font-weight: bold;
 }
+#alignCenter1
+{
+    text-align: center;
+    font-weight: bold;
+
+}
+#alignCenter_b1 {
+    text-align: right;
+    font-weight: bold;
+}
+#alignCenter_b2
+{
+    text-align: right;
+    font-weight: bold;
+
+}
+
 #alignright {
     text-align: right;
 }
 
 #colorFillMale {
-    margin-top: 2rem;
+    margin-top: -1.7rem;
     width: 15px;
     height: 15px;
-    background-color: #ff7f0e;
-    margin-left: 57px;
-    border: 1px solid black;
+    margin-left: -5px;
+   
 }
 
 #colorFillFeMale {
+    margin-top: -1.7rem;
+    width: 15px;
+    height: 15px;
+   
+    margin-left: -5px;
+    
+}
+#colorFillMale_b1 {
     margin-top: 2rem;
     width: 15px;
     height: 15px;
-    background-color: #1f77b4;
     margin-left: 57px;
-    border: 1px solid black;
+   
 }
 
+#colorFillMale_b2 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+   
+    margin-left: 57px;
+    
+}
+#colorFillMale_b3 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+    margin-left: 57px;
+   
+}
+
+#colorFillMale_b4 {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+   
+    margin-left: 57px;
+    
+}
 .fa {
     font-size: 18px;
     margin-top: 44px;
@@ -340,11 +432,18 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     font-weight: 100;
 }
 
-.pa {
+#pa {
     position: absolute;
     font-size: 26px;
-    top: 82px;
-    left: 115px;
+    top: 40px;
+    left: 100px;
+    font-weight: bold;
+}
+#pa1 {
+    position: absolute;
+    font-size: 26px;
+    top: 40px;
+    left: 100px;
     font-weight: bold;
 }
 
@@ -358,4 +457,33 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 
 .bold {
     font-weight: bold;
+}
+.search_categories{
+    font-size: 13px;
+    padding: 10px 8px 10px 14px;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    position: relative;
+    border-radius: 6px;
+
+    background:rgba(0, 0, 0, .25)
+    
+
+  }
+  
+.search_categories select{
+    background: transparent;
+    line-height: 1;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 120%;
+    position: relative;
+    z-index: 10;
+    font-size: 1em;
+  }
+
+ select::-ms-expand {
+    display: none; /* Hide the default arrow in Internet Explorer 10 and Internet Explorer 11 */
 }

@@ -101,28 +101,28 @@
                     
                       <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
-                            <p><b>Bot1</b></p>
+                            <p><b>Bot 1</b></p>
                         </div>
                         <div class="col-md-4 ml-sm-auto col-lg-15 px-4">
-                            <p><b>Bot2</b></p>
+                            <p><b>Bot 2</b></p>
                         </div>
                       </div>
                       <div class="btn-toolbar mb-2 mb-md-0">
 
                           <div class="btn-group mr-2">
-                            <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
+                            <input type="date" #startdate class="form-control"  name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="2016-08-14" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
                             <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
-                          </div>
+                        </div>
                      
                           
-                      <div class="col-md-4 ml-sm-auto col-lg-15 px-4">
+                    <div class="col-md-4 ml-sm-auto col-lg-15 px-4">
 
                      
                                     
                         <div class="btn-group mr-2">
                             
-                          <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
-                          <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
+                          <input type="date" #startdate2 class="form-control" name="startdate2" id="startdate2" min="{{startDate2}}" max="{{endDate2}}" value="2016-08-14" (change)="dateChanger1(startdate2.value)" /> &#160;&#160;&#160;
+                          <input type="date" #enddate2 class="form-control" name="enddate2" id="enddate2" min="{{startDate3}}" max="{{endDate2}}" value="{{startDate3}}" (change)="dateChangerEnd1(enddate2.value)" /> &#160;&#160;&#160;
                         </div>
                       
                         
@@ -132,16 +132,52 @@
                   </div>
                   
               </div>
-
+              <br><br>
             
-              <div class="card mt-4" style="overflow:auto;">
-                  <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
-                      
-                  
-                    <div id="div_template"></div>                   
-                  </div>
-              </div>
+                <select class="search_categories" #mySelect (change)="myFunction(mySelect.value)">
+                    <option value="new_user">New User Count</option>
+                    <option value="ret_user">Returning User Count</option>
+                    <option value="message">Message Count</option>
+                    <option value="gender">Gender Count</option>
+                    <option value="user">Total User Count</option>
 
+                  </select>
+    
+            
+                  <div id="pieMaleInfo">
+                    <h6 id="alignCenter"></h6>
+                    <div id="colorFillMale"></div>
+
+                    <p id="pa"></p>
+
+                </div>
+                <div id="pieMaleInfo_b1">
+                    <h5 id="alignCenter_b1"></h5>
+                    <div id="colorFillMale_b1"></div>
+                    <p id="p_b1"></p>
+                    <div id="colorFillMale_b3"></div>
+                    <p id="p_b3"></p>
+
+                </div>
+             <div id="div_template">
+                        </div>
+                        <div id="pieFemaleInfo">
+                            <h6 id="alignCenter1"></h6>
+                            <div id="colorFillFeMale"></div>
+
+                            <p id="pa1"></p>
+  
+                        </div>
+                        <div id="pieMaleInfo_b2">
+                            <h5 id="alignCenter_b2"></h5>
+                            <div id="colorFillMale_b2"></div>
+                            <p id="p_b2"></p>
+                            <div id="colorFillMale_b4"></div>
+                            <p id="p_b4"></p>
+        
+                        </div>
+                      
+                       
               <br>
         
 

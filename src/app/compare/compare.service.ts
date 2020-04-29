@@ -6,8 +6,26 @@ import {HttpClient} from '@angular/common/http';
 export class CompareService {
 
   constructor(private http:HttpClient) { }
-  getMessageCount(){
+  getNewUserCount(){
     return this.http.get('http://localhost:9908/');
       
 }
+getRetUserCount(){
+  return this.http.get('http://localhost:9907/');
+    
+}
+getMessageCount(){
+  return this.http.get('http://localhost:9909/');
+    
+}
+getUserCount(){
+  return this.http.get('http://localhost:9912/');
+    
+}
+getGenderCount(){
+  return this.http.get('http://localhost:9910/');
+    
+}
+
+
 }
