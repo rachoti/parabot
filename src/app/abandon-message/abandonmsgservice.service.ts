@@ -4,10 +4,10 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UnhandledmserviceService {
+export class AbandonmsgserviceService {
 
   constructor(private http:HttpClient) { }
-  getunhandledmessage(){
-    return this.http.get('http://localhost:9926/');
+  getabandonmsg(){
+    return this.http.get('http://localhost:9929/');
 }
 }

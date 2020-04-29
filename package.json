@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+    "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "angular7-csv": "^0.2.12",
     "core-js": "^2.5.4",
     "d3": "^5.15.1",
@@ -28,6 +29,8 @@
     "jquery": "^3.4.1",
     "leaflet": "^1.6.0",
     "ng2-search-filter": "^0.5.1",
+    "ngx-bootstrap": "^5.6.1",
+    "ngx-smart-modal": "^7.4.0",
     "rxjs": "~6.3.3",
     "yarn": "^1.22.4",
     "zone.js": "~0.8.26"

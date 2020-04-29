@@ -32,6 +32,13 @@ import { TranscriptComponent } from './transcript/transcript.component';
 import { TransnextComponent } from './transnext/transnext.component';
 import { UnhandledMessageComponent } from './unhandled-message/unhandled-message.component';
 import { CompareComponent } from './compare/compare.component';
+import { AbandonMessageComponent } from './abandon-message/abandon-message.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AbandontrynextComponent } from './abandontrynext/abandontrynext.component';
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 const appRoutes: Routes = [
@@ -54,6 +61,8 @@ const appRoutes: Routes = [
   { path: 'message_out', component: MessageOutComponent,canActivate: [AuthGuard] },
   { path: 'transcript', component: TranscriptComponent,canActivate: [AuthGuard] },
   { path: 'unhandled', component: UnhandledMessageComponent,canActivate: [AuthGuard] },
+  { path: 'abandon', component: AbandonMessageComponent,canActivate: [AuthGuard] },
+  
 
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
@@ -63,6 +72,7 @@ const appRoutes: Routes = [
  { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
  { path: 'transnext/:id1', component: TransnextComponent,canActivate: [AuthGuard] },
  { path: 'compare', component: CompareComponent,canActivate: [AuthGuard] },
+ { path: 'abanndontrynext/:id1', component: AbandontrynextComponent,canActivate: [AuthGuard] },
  
   ];
 @NgModule({
@@ -102,6 +112,9 @@ const appRoutes: Routes = [
 
     UnhandledMessageComponent,
     CompareComponent,
+    AbandonMessageComponent,
+    AbandontrynextComponent,
+    
 
   
    
@@ -121,9 +134,13 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    NgxSmartModalModule.forRoot(),
+    ModalModule.forRoot(),
+    //NgbModule
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //entryComponents: [AbandonMessageComponent]
 })
 export class AppModule { }
