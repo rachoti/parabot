@@ -7,7 +7,7 @@ export class GeomapService {
   constructor(private http:HttpClient) {}
 
   getTimezoneCount(){
-    return this.http.get('http://localhost:9900/');
+    return this.http.get('http://localhost:9907/');
 
       }
 }

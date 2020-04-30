@@ -212,6 +212,7 @@ document.getElementById('id').innerHTML = codeBlock*/
          
      });
      var index=0;
+     $("table tbody tr").remove();
      //console.log(yahooOnly[0].date)
      for(var j=0;j<yahooOnly.length;j++){
       

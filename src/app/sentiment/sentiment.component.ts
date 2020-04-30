@@ -221,7 +221,7 @@ export class SentimentComponent implements OnInit {
                   .attr("transform", "translate(0," + height + ")")
                   .call(xAxis_woy);
 
-                  d3_save_pdf.embedRasterImages(svg.node());
+                  //d3_save_pdf.embedRasterImages(svg.node());
           
           //  Add the Y Axis
           //  svg.append("g").call(d3.axisLeft(y));
@@ -256,6 +256,8 @@ export class SentimentComponent implements OnInit {
                   filename: 'customFileName',
                 }
                 d3_save_pdf.save(d3.select('svg').node(), config);  
+
+               
     });
 
     

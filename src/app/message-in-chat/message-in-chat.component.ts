@@ -211,6 +211,7 @@ this._httpService.getMessageChatCount().subscribe((res:any[])=>{
    });
    var index=0;
    //console.log(yahooOnly[0].date)
+   $("table tbody tr").remove();
    for(var j=0;j<yahooOnly.length;j++){
     
     //console.log(new Date(this.startDate1))

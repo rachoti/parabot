@@ -100,6 +100,7 @@ text;
         
     });
     //console.log(yahooOnly)
+    $("table tbody tr").remove();
     for(var z=0;z<yahooOnly.length ;z++)
     {
       if(yahooOnly[z].text1==temp_text && yahooOnly[z].converser=='user')

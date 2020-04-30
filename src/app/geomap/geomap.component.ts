@@ -3,6 +3,7 @@ import {  ViewChild, ElementRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { ActivatedRoute } from "@angular/router";
+import { ExportToCsv } from 'export-to-csv';
 
 import { GeomapService } from './geomap.service';
 import * as $ from 'jquery';
@@ -16,10 +17,7 @@ declare var H: any;
   styleUrls: ['./geomap.component.css']
 })
 export class GeomapComponent implements OnInit {
-  isShowDiv1 = true;  
-  isShowDiv2 = true; 
-  isShowDiv3 = true; 
-  isShowDiv4 = true;
+
   startDate="2017-01-01";
   endDate="";
   inputStartDate="";
@@ -28,11 +26,9 @@ export class GeomapComponent implements OnInit {
   datePicCount=0;
   malePercentVal;
   femalePercentVal
-  actdata1="+ Activity";
-  actdata2="+ Compare";
-  actdata3="+ Conversation";
-  actdata4="+ Demographics";
-  thData="New";
+  outarr=[];
+  countarr=[];
+  len;
   d1;
   d2;
   private ui: any;
@@ -75,6 +71,8 @@ export class GeomapComponent implements OnInit {
   }
   constructor(private router: Router,private router2:ActivatedRoute,private _httpService:GeomapService,public authService: AuthService) { 
   }
+
+  
   dateChanger(startdate: string){
     
     this.startDate1=startdate;
@@ -197,6 +195,12 @@ export class GeomapComponent implements OnInit {
 
 }
 
+      console.log("dat",outputArray1)
+      this.outarr.push(outputArray1)
+      console.log("datfatfa",this.outarr)
+      this.countarr.push(arr1)
+      this.len=outputArray1.length
+
 
       $("#myTable").tablesorter({ sortList: [[1,1], [0,0]] });
       var usersTable = $(".tablesorter");
@@ -223,7 +227,59 @@ export class GeomapComponent implements OnInit {
 
   }
 
+Exportcsv(){
+  let jsono = [];
+      jsono = [
+        {
+          TimeZone: 'hbh',
+            Users: 'jnj',
+            Message_Count: '000'
+            
+        }
+        ];
+  this._httpService.getTimezoneCount().subscribe((res:any[])=>{
 
+    for (var i=0;i<this.len;i++){
+
+              console.log("datadaa",this.outarr[0][i])
+              console.log("datadaa",this.countarr[0][i])
+              var xx=this.outarr[0][i]
+              var yy=this.countarr[0][i]
+              let modelData = {
+                Location: xx,
+                  Users: yy,
+                  
+            }; 
+
+            jsono.push(modelData);
+    }
+
+    console.log("infoooo",jsono)
+      
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: 'My Awesome CSV',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+   
+  const csvExporter = new ExportToCsv(options);
+  jsono.splice(0,1);
+
+  csvExporter.generateCsv(jsono);
+
+  });
+
+
+
+
+}
   
 
 
