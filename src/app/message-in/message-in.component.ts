@@ -75,7 +75,7 @@ export class MessageInComponent implements OnInit {
   router1(search)
   {
     
-    
+    console.log("hohuihih")
  this.router.navigate(['/searchpagenew/'+search+'/message_in'])
     
 

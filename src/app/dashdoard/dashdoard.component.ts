@@ -78,7 +78,7 @@ export class DashdoardComponent implements OnInit {
     
 
   }
-<<<<<<< HEAD
+
 
 
   loading = false;
@@ -99,7 +99,7 @@ export class DashdoardComponent implements OnInit {
   ]);
 
 
-  constructor(public http: DashboardserviceService,private router: Router,private _httpService:DashboardserviceService,public authService: AuthService) { }
+  constructor(public http: DashboardserviceService,private router2:ActivatedRoute,private router: Router,private _httpService:DashboardserviceService,public authService: AuthService) { }
   
   ngOnInit() {
     this._httpService.getUserActivity().subscribe((res:any[])=>{
@@ -263,15 +263,13 @@ export class DashdoardComponent implements OnInit {
 
 
 
-=======
+
  
-  constructor(private router: Router,private router2:ActivatedRoute,private _httpService:DashboardserviceService,public authService: AuthService) { 
    
-  }
   
-  ngOnInit() {
-   }
->>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
+  
+ 
+ 
   logout(): void {
     console.log("Logout");
     this.authService.logout();

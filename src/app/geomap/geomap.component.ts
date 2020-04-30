@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  ViewChild, ElementRef, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { ActivatedRoute } from "@angular/router";
+
 import { GeomapService } from './geomap.service';
 import * as $ from 'jquery';
 import 'datatables.net';
@@ -58,6 +61,20 @@ export class GeomapComponent implements OnInit {
   private map: any;
 
 
+  
+
+  
+ 
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/geomap'])
+    
+
+  }
+  constructor(private router: Router,private router2:ActivatedRoute,private _httpService:GeomapService,public authService: AuthService) { 
+  }
   dateChanger(startdate: string){
     
     this.startDate1=startdate;
@@ -94,26 +111,6 @@ export class GeomapComponent implements OnInit {
         return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
     }
 
-<<<<<<< HEAD
-=======
-  toggleDisplayDiv4() {
-    this.isShowDiv4= !this.isShowDiv4;
-    if(this.actdata4==="+ Demographics"){
-      this.actdata4="- Demographics";
-    }else{
-      this.actdata4="+ Demographics";
-    }
-  }
-  router1(search)
-  {
-    
-    
- this.router.navigate(['/searchpagenew/'+search+'/geomap'])
-    
-
-  }
-  constructor(private router: Router,private _httpService:GeomapService,public authService: AuthService) { 
->>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
     
     this._httpService.getTimezoneCount().subscribe((res:any[])=>{
       $("table tbody tr").remove();
@@ -227,9 +224,7 @@ export class GeomapComponent implements OnInit {
   }
 
 
-  public constructor(private router: Router,private _httpService:GeomapService) { 
-
-}
+  
 
 
     public ngOnInit() {
