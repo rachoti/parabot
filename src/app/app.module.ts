@@ -29,11 +29,27 @@ import { ChatDisplayInComponent } from './chat-display-in/chat-display-in.compon
 import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
+<<<<<<< HEAD
 import { LogindumComponent } from './maildummy/logindum.component';
+=======
+import { TranscriptComponent } from './transcript/transcript.component';
+import { TransnextComponent } from './transnext/transnext.component';
+import { UnhandledMessageComponent } from './unhandled-message/unhandled-message.component';
+import { CompareComponent } from './compare/compare.component';
+import { AbandonMessageComponent } from './abandon-message/abandon-message.component';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AbandontrynextComponent } from './abandontrynext/abandontrynext.component';
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
+
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
+
   { path: 'login', component: LoginComponent},
   { path: 'tranSearch', component: TranSearchComponent,canActivate: [AuthGuard] },
   { path: 'messagecount', component: MessagecountComponent,canActivate: [AuthGuard] },
@@ -48,16 +64,29 @@ const appRoutes: Routes = [
   { path: 'message_in', component: MessageInComponent,canActivate: [AuthGuard] },
 
   { path: 'message_out', component: MessageOutComponent,canActivate: [AuthGuard] },
+  { path: 'transcript', component: TranscriptComponent,canActivate: [AuthGuard] },
+  { path: 'unhandled', component: UnhandledMessageComponent,canActivate: [AuthGuard] },
+  { path: 'abandon', component: AbandonMessageComponent,canActivate: [AuthGuard] },
+  
 
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
   { path: 'chatdisplayin/:id1/:id2', component: ChatDisplayInComponent,canActivate: [AuthGuard] },
  { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
+<<<<<<< HEAD
  { path: 'searchpage/:id1', component: SearchPageComponent,canActivate: [AuthGuard] },
  { path: 'searchpagenew/:id1', component: SearchPageNewComponent,canActivate: [AuthGuard] },
  { path: 'logindum', component: LogindumComponent,canActivate: [AuthGuard] },
 
 
+=======
+ { path: 'searchpage', component: SearchPageComponent,canActivate: [AuthGuard] },
+ { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ { path: 'transnext/:id1', component: TransnextComponent,canActivate: [AuthGuard] },
+ { path: 'compare', component: CompareComponent,canActivate: [AuthGuard] },
+ { path: 'abanndontrynext/:id1', component: AbandontrynextComponent,canActivate: [AuthGuard] },
+ 
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
   ];
 @NgModule({
   declarations: [
@@ -90,12 +119,26 @@ const appRoutes: Routes = [
 
     SearchPageNewComponent,
 
+<<<<<<< HEAD
     
 
    
     LogindumComponent,
 
    
+=======
+    TranscriptComponent,
+
+    TransnextComponent,
+
+    UnhandledMessageComponent,
+    CompareComponent,
+    AbandonMessageComponent,
+    AbandontrynextComponent,
+    
+
+  
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
    
 
 
@@ -104,20 +147,34 @@ const appRoutes: Routes = [
     
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
+      { enableTracing: true } ,
+    // <-- debugging purposes only
     ),
+<<<<<<< HEAD
     
      
     ReactiveFormsModule,
+=======
+   
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
     RouterModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+<<<<<<< HEAD
     
     Ng2SearchPipeModule
+=======
+    ReactiveFormsModule,
+    Ng2SearchPipeModule,
+    NgxSmartModalModule.forRoot(),
+    ModalModule.forRoot(),
+    //NgbModule
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
   ],
   providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  //entryComponents: [AbandonMessageComponent]
 })
 export class AppModule { }

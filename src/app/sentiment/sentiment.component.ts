@@ -66,7 +66,14 @@ export class SentimentComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
-  
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/sentiment'])
+    
+
+  }
   constructor(private router: Router,private _httpService:SentimentService,public authService: AuthService) { }
   
   ngOnInit() {

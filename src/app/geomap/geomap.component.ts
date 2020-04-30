@@ -94,6 +94,26 @@ export class GeomapComponent implements OnInit {
         return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
     }
 
+<<<<<<< HEAD
+=======
+  toggleDisplayDiv4() {
+    this.isShowDiv4= !this.isShowDiv4;
+    if(this.actdata4==="+ Demographics"){
+      this.actdata4="- Demographics";
+    }else{
+      this.actdata4="+ Demographics";
+    }
+  }
+  router1(search)
+  {
+    
+    
+ this.router.navigate(['/searchpagenew/'+search+'/geomap'])
+    
+
+  }
+  constructor(private router: Router,private _httpService:GeomapService,public authService: AuthService) { 
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
     
     this._httpService.getTimezoneCount().subscribe((res:any[])=>{
       $("table tbody tr").remove();

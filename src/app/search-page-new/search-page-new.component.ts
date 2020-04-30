@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import * as $ from 'jquery';
 import { ActivatedRoute } from "@angular/router";
 import { Router } from '@angular/router';
@@ -9,24 +10,27 @@ import { Router } from '@angular/router';
 })
 export class SearchPageNewComponent implements OnInit {
   pages = [
-    { name: 'Mr. Nice', country: 'India' },
-    {  name: 'Narco' , country: 'USA'},
-    { name: 'Bombasto' , country: 'UK'},
-    {  name: 'Celeritas' , country: 'Canada' },
-    {  name: 'Magneta' , country: 'Russia'},
-    { name: 'RubberMan' , country: 'China'},
-    { name: 'Dynama' , country: 'Germany'},
-    { name: 'Dr IQ' , country: 'Hong Kong'},
-    {  name: 'Magma' , country: 'South Africa'},
-    {  name: 'Tornado' , country: 'Sri Lanka'}
+    { page: 'Message Count', link: 'messagecount' },
+    {  page: 'Retention' , link: 'retension'},
+    { page: 'TimeZone' , link: 'timezone'},
+    {  page: 'Message In' , link: 'message_in' },
+    {  page: 'Message Out' , link: 'message_out'},
+    { page: 'Sentiment' , link: 'sentiment'},
+    { page: 'Word Cloud' , link: 'recentTrans'},
+    { page: 'Gender' , link: 'genderview'},
+    {  page: 'GeoMap' , link: 'geomap'},
+    {  page: 'User Activity' , link: 'useractivity'},
+    {  page: 'Live Message Graph' , link: 'liveMessage'},
+    {  page: 'Dashboard' , link: 'dashboard'},
+   
   ];
  
 search;
-
+route;
 
   constructor(private router2:ActivatedRoute,private router: Router) { 
     this.search=this.router2.snapshot.paramMap.get("id1");
-    
+    this.route=this.router2.snapshot.paramMap.get("id2")
   }
 
   ngOnInit() {
@@ -40,9 +44,11 @@ search;
     
     if(search=='')
 {
-  this.router.navigate(['/dashboard'])
+  
+  this.router.navigate(['/'+this.route])
 }    
 else
+
  this.router.navigate(['/searchpagenew/'+search])
     
 

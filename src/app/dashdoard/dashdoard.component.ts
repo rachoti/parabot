@@ -5,6 +5,7 @@ import { AuthService } from '../auth.service';
 import { FormControl, Validators } from "@angular/forms";
 
 import { DashboardserviceService } from './dashdoardservice.service';
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-dashdoard',
   templateUrl: './dashdoard.component.html',
@@ -28,53 +29,56 @@ export class DashdoardComponent implements OnInit {
   WizardMessPercent;
   Useractpercentage;
   returnactpercentage;
-  actdata1="+ Activity";
-  actdata2="+ Compare";
-  actdata3="+ Conversation";
-  actdata4="+ Demographics";
+  actdata1="Activity";
+  actdata2="Compare";
+  actdata3="Conversation";
+  actdata4="Demographics";
   toggleDisplayDiv1() {
     this.isShowDiv1 = !this.isShowDiv1;
-    if(this.actdata1==="+ Activity"){
-      this.actdata1="- Activity";
+    if(this.actdata1==="Activity"){
+      this.actdata1=" Activity";
     }else{
-      this.actdata1="+ Activity";
+      this.actdata1="Activity";
     }
     
   }
+  
   toggleDisplayDiv2() {
     this.isShowDiv2 = !this.isShowDiv2;
-    if(this.actdata2==="+ Compare"){
-      this.actdata2="- Compare";
+    if(this.actdata2==="Compare"){
+      this.actdata2="Compare";
     }else{
-      this.actdata2="+ Compare";
+      this.actdata2=" Compare";
     }
     
   }
 
   toggleDisplayDiv3() {
     this.isShowDiv3= !this.isShowDiv3;
-    if(this.actdata3==="+ Conversation"){
-      this.actdata3="- Conversation";
+    if(this.actdata3==="Conversation"){
+      this.actdata3=" Conversation";
     }else{
-      this.actdata3="+ Conversation";
+      this.actdata3=" Conversation";
     }
     
   }
   toggleDisplayDiv4() {
     this.isShowDiv4= !this.isShowDiv4;
-    if(this.actdata4==="+ Demographics"){
-      this.actdata4="- Demographics";
+    if(this.actdata4==="Demographics"){
+      this.actdata4="Demographics";
     }else{
-      this.actdata4="+ Demographics";
+      this.actdata4="Demographics";
     }
   }
   router1(search)
   {
     
- this.router.navigate(['/searchpagenew/'+search])
+    
+ this.router.navigate(['/searchpagenew/'+search+'/dashboard'])
     
 
   }
+<<<<<<< HEAD
 
 
   loading = false;
@@ -259,9 +263,19 @@ export class DashdoardComponent implements OnInit {
 
 
 
+=======
+ 
+  constructor(private router: Router,private router2:ActivatedRoute,private _httpService:DashboardserviceService,public authService: AuthService) { 
+   
+  }
+  
+  ngOnInit() {
+   }
+>>>>>>> 6b8821a48defa841a80f0eaaf3dd9f616d57bdc7
   logout(): void {
     console.log("Logout");
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
 }

@@ -22,13 +22,17 @@
     "@angular/platform-browser": "~7.0.0",
     "@angular/platform-browser-dynamic": "~7.0.0",
     "@angular/router": "~7.0.0",
+
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "angular-bootstrap-md": "^9.0.1",
+
+
+
     "angular7-csv": "^0.2.12",
     "body-parser": "^1.19.0",
     "canvg": "^3.0.6",
     "core-js": "^2.5.4",
-    "d3": "^5.15.0",
+    "d3": "^5.15.1",
     "d3-cloud": "^1.2.5",
     "d3-save-pdf": "0.0.3",
     "datatables.net": "^1.10.20",
@@ -38,7 +42,12 @@
     "jspdf": "^1.5.3",
     "leaflet": "^1.6.0",
     "ng2-search-filter": "^0.5.1",
+
     "nodemailer": "^6.4.6",
+
+    "ngx-bootstrap": "^5.6.1",
+    "ngx-smart-modal": "^7.4.0",
+
     "rxjs": "~6.3.3",
     "svg-to-pdfkit": "^0.1.8",
     "tablesorter": "^2.31.3",

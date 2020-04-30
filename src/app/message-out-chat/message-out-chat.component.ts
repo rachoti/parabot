@@ -3,6 +3,8 @@ import { ActivatedRoute } from "@angular/router";
 import { MessageOutChatService } from './message-out-chat.service';
 import * as $ from 'jquery';
 import { ExportToCsv } from 'export-to-csv';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-message-out-chat',
   templateUrl: './message-out-chat.component.html',
@@ -14,9 +16,17 @@ temp_end;
 
 
 
-  constructor(private router:ActivatedRoute,private _httpService:MessageOutChatService) { 
+  constructor(private router2: Router,private router:ActivatedRoute,private _httpService:MessageOutChatService) { 
     this.temp_start=this.router.snapshot.paramMap.get("id2");
     this.temp_end=this.router.snapshot.paramMap.get("id3");
+  }
+  router1(search)
+  {
+    
+    
+ this.router2.navigate(['/searchpagenew/'+search+'/message_out'])
+    
+
   }
 
   ngOnInit() {
