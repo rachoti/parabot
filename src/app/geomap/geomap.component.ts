@@ -17,7 +17,10 @@ declare var H: any;
   styleUrls: ['./geomap.component.css']
 })
 export class GeomapComponent implements OnInit {
-
+  isShowDiv1 = true;  
+  isShowDiv2 = true; 
+  isShowDiv3 = true; 
+  isShowDiv4 = true;
   startDate="2017-01-01";
   endDate="";
   inputStartDate="";
@@ -26,18 +29,16 @@ export class GeomapComponent implements OnInit {
   datePicCount=0;
   malePercentVal;
   femalePercentVal
-<<<<<<< HEAD
+
   outarr=[];
   countarr=[];
   len;
-=======
   actdata1="+ Activity";
   actdata2="+ Compare";
   actdata3="+ Conversation";
   actdata4="+ Demographics";
 
   thData="New";
->>>>>>> 9a52bf1f9140f4040050593043003e42e8051b0c
   d1;
   d2;
   toggleDisplayDiv1() {
