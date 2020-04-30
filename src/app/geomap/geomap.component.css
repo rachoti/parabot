@@ -222,20 +222,137 @@ body {
     height: 40px;
 }
 
-.map-container {
+
+/* hfjhgjhjh////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+input[type="date"] {
+    display: block;
+    position: relative;
+    padding: 1rem 3.5rem 1rem 0.75rem;
+    font-size: 1rem;
+    font-family: monospace;
+    border: 1px solid #8292a2;
+    border-radius: 0.25rem;
+    background: white url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='22' viewBox='0 0 20 22'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%23688EBB' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' transform='translate(1 1)'%3E%3Crect width='18' height='18' y='2' rx='2'/%3E%3Cpath d='M13 0L13 4M5 0L5 4M0 8L18 8'/%3E%3C/g%3E%3C/svg%3E") right 1rem center no-repeat;
+    cursor: pointer;
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #3acfff;
+    box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
+}
+
+ ::-webkit-datetime-edit-month-field:hover,
+ ::-webkit-datetime-edit-day-field:hover,
+ ::-webkit-datetime-edit-year-field:hover {
+    background: rgba(0, 120, 250, 0.1);
+}
+
+ ::-webkit-datetime-edit-text {
+    opacity: 0;
+}
+
+ ::-webkit-clear-button,
+ ::-webkit-inner-spin-button {
+    display: none;
+}
+
+ ::-webkit-calendar-picker-indicator {
     position: absolute;
+    width: 2.5rem;
+    height: 100%;
     top: 0;
-    left: 0;
     right: 0;
     bottom: 0;
-    margin: 30px;
-  }
-  
-  .map-frame {
-    border: 2px solid black;
-    height: 100%;
-  }
-  
-  #map {
-    height: 100%;
-  }
+    opacity: 0;
+    cursor: pointer;
+    color: rgba(0, 120, 250, 1);
+    background: rgba(0, 120, 250, 1);
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator {
+    opacity: 0.05;
+}
+
+input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
+    opacity: 0.15;
+}
+
+#pieFemaleInfo {
+    position: absolute;
+    right: 40px;
+    top: 130px;
+    height: 380px;
+    width: 250px;
+}
+
+.p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    position: absolute;
+    top: 53px;
+    left: 78px;
+}
+
+#pieMaleInfo {
+    position: absolute;
+    left: 40px;
+    top: 130px;
+    height: 380px;
+    width: 250px;
+}
+
+#margin0 {
+    padding-top: 0px;
+    text-align: center;
+}
+
+#alignCenter {
+    text-align: center;
+}
+
+#colorFillMale {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+    background-color: #ff7f0e;
+    margin-left: 57px;
+    border: 1px solid black;
+}
+
+#colorFillFeMale {
+    margin-top: 2rem;
+    width: 15px;
+    height: 15px;
+    background-color: #1f77b4;
+    margin-left: 57px;
+    border: 1px solid black;
+}
+
+.fa {
+    font-size: 18px;
+    margin-top: 44px;
+    margin-left: 32px;
+    font-weight: 100;
+}
+
+.pa {
+    position: absolute;
+    font-size: 26px;
+    top: 82px;
+    left: 115px;
+    font-weight: bold;
+}
+
+.percentage {
+    position: absolute;
+    top: 114px;
+    left: 77px;
+    font-size: 26px;
+    font-weight: 100;
+}
+
+.bold {
+    font-weight: bold;
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import d3_save_pdf from 'd3-save-pdf';
 import { Router } from '@angular/router';
 import * as d3 from "d3";
 import { AuthService } from '../auth.service';
@@ -213,6 +213,8 @@ export class SentimentComponent implements OnInit {
                   .attr("class", "x axis")
                   .attr("transform", "translate(0," + height + ")")
                   .call(xAxis_woy);
+
+                  d3_save_pdf.embedRasterImages(svg.node());
           
           //  Add the Y Axis
           //  svg.append("g").call(d3.axisLeft(y));
@@ -243,10 +245,13 @@ export class SentimentComponent implements OnInit {
         
                 this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
                 ;  
-      
+                var config = {
+                  filename: 'customFileName',
+                }
+                d3_save_pdf.save(d3.select('svg').node(), config);  
     });
 
-
+    
 
   }
 

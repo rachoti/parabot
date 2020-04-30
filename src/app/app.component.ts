@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, HostListener } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dashboard';
+  public  query   :string;
+
+  public constructor() {
+    
+      this.query = "Chennai";
+      
+   
+  }
+
 }

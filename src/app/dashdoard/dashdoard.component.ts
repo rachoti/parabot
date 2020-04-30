@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import * as d3 from "d3";
 import { AuthService } from '../auth.service';
+import { FormControl, Validators } from "@angular/forms";
+
 import { DashboardserviceService } from './dashdoardservice.service';
 @Component({
   selector: 'app-dashdoard',
@@ -73,7 +75,27 @@ export class DashdoardComponent implements OnInit {
     
 
   }
-  constructor(private router: Router,private _httpService:DashboardserviceService,public authService: AuthService) { }
+
+
+  loading = false;
+  buttionText = "Submit";
+
+  nameFormControl = new FormControl("", [
+    Validators.required,
+    Validators.minLength(4)
+  ])
+
+  emailFormControl = new FormControl("", [
+    Validators.required,
+    Validators.email
+  ]);
+  msgFormControl = new FormControl("", [
+    Validators.required,
+    Validators.email
+  ]);
+
+
+  constructor(public http: DashboardserviceService,private router: Router,private _httpService:DashboardserviceService,public authService: AuthService) { }
   
   ngOnInit() {
     this._httpService.getUserActivity().subscribe((res:any[])=>{
@@ -206,6 +228,37 @@ export class DashdoardComponent implements OnInit {
     });
     
   }
+
+
+  register() {
+    this.loading = true;
+    this.buttionText = "Submiting...";
+    console.log("name",this.nameFormControl.value)
+    let user = {
+      name: this.nameFormControl.value,
+      email: this.emailFormControl.value,
+      msg: this.msgFormControl.value
+    }
+    this.http.sendEmail("http://localhost:3000/sendmail", user).subscribe(
+      data => {
+        let res:any = data; 
+        console.log(
+          ` ${user.name} is successfully register and mail has been sent `
+        );
+      },
+      err => {
+        console.log(err);
+        this.loading = false;
+        this.buttionText = "Submit";
+      },() => {
+        this.loading = false;
+        this.buttionText = "Submit";
+      }
+    );
+  }
+
+
+
   logout(): void {
     console.log("Logout");
     this.authService.logout();

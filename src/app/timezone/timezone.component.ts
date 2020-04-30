@@ -367,8 +367,8 @@ export class TimezoneComponent implements OnInit {
          
         var result = [];
         
-       
-        $("table tbody tr").remove();
+       $("table tbody tr").remove();
+        
         
         for (let j = 0; j < res.length; j++) { 
             for (let k = 0; k < outputArray.length; k++) { 
@@ -384,15 +384,10 @@ export class TimezoneComponent implements OnInit {
             count = 0; 
           }
        
-      
-     
-        
+    
         let arr=[];
         let index=0;
         
-        
-        
-      
 
         for(let i=0;i<outputArray.length;i++)
        {

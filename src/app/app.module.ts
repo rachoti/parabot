@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthGuard } from './auth.guard';
 import { AppRoutingModule } from './app-routing.module';
@@ -28,6 +29,7 @@ import { ChatDisplayInComponent } from './chat-display-in/chat-display-in.compon
 import { ChatDisplayOutComponent } from './chat-display-out/chat-display-out.component';
 import { SearchPageComponent } from './search-page/search-page.component';
 import { SearchPageNewComponent } from './search-page-new/search-page-new.component';
+import { LogindumComponent } from './maildummy/logindum.component';
 
 const appRoutes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -53,6 +55,9 @@ const appRoutes: Routes = [
  { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
  { path: 'searchpage/:id1', component: SearchPageComponent,canActivate: [AuthGuard] },
  { path: 'searchpagenew/:id1', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ { path: 'logindum', component: LogindumComponent,canActivate: [AuthGuard] },
+
+
   ];
 @NgModule({
   declarations: [
@@ -84,21 +89,32 @@ const appRoutes: Routes = [
     SearchPageComponent,
 
     SearchPageNewComponent,
+
+    
+
+   
+    LogindumComponent,
+
+   
    
 
 
   ],
   imports: [
+    
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
     ),
+    
+     
+    ReactiveFormsModule,
     RouterModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule,
+    
     Ng2SearchPipeModule
   ],
   providers: [AuthGuard],

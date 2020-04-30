@@ -15,4 +15,8 @@ export class DashboardserviceService {
   getLiveActivity(){
     return this.http.get('http://142.102.27.100:9960/');
   }
+  sendEmail(url, data) {
+    
+    return this.http.post(url, data);
+  }
 }
