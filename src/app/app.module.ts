@@ -71,7 +71,7 @@ const appRoutes: Routes = [
  { path: 'chatdisplayout/:id1/:id2', component: ChatDisplayOutComponent,canActivate: [AuthGuard] },
 
  { path: 'searchpage/:id1', component: SearchPageComponent,canActivate: [AuthGuard] },
- { path: 'searchpagenew/:id1', component: SearchPageNewComponent,canActivate: [AuthGuard] },
+ //{ path: 'searchpagenew/:id1', component: SearchPageNewComponent,canActivate: [AuthGuard] },
  { path: 'logindum', component: LogindumComponent,canActivate: [AuthGuard] },
 
 

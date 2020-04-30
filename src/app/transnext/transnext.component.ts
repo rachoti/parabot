@@ -10,7 +10,50 @@ import * as $ from 'jquery';
 })
 export class TransnextComponent implements OnInit {
   chat_id;
+  isShowDiv1 = true;  
+  isShowDiv2 = true; 
+  isShowDiv3 = true; 
+  isShowDiv4 = true;
+  actdata1="+ Activity";
+  actdata2="+ Compare";
+  actdata3="+ Conversation";
+  actdata4="+ Demographics";
+  toggleDisplayDiv1() {
+    this.isShowDiv1 = !this.isShowDiv1;
+    if(this.actdata1==="+ Activity"){
+      this.actdata1="- Activity";
+    }else{
+      this.actdata1="+ Activity";
+    }
+    
+  }
+  toggleDisplayDiv2() {
+    this.isShowDiv2 = !this.isShowDiv2;
+    if(this.actdata2==="+ Compare"){
+      this.actdata2="- Compare";
+    }else{
+      this.actdata2="+ Compare";
+    }
+    
+  }
 
+  toggleDisplayDiv3() {
+    this.isShowDiv3= !this.isShowDiv3;
+    if(this.actdata3==="+ Conversation"){
+      this.actdata3="- Conversation";
+    }else{
+      this.actdata3="+ Conversation";
+    }
+  }
+
+  toggleDisplayDiv4() {
+    this.isShowDiv4= !this.isShowDiv4;
+    if(this.actdata4==="+ Demographics"){
+      this.actdata4="- Demographics";
+    }else{
+      this.actdata4="+ Demographics";
+    }
+  }
   constructor(private router:ActivatedRoute,private _httpService:TransnextserviceService) { 
     this.chat_id=this.router.snapshot.paramMap.get("id1");
   }
