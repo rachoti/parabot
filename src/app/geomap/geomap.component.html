@@ -7,9 +7,10 @@
         </li>
     </ul>
   </nav>
- 
+  
   <div class="container-fluid">
     <div class="row">
+  
         <nav id="mySidebar" class="col-md-2 d-none d-md-block bg-dark sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
@@ -38,7 +39,7 @@
                       <a class="nav-link">
                           <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Total retention and message percentage" >{{actdata2}}</button>
                           <div [hidden]="isShowDiv2">
-                              <button class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
+                              <button routerLink="/compare" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
                               <button class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates. ">Retention Percentile</button><br>
                           </div>
                       </a>
@@ -70,7 +71,12 @@
                       </a>
                   </li>
   
-  
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="total number of people represented in a map">
+                    <a class="nav-link">
+                        <button type="button"  data-toggle="modal" data-target="#myModal" class=" button button4 "  style="font-family: 'Aleo';">Send Feedback</button>
+                        
+                    </a>
+                </li>
                 </ul>
   
             </div>
