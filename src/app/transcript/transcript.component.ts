@@ -13,7 +13,7 @@ export class TranscriptComponent implements OnInit {
   isShowDiv2 = true; 
   isShowDiv3 = true; 
   isShowDiv4 = true;
-  startDate="2017-01-01";
+  startDate="2016-01-01";
   endDate="";
   inputStartDate="";
   inputEndDate="";
@@ -131,20 +131,7 @@ export class TranscriptComponent implements OnInit {
         lineNo++; 
         c++;
         }
-        /*if(res[z].chat_id=='No chats')
-        {
-          continue;
-        }
-       else{
         
-        markup = "<tr><td>"+new Date(res[z].date)+ "</td<td>"+ res[z].chat_id+ "</td><td>"+ res[z].user_id+ "</td></tr>"; 
-  
-      tableBody = $("table tbody"); 
-      tableHead=$("shadow")
-      //tableHead.append(aa)
-      tableBody.append(markup); 
-      lineNo++; 
-      c++;*/
        }  
     this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
       
@@ -207,18 +194,20 @@ export class TranscriptComponent implements OnInit {
 
     dateChangerEndexport(enddate: string){
       let jsono = [];
-      jsono = [
-        {
-          Chat_ID: 'hbh',
-          User_ID: 'jnj'
-            
-            
-        }
-        ];
+    jsono = [
+      {
+        Date: '16-09-2018',
+          Chat_id: 'hghvv',
+          User_ID: 'bhvhv',
+          
+          
+      }
+      ];
       var lineData = [];
       var markup;
       var tableBody;
       var tableHead;
+      var c=0;
       let lineNo = 0;
     this.endDate=enddate;
     this.startDate1;
@@ -232,120 +221,76 @@ export class TranscriptComponent implements OnInit {
       return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
       }
       
-     
-     this._httpService.getMessageCount().subscribe((res:any[])=>{
-        let c=0;
-        var outputArray = []; 
+      $("table tbody tr").remove();
+      this._httpService.getMessageCount().subscribe((res:any[])=>{
+        var index=0;
+        for(var j=0;j<res.length;j++){
+      
+          //console.log(new Date(this.startDate1))
+          //console.log(new Date(yahooOnly[j].date).toLocaleDateString())
+         if((new Date(res[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
+            break;
+         }
+          index++;
+        }
+        console.log(index)
+        console.log(this.endDate)
+        console.log(res[0].date)
+        for(var z=index;(new Date(res[z].date))<=(new Date(this.endDate));z++)
+        {
           
-      
-        var count = 0; 
-         var aa; 
-        
-        var start = false; 
-        var lookup = {};
-         
-        var result = [];
-        
-       
-        $("table tbody tr").remove();
-        
-        for (let j = 0; j < res.length; j++) { 
-            for (let k = 0; k < outputArray.length; k++) { 
-                if ( res[j].chat_id == outputArray[k] ) { 
-                    start = true; 
-                } 
-            } 
-            /*count++; 
-            if (count == 1 && start == false && res[j].chat_id!=0) { 
-                outputArray.push(res[j].chat_id); 
-            } 
-            start = false; 
-            count = 0; */
+          if(res[z].chat_id=='No chats')
+          {
+            continue;
           }
-       
-      
-     
-        
-        let arr=[];
-        let index=0;
-        
-        
-        
-      
-  
-       for(let i=0;i<outputArray.length;i++)
-       {
-         var yahooOnly = res.filter(function (entry) {
-           return entry.chat_id === outputArray[i];
-  
-           
-       });
-       
-      //console.log(yahooOnly)
-     index=0
-      for(var j=0;j<yahooOnly.length;j++){
-        
-        console.log(new Date(this.startDate1))
-        console.log(new Date(yahooOnly[j].date).toLocaleDateString())
-       if((new Date(yahooOnly[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
-          break;
-       }
-        index++;
-      }
-      
-      var sum_user1=0;
-      var sum_msg1=0;
-    
-      for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
-       
-        sum_user1+=yahooOnly[z].count;
-        sum_msg1+=yahooOnly[z].incoming_msg_count;
-        
-      }
-      console.log(sum_user1)
-      console.log(sum_msg1)
-      aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
-      markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+ sum_user1+ "</td><td>"+ sum_msg1+ "</td></tr>"; 
-      tableBody = $("table tbody"); 
-      tableHead=$("shadow")
-      tableHead.append(aa)
-      tableBody.append(markup); 
-      lineNo++; 
-      c++;
-                var xx=outputArray[i]
-                var yy=sum_user1
-                var zz=sum_msg1
-                
-                let modelData = {
-                transcript: xx,
-                  Chat_ID: yy,
-                  User_ID: zz
-            }; 
+          else
+          {
+           markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+'<br><a href=/transnext/'+res[z].chat_id+'>(Read chats)'+"</a></td><td>"+res[z].user_id+"</td></tr>"  
+          tableBody = $("table tbody"); 
+          tableHead=$("shadow")
+          //tableHead.append(aa)
+          tableBody.append(markup); 
+          lineNo++; 
+          c++;
 
-            jsono.push(modelData);
-            
-    }
-    //console.log(index)
-      console.log("infoooo",jsono)
+                var x=new Date(res[z].date).getDate()
+                var y=new Date(res[z].date).getMonth()+1
+                var k=new Date(res[z].date).getFullYear()
+                var xx=x+'-0'+y+'-'+k
+                var yy=res[z].chat_id
+                var zz=res[z].user_id
+
+                let modelData = {
+                  Date: xx,
+                    Chat_id: yy,
+                    User_ID: zz,
+                    
+              }; 
+          
+              jsono.push(modelData);
+          }
+          
+         }  
+         console.log("infoooo",jsono)
       
-        const options = { 
-          fieldSeparator: ',',
-          quoteStrings: '"',
-          decimalSeparator: '.',
-          showLabels: true, 
-          showTitle: true,
-          title: 'My Awesome CSV',
-          useTextFile: false,
-          useBom: true,
-          useKeysAsHeaders: true,
-          // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-        };
-       
-      const csvExporter = new ExportToCsv(options);
-      jsono.splice(0,1);
-  
-      csvExporter.generateCsv(jsono);
-      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+         const options = { 
+           fieldSeparator: ',',
+           quoteStrings: '"',
+           decimalSeparator: '.',
+           showLabels: true, 
+           showTitle: true,
+           title: 'My Awesome CSV',
+           useTextFile: false,
+           useBom: true,
+           useKeysAsHeaders: true,
+           // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+         };
+        
+       const csvExporter = new ExportToCsv(options);
+       jsono.splice(0,1);
+   
+       csvExporter.generateCsv(jsono);
+      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
         
       this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
    

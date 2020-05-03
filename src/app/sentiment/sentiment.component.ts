@@ -5,6 +5,8 @@ import * as d3 from "d3";
 import { AuthService } from '../auth.service';
 import { SentimentService } from './sentiment.service';
 import { Alert } from 'selenium-webdriver';
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-sentiment',
@@ -93,13 +95,17 @@ export class SentimentComponent implements OnInit {
         dateChanger(startdate: string){
           this.startDate1=startdate;
           this.datePicCount+=1;
+          //$("#div").remove(".shadow1");
         }
 
         dateChangerEnd(enddate: string)
         {
+
+          	
         this.endDate=enddate;
         this.startDate1;
 
+        
     var div = d3.select("body").append("div")
      .attr("class", "tooltip-donut")
      .style("opacity", 0)
@@ -119,7 +125,6 @@ export class SentimentComponent implements OnInit {
       return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
       }
       //console.log(date_diff_indays(this.startDate1,this.endDate));
-
 
 
 
@@ -256,6 +261,8 @@ export class SentimentComponent implements OnInit {
                   filename: 'customFileName',
                 }
                 d3_save_pdf.save(d3.select('svg').node(), config);  
+               // $( "div" ).remove( ".shadow" );               // $(".shadow").append();
+
 
                
     });

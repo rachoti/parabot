@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbandonmsgserviceService } from './abandonmsgservice.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-abandon-message',
@@ -169,135 +170,108 @@ export class AbandonMessageComponent implements OnInit {
 
     dateChangerEndexport(enddate: string){
       let jsono = [];
-      jsono = [
-        {
-          Chat_ID: 'hbh',
-          Leave_Convo: 'jnj'
-            
-            
-        }
-        ];
-      var lineData = [];
-      var markup;
-      var tableBody;
-      var tableHead;
-      let lineNo = 0;
-    this.endDate=enddate;
-    this.startDate1;
-    this.inputStartDate=this.startDate1;
-    this.inputEndDate=this.endDate;
-    var date_diff_indays = function(date1, date2) {
-      
-      let dt1 = new Date(date1);
-      
-      let dt2 = new Date(date2);
-      return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
-      }
-      
-     
-     this._httpService.getabandonmsg().subscribe((res:any[])=>{
-        let c=0;
-        var outputArray = []; 
-          
-      
-        var count = 0; 
-         var aa; 
-        
-        var start = false; 
-        var lookup = {};
+    jsono = [
+      {
+        Date: '16-09-2018',
+          Chat_id: 'hghvv',
+          leave_convo: 'bhvhv',
          
-        var result = [];
-        
-       
-        $("table tbody tr").remove();
-        
-        for (let j = 0; j < res.length; j++) { 
-            for (let k = 0; k < outputArray.length; k++) { 
-                if ( res[j].chat_id == outputArray[k] ) { 
-                    start = true; 
-                } 
-            } 
-            /*count++; 
-            if (count == 1 && start == false && res[j].chat_id!=0) { 
-                outputArray.push(res[j].chat_id); 
-            } 
-            start = false; 
-            count = 0; */
-          }
-       
-      
-     
-        
-        let arr=[];
-        let index=0;
-        
-        
-        
-      
-  
-       for(let i=0;i<outputArray.length;i++)
-       {
-         var yahooOnly = res.filter(function (entry) {
-           return entry.chat_id === outputArray[i];
-  
-           
-       });
-       
-      //console.log(yahooOnly)
-     index=0
-      for(var j=0;j<yahooOnly.length;j++){
-        
-        console.log(new Date(this.startDate1))
-        console.log(new Date(yahooOnly[j].date).toLocaleDateString())
-       if((new Date(yahooOnly[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
+          
+      }
+      ];
+      var lineData = [];
+    var markup;
+    var tableBody;
+    var tableHead;
+    var c=0;
+    let lineNo = 0;
+  this.endDate=enddate;
+  this.startDate1;
+  this.inputStartDate=this.startDate1;
+  this.inputEndDate=this.endDate;
+  var date_diff_indays = function(date1, date2) {
+    
+    let dt1 = new Date(date1);
+    
+    let dt2 = new Date(date2);
+    return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
+    }
+    
+    $("table tbody tr").remove();
+    this._httpService.getabandonmsg().subscribe((res:any[])=>{
+      var index=0;
+      for(var j=0;j<res.length;j++){
+    
+        //console.log(new Date(this.startDate1))
+        //console.log(new Date(yahooOnly[j].date).toLocaleDateString())
+       if((new Date(res[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
           break;
        }
         index++;
       }
-      
-      var sum_user1=0;
-      var sum_msg1=0;
-    
-      for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
-       
-        sum_user1+=yahooOnly[z].count;
-        sum_msg1+=yahooOnly[z].incoming_msg_count;
+      console.log(index)
+      console.log(this.endDate)
+      console.log(res[0].date)
+      for(var z=index;(new Date(res[z].date))<=(new Date(this.endDate));z++)
+      {
         
-      }
-      console.log(sum_user1)
-      console.log(sum_msg1)
-      aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
-      markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+ sum_user1+ "</td><td>"+ sum_msg1+ "</td></tr>"; 
-      tableBody = $("table tbody"); 
-      tableHead=$("shadow")
-      tableHead.append(aa)
-      tableBody.append(markup); 
-      lineNo++; 
-      c++;
-                var xx=outputArray[i]
-                var yy=sum_user1
-                var zz=sum_msg1
-                
-                let modelData = {
-                transcript: xx,
-                  Chat_ID: yy,
-                  Leave_Convo: zz
-            }; 
+        if(res[z].chat_id=='No chats')
+        {
+          continue;
+        }
+        else
+        {
+         markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+'<br><a href=/abanndontrynext/'+res[z].chat_id+'>(Read chats)'+"</a></td><td>"+res[z].leave_convo+"</td></tr>"  
+        tableBody = $("table tbody"); 
+        tableHead=$("shadow")
+        //tableHead.append(aa)
+        tableBody.append(markup); 
+        lineNo++; 
+        c++;
 
-            jsono.push(modelData);
-            
-    }
-    //console.log(index)
-      console.log("infoooo",jsono)
-      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+        var x=new Date(res[z].date).getDate()
+        var y=new Date(res[z].date).getMonth()+1
+        var k=new Date(res[z].date).getFullYear()
+        var xx=x+'-0'+y+'-'+k
+        var yy=res[z].chat_id
+        var zz=res[z].leave_convo
         
-      this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-   
-      
-    });
+        let modelData = {
+          Date: xx,
+            Chat_id: yy,
+            leave_convo: zz,
+
+      }; 
   
-    
-
-    }
+      jsono.push(modelData);
+        }
         
+       }
+       console.log("infoooo",jsono)
+      
+       const options = { 
+         fieldSeparator: ',',
+         quoteStrings: '"',
+         decimalSeparator: '.',
+         showLabels: true, 
+         showTitle: true,
+         title: 'My Awesome CSV',
+         useTextFile: false,
+         useBom: true,
+         useKeysAsHeaders: true,
+         // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+       };
+      
+     const csvExporter = new ExportToCsv(options);
+     jsono.splice(0,1);
+ 
+     csvExporter.generateCsv(jsono);  
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
+      
+    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+ 
+    
+  });
+}
+
 }

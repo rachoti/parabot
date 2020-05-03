@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UnhandledmserviceService } from './Unhandledmservice.service';
 import * as $ from 'jquery';
 import { Router } from '@angular/router';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-unhandled-message',
@@ -111,6 +112,7 @@ export class UnhandledMessageComponent implements OnInit {
        }
         index++;
       }
+      
       console.log(index)
       console.log(this.endDate)
       console.log(res[0].date)
@@ -207,11 +209,11 @@ export class UnhandledMessageComponent implements OnInit {
     let jsono = [];
     jsono = [
       {
-        Unhandled_Messages: 'hbh',
-        Percentage: 'gg',
-        Chat_ID:'ee',
-        Count: 'jnj'
-          
+        Date: '16-09-2018',
+          Chat_id: 'hghvv',
+          Unhandeles_message: 'bhvhv',
+          Count: '000',
+          Percentage:'0000'
           
       }
       ];
@@ -219,6 +221,7 @@ export class UnhandledMessageComponent implements OnInit {
     var markup;
     var tableBody;
     var tableHead;
+    var c=0;
     let lineNo = 0;
   this.endDate=enddate;
   this.startDate1;
@@ -232,105 +235,85 @@ export class UnhandledMessageComponent implements OnInit {
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
     }
     
-   
-   this._httpService.getunhandledmessage().subscribe((res:any[])=>{
-      let c=0;
-      var outputArray = []; 
+    $("table tbody tr").remove();
+    this._httpService.getunhandledmessage().subscribe((res:any[])=>{
+      var index=0;
+      for(var j=0;j<res.length;j++){
+    
+        //console.log(new Date(this.startDate1))
+        //console.log(new Date(yahooOnly[j].date).toLocaleDateString())
+       if((new Date(res[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
+          break;
+       }
+        index++;
+      }
+      console.log(index)
+      console.log(this.endDate)
+      console.log(res[0].date)
+      for(var z=index;(new Date(res[z].date))<=(new Date(this.endDate));z++)
+      {
         
-    
-      var count = 0; 
-       var aa; 
-      
-      var start = false; 
-      var lookup = {};
-       
-      var result = [];
-      
-     
-      $("table tbody tr").remove();
-      
-      for (let j = 0; j < res.length; j++) { 
-          for (let k = 0; k < outputArray.length; k++) { 
-              if ( res[j].not_handled == outputArray[k] ) { 
-                  start = true; 
-              } 
-          } 
-          /*count++; 
-          if (count == 1 && start == false && res[j].chat_id!=0) { 
-              outputArray.push(res[j].chat_id); 
-          } 
-          start = false; 
-          count = 0; */
+        if(res[z].not_handled=='No chats')
+        {
+          continue;
         }
-     
-    
-   
-      
-      let arr=[];
-      let index=0;
-      
-      
-      
-    
+        else
+        {
+         markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+"</a></td><td>"+res[z].not_handled_msg+"</a></td><td>"+res[z].count+"</a></td><td>"+res[z].percentage+"</td></tr>"  
+        tableBody = $("table tbody"); 
+        tableHead=$("shadow")
+        //tableHead.append(aa)
+        tableBody.append(markup); 
+        lineNo++; 
+        c++;
 
-     for(let i=0;i<outputArray.length;i++)
-     {
-       var yahooOnly = res.filter(function (entry) {
-         return entry.not_handled === outputArray[i];
 
-         
-     });
-     
-    //console.log(yahooOnly)
-   index=0
-    for(var j=0;j<yahooOnly.length;j++){
+        var x=new Date(res[z].date).getDate()
+        var y=new Date(res[z].date).getMonth()+1
+        var k=new Date(res[z].date).getFullYear()
+        var xx=x+'-0'+y+'-'+k
+        var yy=res[z].chat_id
+        var zz=res[z].not_handled_msg
+        var kk=res[z].count  
+        var ll=res[z].percentage
       
-      console.log(new Date(this.startDate1))
-      console.log(new Date(yahooOnly[j].date).toLocaleDateString())
-     if((new Date(yahooOnly[j].date).toLocaleDateString())==(new Date(this.startDate1).toLocaleDateString())){
-        break;
-     }
-      index++;
-    }
-    
-    var sum_user1=0;
-    var sum_msg1=0;
+        let modelData = {
+        Date: xx,
+          Chat_id: yy,
+          Unhandeles_message: zz,
+          Count: kk,
+          Percentage:ll
+    }; 
+
+    jsono.push(modelData);
+        }
+       
+       }  
+       console.log("infoooo",jsono)
+      
+        const options = { 
+          fieldSeparator: ',',
+          quoteStrings: '"',
+          decimalSeparator: '.',
+          showLabels: true, 
+          showTitle: true,
+          title: 'My Awesome CSV',
+          useTextFile: false,
+          useBom: true,
+          useKeysAsHeaders: true,
+          // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+        };
+       
+      const csvExporter = new ExportToCsv(options);
+      jsono.splice(0,1);
   
-    for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
-     
-      sum_user1+=yahooOnly[z].count;
-      sum_msg1+=yahooOnly[z].incoming_msg_count;
+      csvExporter.generateCsv(jsono);
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
       
-    }
-    console.log(sum_user1)
-    console.log(sum_msg1)
-    aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
-    markup = "<tr><td>"+ outputArray[i]+ "</td><td>"+ sum_user1+ "</td><td>"+ sum_msg1+ "</td></tr>"; 
-    tableBody = $("table tbody"); 
-    tableHead=$("shadow")
-    tableHead.append(aa)
-    tableBody.append(markup); 
-    lineNo++; 
-    c++;
-              var xx=outputArray[i]
-              var yy=sum_user1
-              var zz=sum_msg1
-              
-              let modelData = {
-              transcript: xx,
-              not_handled_msg: yy,
-                count: zz,
-
-          }; 
-
-          jsono.push(modelData);
-          
-  }
+    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+ 
     
   });
-
-  
-
   }
   }
 

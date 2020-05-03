@@ -2,6 +2,7 @@ import { Component, OnInit, ComponentFactoryResolver } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { TransnextserviceService } from './transnextservice.service';
 import * as $ from 'jquery';
+import { ExportToCsv } from 'export-to-csv';
 
 @Component({
   selector: 'app-transnext',
@@ -88,4 +89,79 @@ export class TransnextComponent implements OnInit {
     }
     });
   }
+
+  ExportCSV(){
+    let jsono = [];
+    jsono = [
+      {
+        Converser: '16-09-2018',
+        Conversation: 'hghvv',
+
+          
+      }
+      ];
+    var temp_chat_id;
+    var lineData = [];
+    var markup;
+    var tableBody;
+    var tableHead;
+    let lineNo = 0;
+    let c=0;
+    temp_chat_id=this.router.snapshot.paramMap.get("id1");
+    //console.log(this.chat_id)
+
+    $("table tbody tr").remove();
+
+    this._httpService.getChats().subscribe((res:any[])=>{
+      var yahooOnly = res.filter(function (entry) {
+        return entry.chat_id==temp_chat_id;
+
+        
+    });
+    //console.log(yahooOnly)
+    for(var z=0;z<yahooOnly.length ;z++)
+    {
+      markup = '<tr><td>'+yahooOnly[z].converser+"</td><td>"+yahooOnly[z].text1+"</td></tr>"; 
+    tableBody = $("table tbody"); 
+    tableHead=$("shadow")
+    //tableHead.append(aa)
+    tableBody.append(markup); 
+    lineNo++; 
+    c++;
+    var yy=yahooOnly[z].converser
+    var zz=yahooOnly[z].text1
+    let modelData = {
+      
+        Converser: yy,
+        Conversation: zz
+        
+  }; 
+
+  jsono.push(modelData);
+    }
+
+    console.log("infoooo",jsono)
+      
+    const options = { 
+      fieldSeparator: ',',
+      quoteStrings: '"',
+      decimalSeparator: '.',
+      showLabels: true, 
+      showTitle: true,
+      title: 'My Awesome CSV',
+      useTextFile: false,
+      useBom: true,
+      useKeysAsHeaders: true,
+      // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+    };
+   
+  const csvExporter = new ExportToCsv(options);
+  jsono.splice(0,1);
+
+  csvExporter.generateCsv(jsono);
+    });
+
+  }
+
+
 }
