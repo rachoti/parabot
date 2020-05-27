@@ -9,7 +9,7 @@ export class ChatDisplayOutService {
 
   constructor(private http:HttpClient) { }
   getEntireChat(){
-    return this.http.get('http://localhost:9905/');
+    return this.http.get('http://142.102.27.100:9905/');
       
 }
 }

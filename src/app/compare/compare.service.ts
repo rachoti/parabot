@@ -7,23 +7,23 @@ export class CompareService {
 
   constructor(private http:HttpClient) { }
   getNewUserCount(){
-    return this.http.get('http://localhost:9908/');
+    return this.http.get('http://142.102.27.100:9908/');
       
 }
 getRetUserCount(){
-  return this.http.get('http://localhost:9907/');
+  return this.http.get('http://142.102.27.100:9907/');
     
 }
 getMessageCount(){
-  return this.http.get('http://localhost:9909/');
+  return this.http.get('http://142.102.27.100:9909/');
     
 }
 getUserCount(){
-  return this.http.get('http://localhost:9912/');
+  return this.http.get('http://142.102.27.100:9912/');
     
 }
 getGenderCount(){
-  return this.http.get('http://localhost:9910/');
+  return this.http.get('http://142.102.27.100:9910/');
     
 }
 

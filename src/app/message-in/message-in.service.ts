@@ -9,7 +9,7 @@ export class MessageInService {
   constructor(private http:HttpClient) { }
 
     getMessageCount(){
-      return this.http.get('http://localhost:9900/');
+      return this.http.get('http://142.102.27.100:9900/');
         
   }
 }
