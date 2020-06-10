@@ -37,7 +37,7 @@
                   </li>
                   <li class="nav-item" >
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Total retention and message percentage" >{{actdata2}}</button>
+                          <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare the different features of parabot" >{{actdata2}}</button>
                           <div [hidden]="isShowDiv2">
                               <button routerLink="/compare" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
                               <button class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates. ">Retention Percentile</button><br>
@@ -46,19 +46,19 @@
                   </li>
                   <li class="nav-item">
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';"  data-toggle="tooltip" data-placement="bottom" title="Total words and sentiment">{{actdata3}}</button>
+                          <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';"  data-toggle="tooltip" data-placement="bottom" title="Different activities related to messages">{{actdata3}}</button>
                           <div [hidden]="isShowDiv3">
                               <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Understanding the emotion behind the users message ">Sentiment</button><br>
                               <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Find the most common words your bot receives or sends with Word Cloud ">Word Cloud</button><br>
                               <button routerLink="/transcript" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="The total messages in a given range ">Transcript</button><br>
                               <button routerLink="/unhandled" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Messages which are not handled by the bot ">Unhandled Messages</button><br>
-                              <button routerLink="/abandon" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Users abandon the bot conversation ">Abandon Messages</button><br>
+                              <!--<button routerLink="/abandon" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Users abandon the bot conversation ">Abandon Messages</button><br>-->
                           </div>
                       </a>
                   </li>
                   <li class="nav-item" >
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="total number of people represented in a map">{{actdata4}}</button>
+                          <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Statistical data relating to the population and particular groups within it">{{actdata4}}</button>
                           <div [hidden]="isShowDiv4">
   
                               <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="individual's gender identity ">Gender</button><br>
@@ -71,7 +71,7 @@
                       </a>
                   </li>
   
-                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="total number of people represented in a map">
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom">
                     <a class="nav-link">
                         <button type="button"  data-toggle="modal" data-target="#myModal" class=" button button4 "  style="font-family: 'Aleo';">Send Feedback</button>
                         
@@ -84,7 +84,8 @@
 
       <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-              <h1 class="h2">Dashboard &#xe080;</h1><span>Word Cloud Chart</span>
+              <!--<h1 class="h2">Word Cloud</h1>-->
+              <span class="bold">Word Cloud</span>
               <div class="btn-toolbar mb-2 mb-md-0">
                   <div class="btn-group mr-2">
                       <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -99,7 +100,7 @@
 
 
           <div>
-              <div class="card ">
+              <!--<div class="card ">
                   <div id="shadow" class="card-body">
                       <div class="btn-toolbar mb-2 mb-md-0">
 
@@ -111,7 +112,7 @@
                           </div>
                       </div>
                   </div>
-              </div>
+              </div>-->
 
               <div class="card mt-4" style="height:700px">
                   <div id="shadow" class="card-body">

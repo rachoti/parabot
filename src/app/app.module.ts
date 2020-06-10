@@ -39,6 +39,7 @@ import { AbandonMessageComponent } from './abandon-message/abandon-message.compo
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AbandontrynextComponent } from './abandontrynext/abandontrynext.component';
+import { StepsComponent } from './steps/steps.component';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -63,7 +64,7 @@ const appRoutes: Routes = [
   { path: 'transcript', component: TranscriptComponent,canActivate: [AuthGuard] },
   { path: 'unhandled', component: UnhandledMessageComponent,canActivate: [AuthGuard] },
   { path: 'abandon', component: AbandonMessageComponent,canActivate: [AuthGuard] },
-  
+  { path: 'steps', component: StepsComponent,canActivate: [AuthGuard] },
 
   { path: 'messageinchat/:id1/:id2/:id3', component: MessageInChatComponent,canActivate: [AuthGuard] },
   { path: 'messageoutchat/:id1/:id2/:id3', component: MessageOutChatComponent,canActivate: [AuthGuard] },
@@ -100,6 +101,7 @@ const appRoutes: Routes = [
     TranSearchComponent,
     UseractivityComponent,
     MessageInComponent,
+    
 
     MessageOutComponent,
 
@@ -125,7 +127,8 @@ const appRoutes: Routes = [
     AbandonMessageComponent,
     TransnextComponent,
     CompareComponent,
-    AbandontrynextComponent
+    AbandontrynextComponent,
+    StepsComponent
    
 
 
