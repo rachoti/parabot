@@ -100,7 +100,7 @@ export class UseractivityComponent implements OnInit {
  var y = d3.scaleLinear().range([height, 0]);
 
 
- y.domain([d3.min(lineData, function(d) { return d.user_count; }) - 5, 1000]);
+ y.domain([d3.min(lineData, function(d) { return d.user_count; }) , 10]);
 
  var valueline = d3.line()
          .x(function(d) { return x(d.date); }) 		.y(function(d) { return y(d.user_count);  })
