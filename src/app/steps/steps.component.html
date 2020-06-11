@@ -1,0 +1,33 @@
+<!-- multistep form -->
+<form id="msform">
+  <!-- progressbar -->
+  <ul id="progressbar">
+    <li class="active">Step 1</li>
+    <li>Step 2</li>
+    <li>Step 3</li>
+  </ul>
+  <!-- fieldsets -->
+  <fieldset>
+    <h2 class="fs-title">Step 1</h2>
+    <!--<div class="form-group">
+      <label for="file">Choose File</label>
+      <input type="file"
+             id="file"
+             (change)="handleFileInput($event.target.files)">
+  </div>-->
+  <input type="file" class="upload" (change)="changeListener($event.target.files)">
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Step 2</h2>
+    <h6>{{aa}}</h6>
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="button" name="next" class="next action-button" value="Next" />
+  </fieldset>
+  <fieldset>
+    <h2 class="fs-title">Step 3</h2>
+    
+    <input type="button" name="previous" class="previous action-button" value="Previous" />
+    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+  </fieldset>
+</form>

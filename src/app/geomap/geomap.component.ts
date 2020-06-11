@@ -6,7 +6,7 @@ import { ActivatedRoute } from "@angular/router";
 import { ExportToCsv } from 'export-to-csv';
 
 import { GeomapService } from './geomap.service';
-import * as $ from 'jquery';
+declare var $:any;
 import 'datatables.net';
 import 'tablesorter';
 declare var H: any;
