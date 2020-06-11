@@ -3190,7 +3190,8 @@ svg.selectAll(".dot")
 
     .attr("cx", function(d) { return x(d.date) })
     .attr("cy", function(d) { return y(d.user_count) })
-    .attr("r", 5);  
+    .attr("r", 5)
+     
 
 
 svg.selectAll(".text")
