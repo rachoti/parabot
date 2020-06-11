@@ -161,6 +161,7 @@ export class TimezoneComponent implements OnInit {
        
       
       index=0
+    
       for(var j=0;j<yahooOnly.length;j++){
         
         console.log(new Date(this.startDate1))
@@ -198,7 +199,7 @@ export class TimezoneComponent implements OnInit {
     }
     //console.log(index)
       
-      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
         
       this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
    
@@ -231,7 +232,7 @@ export class TimezoneComponent implements OnInit {
       let lineNo = 0;
       this._httpService.getTimezoneCount().subscribe((res:any[])=>{
         
-        this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+        this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
         
         this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
         this.inputStartDate= this.startDate;
@@ -272,22 +273,21 @@ export class TimezoneComponent implements OnInit {
 
       $(document).ready(function () {
          
-         for(let i=outputArray.length-1;i>=0;i--)
-         {
-          
+        for(let i=0;i<outputArray.length;i++)
+        {          
           var yahooOnly = res.filter(function (entry) {
             return entry.timezone === outputArray[i];
             
         }
         );
         var sum_users=0;
-        for(let j=yahooOnly.length-1;j>=0;j--)
+        for(var j=0;j<yahooOnly.length;j++)
         {
           sum_users+=yahooOnly[j].count
 
         }
         var sum_msg=0;
-        for(let j=yahooOnly.length-1;j>=0;j--)
+        for(var j=0;j<yahooOnly.length;j++)
         {
           sum_msg+=yahooOnly[j].incoming_msg_count
 

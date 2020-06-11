@@ -87,6 +87,7 @@ export class MessageInComponent implements OnInit {
     var tableHead;
     let lineNo = 0;
   this.endDate=enddate;
+  console.log(enddate)
   this.startDate1;
   this.inputStartDate=this.startDate1;
   this.inputEndDate=this.endDate;
@@ -95,6 +96,7 @@ export class MessageInComponent implements OnInit {
     let dt1 = new Date(date1);
     
     let dt2 = new Date(date2);
+    
     return Math.floor((Date.UTC(dt2.getFullYear(), dt2.getMonth(), dt2.getDate()) - Date.UTC(dt1.getFullYear(), dt1.getMonth(), dt1.getDate()) ) /(1000 * 60 * 60 * 24));
     }
     
@@ -158,10 +160,10 @@ export class MessageInComponent implements OnInit {
      }
       index++;
     }
-    
+    console.log((new Date(this.startDate1).toLocaleDateString()))
     var sum_user1=0;
     var sum_msg1=0;
-  
+  console.log(date_diff_indays(this.startDate1,this.endDate))
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
      
       sum_user1+=yahooOnly[z].count;
@@ -179,9 +181,9 @@ export class MessageInComponent implements OnInit {
     c++;
      }
   //console.log(index)
-    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-0"+(new Date(res[0].date).getDate());
       
-    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-0"+(new Date(res[res.length-1].date).getDate());
  
     
   });
@@ -200,9 +202,9 @@ export class MessageInComponent implements OnInit {
       let c=0;
       this._httpService.getMessageCount().subscribe((res:any[])=>{
         
-      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
-
-      this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-0"+(new Date(res[0].date).getDate());
+          console.log(this.startDate)
+      this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-0"+(new Date(res[res.length-1].date).getDate());
         this.inputStartDate= this.startDate;
         this.inputEndDate=this.endDate;
        for (let i=0;i<res.length;i++)

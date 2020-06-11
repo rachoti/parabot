@@ -115,7 +115,7 @@
                       <div class="btn-toolbar mb-2 mb-md-0">
 
                           <div class="btn-group mr-2">
-                            <input type="date" #startdate class="form-control"  name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="2016-08-14" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
+                            <input type="date" #startdate class="form-control"  name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
                             <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
                         </div>
                      
@@ -126,7 +126,7 @@
                                     
                         <div class="btn-group mr-2">
                             
-                          <input type="date" #startdate2 class="form-control" name="startdate2" id="startdate2" min="{{startDate2}}" max="{{endDate2}}" value="2016-08-14" (change)="dateChanger1(startdate2.value)" /> &#160;&#160;&#160;
+                          <input type="date" #startdate2 class="form-control" name="startdate2" id="startdate2" min="{{startDate2}}" max="{{endDate2}}" value="{{startDate2}}" (change)="dateChanger1(startdate2.value)" /> &#160;&#160;&#160;
                           <input type="date" #enddate2 class="form-control" name="enddate2" id="enddate2" min="{{startDate3}}" max="{{endDate2}}" value="{{startDate3}}" (change)="dateChangerEnd1(enddate2.value)" /> &#160;&#160;&#160;
                         </div>
                       
@@ -138,17 +138,33 @@
                   
               </div>
               <br><br>
+              <div class="btn-toolbar mb-2 mb-md-0">
             
                 <select class="search_categories" #mySelect (change)="myFunction(mySelect.value)">
                     <option value="new_user">New User Count</option>
                     <option value="ret_user">Returning User Count</option>
                     <option value="message">Message Count</option>
-                    <option value="gender">Gender Count</option>
+                   <!-- <option value="gender">Gender Count</option>-->
                     <option value="user">Total User Count</option>
 
                   </select>
-    
-            
+                  <div class="col-md-2.5 ml-sm-auto col-lg-15 px-4">
+
+                     
+                                    
+                    
+                  <select  class="search_categories" #mySelect1 (change)="myFunction1(mySelect1.value)">
+                    <!--   <option value="new_user">New User Count</option>
+                    <option value="ret_user">Returning User Count</option>
+                    <option value="message">Message Count</option>-->
+                 <option value="bar">Bar Graph</option>
+                    <option value="pie">Pie Chart</option>
+                    <!--<option value="line">Line Graph</option>-->
+
+                  </select>
+    </div>
+              </div>
+        
                   <div id="pieMaleInfo">
                     <h6 id="alignCenter"></h6>
                     <div id="colorFillMale"></div>
@@ -166,6 +182,7 @@
                 </div>
              <div id="div_template">
                         </div>
+                        
                         <div id="pieFemaleInfo">
                             <h6 id="alignCenter1"></h6>
                             <div id="colorFillFeMale"></div>

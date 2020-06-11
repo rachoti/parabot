@@ -119,12 +119,15 @@ actdata1="+Activity";
     }
     var chat_id_list=[];
    
-      for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
+    for(var z=index;z<yahooOnly.length ;z++)
+  {
+    if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
     {
       if(yahooOnly[z].chat_id=='No chats')
               continue;
       else
           chat_id_list.push(yahooOnly[z].chat_id)
+    }
     }
     console.log(chat_id_list)
     
@@ -176,8 +179,11 @@ actdata1="+Activity";
     }
     /*console.log(chats_list[0][0])*/
       var temp= -1; 
-   for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
-    {
+  
+      for(var z=index;z<yahooOnly.length ;z++)
+      {
+        if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
+        {
       if(yahooOnly[z].chat_id=='No chats')
       {
         continue;
@@ -203,7 +209,7 @@ document.getElementById('id').innerHTML = codeBlock*/
 
 
     }
-
+  }
   
   }
   });
@@ -269,12 +275,16 @@ document.getElementById('id').innerHTML = codeBlock*/
     }
     var chat_id_list=[];
    
-      for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
+      
+    for(var z=index;z<yahooOnly.length ;z++)
     {
+      if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
+      {
       if(yahooOnly[z].chat_id=='No chats')
               continue;
       else
           chat_id_list.push(yahooOnly[z].chat_id)
+    }
     }
     console.log(chat_id_list)
     
@@ -326,8 +336,11 @@ document.getElementById('id').innerHTML = codeBlock*/
     }
     console.log(chats_list[0][0])
       var temp= -1; 
-   for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
-    {
+  
+      for(var z=index;z<yahooOnly.length ;z++)
+      {
+        if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
+        {
       if(yahooOnly[z].chat_id=='No chats')
       {
         continue;
@@ -371,7 +384,7 @@ document.getElementById('id').innerHTML = codeBlock*/
 
 
     }
-
+  }
   
   }
   console.log("infoooo",jsono)
