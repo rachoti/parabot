@@ -196,6 +196,39 @@ if(this.type2==null)
 
 
    }
+   else if(type=="new_user" && (this.type2=='line'))
+   {
+    document.getElementById("div_template").innerHTML=" ";
+    this.createChart_line(startDate1,endDate1,startDate2,endDate2)
+
+
+
+   }
+   else if(type=="ret_user" && (this.type2=='line'))
+   {
+    document.getElementById("div_template").innerHTML=" ";
+        this.createChart1_line(startDate1,endDate1,startDate2,endDate2)
+
+
+
+   }
+   else if(type=="message" && (this.type2=='line'))
+   {
+    document.getElementById("div_template").innerHTML=" ";
+    this.createChart2_line(startDate1,endDate1,startDate2,endDate2)
+
+
+
+   }
+   else if(type=="user" && (this.type2=='line'))
+   {
+    document.getElementById("div_template").innerHTML=" ";
+    this.createChart4_line(startDate1,endDate1,startDate2,endDate2)
+
+
+
+   }
+   
    
 
     
@@ -264,10 +297,32 @@ if(this.type2==null)
         document.getElementById("div_template").innerHTML=" ";
         this.createChart4_pie(startDate1,endDate1,startDate2,endDate2)
        }
-       else if(type=='line')
+       else if(type=='line'  && this.type1==null)
        {
         document.getElementById("div_template").innerHTML=" ";
         this.createChart_line(startDate1,endDate1,startDate2,endDate2)
+       }
+       else if(type=='line' && (this.type1==null || this.type1=='new_user'))
+       {
+        document.getElementById("div_template").innerHTML=" ";
+        this.createChart_line(startDate1,endDate1,startDate2,endDate2)
+       }
+       else if(type=='line' && this.type1=='ret_user')
+       {
+         console.log("ter")
+         document.getElementById("div_template").innerHTML=" ";
+         this.createChart1_line(startDate1,endDate1,startDate2,endDate2)
+       }
+       
+       else if(type=='line' && this.type1=='message')
+       {
+        document.getElementById("div_template").innerHTML=" ";
+        this.createChart2_line(startDate1,endDate1,startDate2,endDate2)
+       }
+       else if(type=='line' && this.type1=='user')
+       {
+        document.getElementById("div_template").innerHTML=" ";
+        this.createChart4_line(startDate1,endDate1,startDate2,endDate2)
        }
    if(type=="bar" && this.type1==null) 
    {
@@ -2362,6 +2417,836 @@ svg.append('text')
       document.getElementById("colorFillFeMale").style.background = "";
       document.getElementById("colorFillMale").style.border ="";
       document.getElementById("colorFillFeMale").style.border ="";
+ /* lineData.forEach(function(d) {
+    return { date : d.date,count : d.count }
+  
+});
+
+var height  = 400;
+var width   = 1000;
+var margin = {top: 15, right: 40, bottom: 100, left:500};
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+// set the dimensions and margins of the graph
+
+// append the svg object to the body of the page
+var svg = d3.select("#div_template")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+     
+
+        // Add X axis --> it is a date format
+        var x = d3.scaleBand()
+        .domain(d3.extent(lineData, function(d) { return d.date; }))
+        .range([ 0, width ])
+        .padding(1);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    
+        // Max value observed:
+        const max1 = d3.max(lineData, function(d) { return +d.count; })
+    
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, max1+2])
+          .range([ height, 0 ]);
+        svg.append("g")
+          .call(d3.axisLeft(y));
+    
+        // Set the gradient
+        
+        svg.append("linearGradient")
+          .attr("id", "line-gradient")
+          .attr("gradientUnits", "userSpaceOnUse")
+          .attr("x1", 0)
+          .attr("y1", y(0))
+          .attr("x2", 0)
+          .attr("y2", y(max1+2))
+          .selectAll("stop")
+            .data([
+              {offset: "0%", color: "blue"},
+              {offset: "100%", color: "orange"}
+            ])
+          .enter().append("stop")
+            .attr("offset", function(d) { return d.offset; })
+            .attr("stop-color", function(d) { return d.color; });
+    
+        // Add the line
+        var linn=d3.line()
+        .x(function(d) { console.log(d.date);return x(d.date) })
+        .y(function(d) { return y(d.count) })
+
+        
+        
+        svg.append("path")
+          .data(lineData)
+          .attr("fill", "none")
+          .attr("stroke", "url(#line-gradient)" )
+          .attr("stroke-width", 2)
+          .attr("d",linn(lineData))*/
+    
+ 
+ 
+
+
+      
+  
+      });
+
+    }
+    private createChart1_line(startDate1,endDate1,startDate2,endDate2): void {
+      var index1=0;
+      
+      var index2=0;
+      
+      this._httpService.getRetUserCount().subscribe((res:any[])=>{
+      this.aa=res[0].date;
+       for(var i=0;i<res.length;i++)
+       {
+        
+        if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate1).toLocaleDateString())){
+          break;
+       }
+        index1++;
+       }
+       for(var i=0;i<res.length;i++)
+       {
+        
+        if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate2).toLocaleDateString())){
+          break;
+       }
+        index2++;
+       }
+     
+      this.sum1=0;
+     
+       for(var z=index1;(new Date(res[z].date))<=(new Date(endDate1)) ;z++)
+       {
+       
+          this.sum1+=res[z].count;
+          if(z==res.length-1)
+          break;
+       }
+       this.sum2=0;
+       for(var a=index2;(new Date(res[a].date))<=(new Date(endDate2));a++)
+       {
+          this.sum2+=res[a].count;
+          if(a==res.length-1)
+          break;
+       }
+   var max=Math.max(this.sum1,this.sum2)
+   var range=max+1;
+  
+      var final=[]
+      
+      var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,count:this.sum1} 
+      var line2={date:startDate2+"\t\tto\t\t "+endDate2,count:this.sum2} 
+  
+  final.push(line1,line2)
+  
+  //var fin=[final[0][0],final[1][0]]
+  
+  var lineData=[];
+  for(let i=0;i<final.length;i++){
+    var obj ={date:final[i].date,user_count:final[i].count};
+    
+    lineData.push(obj);
+     
+  }
+  var height  = 400;
+var width   = 1000;
+var margin = {top: 15, right: 40, bottom: 100, left:500};
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+// set the dimensions and margins of the graph
+
+// append the svg object to the body of the page
+var svg = d3.select("#div_template")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+/*var x = d3.scaleTime().range([0, width]);
+  
+x.domain(d3.extent(lineData, function(d) { return d.date; }));
+
+
+var y = d3.scaleLinear().range([height, 0]);
+
+
+y.domain([d3.min(lineData, function(d) { return d.user_count; }) - 5, 1000]);*/
+var x = d3.scaleBand()
+.domain(d3.extent(lineData, function(d) { return d.date; }))
+.range([ 0, width ])
+.padding(1);
+svg.append("g")
+.attr("transform", "translate(0," + height + ")")
+.call(d3.axisBottom(x));
+
+
+// Max value observed:
+const max1 = d3.max(lineData, function(d) { return +d.user_count; })
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, max1+2])
+  .range([ height, 0 ]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+		.y(function(d) { return y(d.user_count);  })
+        .curve(d3.curveMonotoneX);
+
+svg.append("path")
+    .data([lineData]) 
+    .attr("class", "line")  
+	.attr("d", valueline) 
+	.attr("fill","none")
+	.attr("stroke", "#ffab00")
+	.attr("stroke-width", "3");
+
+//  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
+/*var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%b-%d")).tickValues(lineData.map(d=>d.date));
+
+svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis_woy);*/
+
+//  Add the Y Axis
+//  svg.append("g").call(d3.axisLeft(y));
+
+svg.selectAll(".dot")
+    .data(lineData)
+    .enter()
+    .append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+
+    .attr("cx", function(d) { return x(d.date) })
+    .attr("cy", function(d) { return y(d.user_count) })
+    .attr("r", 5);  
+
+
+svg.selectAll(".text")
+    .data(lineData)
+    .enter()
+    .append("text") // Uses the enter().append() method
+    .attr("class", "label") // Assign a class for styling
+    .attr("x", function(d, i) { return x(d.date) })
+    .attr("y", function(d) { return y(d.user_count) })
+    .attr("dy", "-5")
+    .text(function(d) {return d.user_count; });
+svg.append('text')                                     
+      .attr('x', 10)              
+      .attr('y', -5)             
+
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width-200)
+      .attr("y", height + margin.top + 50)
+      .text("Date")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+            
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+450)
+      .attr("x", -margin.top-80)
+      .text("Count")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+      svg.append("text").attr("x", 130).attr("y", 325).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+      svg.append("text").attr("x", 290).attr("y", 325).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+     
+      document.getElementById("alignCenter_b1").textContent = "";
+      document.getElementById("alignCenter_b2").textContent = "";
+      document.getElementById("colorFillMale_b1").style.border = "";
+      document.getElementById("colorFillMale_b2").style.border = "";
+      document.getElementById("colorFillMale_b1").style.background = "";
+      document.getElementById("colorFillMale_b2").style.background = "";
+      document.getElementById("p_b1").textContent="";
+      document.getElementById("p_b2").textContent="";
+      document.getElementById("colorFillMale_b3").style.border = "";
+      document.getElementById("colorFillMale_b4").style.border = "";
+      document.getElementById("colorFillMale_b3").style.background = "";
+      document.getElementById("colorFillMale_b4").style.background = "";
+      document.getElementById("p_b3").textContent="";
+      document.getElementById("p_b4").textContent="";
+        document.getElementById("alignCenter").textContent = "Bot 1 Returning User Count";
+      
+      
+      document.getElementById("alignCenter1").textContent = "Bot 2 Returning User Count";
+      document.getElementById("pa").textContent = this.sum1;
+      document.getElementById("pa1").textContent = this.sum2;
+      document.getElementById("colorFillMale").style.background = "";
+      document.getElementById("colorFillFeMale").style.background = "";
+      document.getElementById("colorFillMale").style.border ="";
+      document.getElementById("colorFillFeMale").style.border ="";
+ /* lineData.forEach(function(d) {
+    return { date : d.date,count : d.count }
+  
+});
+
+var height  = 400;
+var width   = 1000;
+var margin = {top: 15, right: 40, bottom: 100, left:500};
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+// set the dimensions and margins of the graph
+
+// append the svg object to the body of the page
+var svg = d3.select("#div_template")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+     
+
+        // Add X axis --> it is a date format
+        var x = d3.scaleBand()
+        .domain(d3.extent(lineData, function(d) { return d.date; }))
+        .range([ 0, width ])
+        .padding(1);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    
+        // Max value observed:
+        const max1 = d3.max(lineData, function(d) { return +d.count; })
+    
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, max1+2])
+          .range([ height, 0 ]);
+        svg.append("g")
+          .call(d3.axisLeft(y));
+    
+        // Set the gradient
+        
+        svg.append("linearGradient")
+          .attr("id", "line-gradient")
+          .attr("gradientUnits", "userSpaceOnUse")
+          .attr("x1", 0)
+          .attr("y1", y(0))
+          .attr("x2", 0)
+          .attr("y2", y(max1+2))
+          .selectAll("stop")
+            .data([
+              {offset: "0%", color: "blue"},
+              {offset: "100%", color: "orange"}
+            ])
+          .enter().append("stop")
+            .attr("offset", function(d) { return d.offset; })
+            .attr("stop-color", function(d) { return d.color; });
+    
+        // Add the line
+        var linn=d3.line()
+        .x(function(d) { console.log(d.date);return x(d.date) })
+        .y(function(d) { return y(d.count) })
+
+        
+        
+        svg.append("path")
+          .data(lineData)
+          .attr("fill", "none")
+          .attr("stroke", "url(#line-gradient)" )
+          .attr("stroke-width", 2)
+          .attr("d",linn(lineData))*/
+    
+ 
+ 
+
+
+      
+  
+      });
+
+    }
+    private createChart2_line(startDate1,endDate1,startDate2,endDate2): void {
+      var index1=0;
+      
+      var index2=0;
+      
+      this._httpService.getMessageCount().subscribe((res:any[])=>{
+      this.aa=res[0].date;
+       for(var i=0;i<res.length;i++)
+       {
+        
+        if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate1).toLocaleDateString())){
+          break;
+       }
+        index1++;
+       }
+       for(var i=0;i<res.length;i++)
+       {
+        
+        if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate2).toLocaleDateString())){
+          break;
+       }
+        index2++;
+       }
+     
+      this.sum1=0;
+     
+       for(var z=index1;(new Date(res[z].date))<=(new Date(endDate1)) ;z++)
+       {
+       
+          this.sum1+=res[z].count;
+          if(z==res.length-1)
+          break;
+       }
+       this.sum2=0;
+       for(var a=index2;(new Date(res[a].date))<=(new Date(endDate2));a++)
+       {
+          this.sum2+=res[a].count;
+          if(a==res.length-1)
+          break;
+       }
+   var max=Math.max(this.sum1,this.sum2)
+   var range=max+1;
+  
+      var final=[]
+      
+      var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,count:this.sum1} 
+      var line2={date:startDate2+"\t\tto\t\t "+endDate2,count:this.sum2} 
+  
+  final.push(line1,line2)
+  
+  //var fin=[final[0][0],final[1][0]]
+  
+  var lineData=[];
+  for(let i=0;i<final.length;i++){
+    var obj ={date:final[i].date,user_count:final[i].count};
+    
+    lineData.push(obj);
+     
+  }
+  var height  = 400;
+var width   = 1000;
+var margin = {top: 15, right: 40, bottom: 100, left:500};
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+// set the dimensions and margins of the graph
+
+// append the svg object to the body of the page
+var svg = d3.select("#div_template")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+/*var x = d3.scaleTime().range([0, width]);
+  
+x.domain(d3.extent(lineData, function(d) { return d.date; }));
+
+
+var y = d3.scaleLinear().range([height, 0]);
+
+
+y.domain([d3.min(lineData, function(d) { return d.user_count; }) - 5, 1000]);*/
+var x = d3.scaleBand()
+.domain(d3.extent(lineData, function(d) { return d.date; }))
+.range([ 0, width ])
+.padding(1);
+svg.append("g")
+.attr("transform", "translate(0," + height + ")")
+.call(d3.axisBottom(x));
+
+
+// Max value observed:
+const max1 = d3.max(lineData, function(d) { return +d.user_count; })
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, max1+2])
+  .range([ height, 0 ]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+		.y(function(d) { return y(d.user_count);  })
+        .curve(d3.curveMonotoneX);
+
+svg.append("path")
+    .data([lineData]) 
+    .attr("class", "line")  
+	.attr("d", valueline) 
+	.attr("fill","none")
+	.attr("stroke", "#ffab00")
+	.attr("stroke-width", "3");
+
+//  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
+/*var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%b-%d")).tickValues(lineData.map(d=>d.date));
+
+svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis_woy);*/
+
+//  Add the Y Axis
+//  svg.append("g").call(d3.axisLeft(y));
+
+svg.selectAll(".dot")
+    .data(lineData)
+    .enter()
+    .append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+
+    .attr("cx", function(d) { return x(d.date) })
+    .attr("cy", function(d) { return y(d.user_count) })
+    .attr("r", 5);  
+
+
+svg.selectAll(".text")
+    .data(lineData)
+    .enter()
+    .append("text") // Uses the enter().append() method
+    .attr("class", "label") // Assign a class for styling
+    .attr("x", function(d, i) { return x(d.date) })
+    .attr("y", function(d) { return y(d.user_count) })
+    .attr("dy", "-5")
+    .text(function(d) {return d.user_count; });
+svg.append('text')                                     
+      .attr('x', 10)              
+      .attr('y', -5)             
+
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width-200)
+      .attr("y", height + margin.top + 50)
+      .text("Date")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+            
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+450)
+      .attr("x", -margin.top-80)
+      .text("Count")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+      svg.append("text").attr("x", 130).attr("y", 325).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+      svg.append("text").attr("x", 290).attr("y", 325).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+     
+      document.getElementById("alignCenter_b1").textContent = "";
+                        document.getElementById("alignCenter_b1").textContent = "";
+                        document.getElementById("alignCenter_b2").textContent = "";
+                        document.getElementById("colorFillMale_b1").style.border = "";
+                        document.getElementById("colorFillMale_b2").style.border = "";
+                        document.getElementById("colorFillMale_b1").style.background = "";
+                        document.getElementById("colorFillMale_b2").style.background = "";
+                        document.getElementById("p_b1").textContent="";
+                        document.getElementById("p_b2").textContent="";
+                        document.getElementById("colorFillMale_b3").style.border = "";
+                        document.getElementById("colorFillMale_b4").style.border = "";
+                        document.getElementById("colorFillMale_b3").style.background = "";
+                        document.getElementById("colorFillMale_b4").style.background = "";
+                        document.getElementById("p_b3").textContent="";
+                        document.getElementById("p_b4").textContent="";
+                            document.getElementById("alignCenter").textContent = "Bot 1 Message Count";
+                        
+                        
+                        document.getElementById("alignCenter1").textContent = "Bot 2 Message  Count";
+                        document.getElementById("pa").textContent = this.sum1;
+                        document.getElementById("pa1").textContent = this.sum2;
+                        document.getElementById("colorFillMale").style.background = "";
+                        document.getElementById("colorFillFeMale").style.background = "";
+                        document.getElementById("colorFillMale").style.border ="";
+                        document.getElementById("colorFillFeMale").style.border ="";
+ /* lineData.forEach(function(d) {
+    return { date : d.date,count : d.count }
+  
+});
+
+var height  = 400;
+var width   = 1000;
+var margin = {top: 15, right: 40, bottom: 100, left:500};
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+// set the dimensions and margins of the graph
+
+// append the svg object to the body of the page
+var svg = d3.select("#div_template")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+     
+
+        // Add X axis --> it is a date format
+        var x = d3.scaleBand()
+        .domain(d3.extent(lineData, function(d) { return d.date; }))
+        .range([ 0, width ])
+        .padding(1);
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x));
+  
+    
+        // Max value observed:
+        const max1 = d3.max(lineData, function(d) { return +d.count; })
+    
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, max1+2])
+          .range([ height, 0 ]);
+        svg.append("g")
+          .call(d3.axisLeft(y));
+    
+        // Set the gradient
+        
+        svg.append("linearGradient")
+          .attr("id", "line-gradient")
+          .attr("gradientUnits", "userSpaceOnUse")
+          .attr("x1", 0)
+          .attr("y1", y(0))
+          .attr("x2", 0)
+          .attr("y2", y(max1+2))
+          .selectAll("stop")
+            .data([
+              {offset: "0%", color: "blue"},
+              {offset: "100%", color: "orange"}
+            ])
+          .enter().append("stop")
+            .attr("offset", function(d) { return d.offset; })
+            .attr("stop-color", function(d) { return d.color; });
+    
+        // Add the line
+        var linn=d3.line()
+        .x(function(d) { console.log(d.date);return x(d.date) })
+        .y(function(d) { return y(d.count) })
+
+        
+        
+        svg.append("path")
+          .data(lineData)
+          .attr("fill", "none")
+          .attr("stroke", "url(#line-gradient)" )
+          .attr("stroke-width", 2)
+          .attr("d",linn(lineData))*/
+    
+ 
+ 
+
+
+      
+  
+      });
+
+    }
+    private createChart4_line(startDate1,endDate1,startDate2,endDate2): void {
+      var index1=0;
+      
+      var index2=0;
+      
+      this._httpService.getUserCount().subscribe((res:any[])=>{
+      this.aa=res[0].date;
+       for(var i=0;i<res.length;i++)
+       {
+        
+        if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate1).toLocaleDateString())){
+          break;
+       }
+        index1++;
+       }
+       for(var i=0;i<res.length;i++)
+       {
+        
+        if((new Date(res[i].date).toLocaleDateString())==(new Date(startDate2).toLocaleDateString())){
+          break;
+       }
+        index2++;
+       }
+     
+      this.sum1=0;
+     
+       for(var z=index1;(new Date(res[z].date))<=(new Date(endDate1)) ;z++)
+       {
+       
+          this.sum1+=res[z].count;
+          if(z==res.length-1)
+          break;
+       }
+       this.sum2=0;
+       for(var a=index2;(new Date(res[a].date))<=(new Date(endDate2));a++)
+       {
+          this.sum2+=res[a].count;
+          if(a==res.length-1)
+          break;
+       }
+   var max=Math.max(this.sum1,this.sum2)
+   var range=max+1;
+  
+      var final=[]
+      
+      var line1={date:startDate1+"\t\t\tto\t\t\t "+endDate1,count:this.sum1} 
+      var line2={date:startDate2+"\t\tto\t\t "+endDate2,count:this.sum2} 
+  
+  final.push(line1,line2)
+  
+  //var fin=[final[0][0],final[1][0]]
+  
+  var lineData=[];
+  for(let i=0;i<final.length;i++){
+    var obj ={date:final[i].date,user_count:final[i].count};
+    
+    lineData.push(obj);
+     
+  }
+  var height  = 400;
+var width   = 1000;
+var margin = {top: 15, right: 40, bottom: 100, left:500};
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+// set the dimensions and margins of the graph
+
+// append the svg object to the body of the page
+var svg = d3.select("#div_template")
+.append("svg")
+.attr("width", width + margin.left + margin.right)
+.attr("height", height + margin.top + margin.bottom)
+.append("g")
+.attr("transform",
+      "translate(" + margin.left + "," + margin.top + ")");
+
+/*var x = d3.scaleTime().range([0, width]);
+  
+x.domain(d3.extent(lineData, function(d) { return d.date; }));
+
+
+var y = d3.scaleLinear().range([height, 0]);
+
+
+y.domain([d3.min(lineData, function(d) { return d.user_count; }) - 5, 1000]);*/
+var x = d3.scaleBand()
+.domain(d3.extent(lineData, function(d) { return d.date; }))
+.range([ 0, width ])
+.padding(1);
+svg.append("g")
+.attr("transform", "translate(0," + height + ")")
+.call(d3.axisBottom(x));
+
+
+// Max value observed:
+const max1 = d3.max(lineData, function(d) { return +d.user_count; })
+
+// Add Y axis
+var y = d3.scaleLinear()
+  .domain([0, max1+2])
+  .range([ height, 0 ]);
+svg.append("g")
+  .call(d3.axisLeft(y));
+
+var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+		.y(function(d) { return y(d.user_count);  })
+        .curve(d3.curveMonotoneX);
+
+svg.append("path")
+    .data([lineData]) 
+    .attr("class", "line")  
+	.attr("d", valueline) 
+	.attr("fill","none")
+	.attr("stroke", "#ffab00")
+	.attr("stroke-width", "3");
+
+//  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
+/*var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%b-%d")).tickValues(lineData.map(d=>d.date));
+
+svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis_woy);*/
+
+//  Add the Y Axis
+//  svg.append("g").call(d3.axisLeft(y));
+
+svg.selectAll(".dot")
+    .data(lineData)
+    .enter()
+    .append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+
+    .attr("cx", function(d) { return x(d.date) })
+    .attr("cy", function(d) { return y(d.user_count) })
+    .attr("r", 5);  
+
+
+svg.selectAll(".text")
+    .data(lineData)
+    .enter()
+    .append("text") // Uses the enter().append() method
+    .attr("class", "label") // Assign a class for styling
+    .attr("x", function(d, i) { return x(d.date) })
+    .attr("y", function(d) { return y(d.user_count) })
+    .attr("dy", "-5")
+    .text(function(d) {return d.user_count; });
+svg.append('text')                                     
+      .attr('x', 10)              
+      .attr('y', -5)             
+
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("x", width-200)
+      .attr("y", height + margin.top + 50)
+      .text("Date")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+            
+      svg.append("text")
+      .attr("text-anchor", "end")
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left+450)
+      .attr("x", -margin.top-80)
+      .text("Count")
+      .style("font-weight","bold")
+      .style("font-size","20px");
+      svg.append("text").attr("x", 130).attr("y", 325).text("Bot 1").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+      svg.append("text").attr("x", 290).attr("y", 325).text("Bot 2").style("font-size", "20px").style("font-weight","bold").attr("alignment-baseline","right")
+     
+      document.getElementById("alignCenter_b1").textContent = "";
+      document.getElementById("alignCenter_b2").textContent = "";
+      document.getElementById("colorFillMale_b1").style.border = "";
+      document.getElementById("colorFillMale_b2").style.border = "";
+      document.getElementById("colorFillMale_b1").style.background = "";
+      document.getElementById("colorFillMale_b2").style.background = "";
+      document.getElementById("p_b1").textContent="";
+      document.getElementById("p_b2").textContent="";
+      document.getElementById("colorFillMale_b3").style.border = "";
+      document.getElementById("colorFillMale_b4").style.border = "";
+      document.getElementById("colorFillMale_b3").style.background = "";
+      document.getElementById("colorFillMale_b4").style.background = "";
+      document.getElementById("p_b3").textContent="";
+      document.getElementById("p_b4").textContent="";
+          document.getElementById("alignCenter").textContent = "Bot 1 Total User Count";
+          document.getElementById("alignCenter1").textContent = "Bot 2 Total User Count";
+          document.getElementById("pa").textContent = this.sum1;
+          document.getElementById("pa1").textContent = this.sum2;
+          document.getElementById("colorFillMale").style.background = "";
+          document.getElementById("colorFillFeMale").style.background = "";
+          document.getElementById("colorFillMale").style.border ="";
+          document.getElementById("colorFillFeMale").style.border ="";
  /* lineData.forEach(function(d) {
     return { date : d.date,count : d.count }
   
