@@ -221,7 +221,13 @@ body {
     width: 80px;
     height: 40px;
 }
-
+.bubbles {
+    stroke-width: 2px;
+    stroke: white;
+  }
+  .bubbles:hover {
+    stroke: black;
+  }
 
 /* hfjhgjhjh////////////////////////////////////////////////////////////////////////////////////////////////// */
 
