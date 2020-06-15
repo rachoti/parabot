@@ -7,27 +7,34 @@
     <li>Step 3</li>
   </ul>
   <!-- fieldsets -->
-  <fieldset>
+  
+  <fieldset class="container-fluid" [style.display]="this.isModalOneVisible?'block':'none'">
+    
     <h2 class="fs-title">Step 1</h2>
-    <!--<div class="form-group">
-      <label for="file">Choose File</label>
-      <input type="file"
-             id="file"
-             (change)="handleFileInput($event.target.files)">
-  </div>-->
+    
   <input type="file" class="upload" (change)="changeListener($event.target.files)">
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="next" class="next action-button" value="Next" (click)="onclick()"/>
+  
   </fieldset>
-  <fieldset>
+
+
+  <fieldset class="container-fluid" [style.display]="this.isModalTwoVisible?'block':'none'">
+   
     <h2 class="fs-title">Step 2</h2>
     <h6>{{aa}}</h6>
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="button" name="next" class="next action-button" value="Next" />
+    <input type="button" name="previous" class="previous action-button" value="Previous"(click)="onclick3()" />
+    <input type="button" name="next" class="next action-button" value="Next" (click)="onclick1()"/>
+  
   </fieldset>
-  <fieldset>
+
+
+  <fieldset class="container-fluid" [style.display]="this.isModalThreeVisible?'block':'none'">
+   
     <h2 class="fs-title">Step 3</h2>
     
-    <input type="button" name="previous" class="previous action-button" value="Previous" />
-    <input type="submit" name="submit" class="submit action-button" value="Submit" />
+    <input type="button" name="previous" class="previous action-button" value="Previous"(click)="onclick()" />
+    <input type="submit" name="submit" class="submit action-button" value="Submit" (click)="onclick1()"/>
+
   </fieldset>
+
 </form>

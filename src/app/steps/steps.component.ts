@@ -11,6 +11,9 @@ declare var $:any;
 })
 export class StepsComponent implements OnInit {
 	aa;
+	isModalOneVisible=false;
+	isModalTwoVisible=false;
+	isModalThreeVisible=false;
 	public changeListener(files: FileList){
 	  console.log(files);
 	  if(files && files.length > 0) {
@@ -27,10 +30,16 @@ export class StepsComponent implements OnInit {
 		   }
 		}
 	}
-  constructor() { }
+  constructor() {
+	
+   }
  
 
   ngOnInit() {
+	this.isModalOneVisible=true;
+	this.isModalTwoVisible=false;
+	this.isModalThreeVisible=false;
+	  
   //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
@@ -114,4 +123,24 @@ $(".submit").click(function(){
 })
 
   }
+  onclick(){
+	this.isModalOneVisible=false;
+	this.isModalTwoVisible=true;
+	this.isModalThreeVisible=false;
+}
+onclick1(){
+	this.isModalOneVisible=false;
+	this.isModalTwoVisible=false;
+	this.isModalThreeVisible=true;
+}
+onclick2(){
+	this.isModalOneVisible=false;
+	this.isModalTwoVisible=false;
+	this.isModalThreeVisible=true;
+}
+onclick3(){
+	this.isModalOneVisible=true;
+	this.isModalTwoVisible=false;
+	this.isModalThreeVisible=false;
+}
 }
