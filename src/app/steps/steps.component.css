@@ -129,3 +129,12 @@ body {
 	background: #27AE60;
 	color: white;
 }
+
+#aa{
+	display: flex;
+	justify-content: center;
+  }
+  
+  #Table1 {
+	align-self: center;
+  }

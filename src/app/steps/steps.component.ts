@@ -26,7 +26,11 @@ export class StepsComponent implements OnInit {
 		   reader.onload = (e) => {
 			  let csv: string = reader.result as string;
 			  var ar= csv.split('\n');
-			  this.aa=(ar[0]);
+			  var temp=ar[0]
+			  var temp1=temp.split(',')
+			  
+			  this.aa=(temp1);
+			  console.log(this.aa)
 		   }
 		}
 	}
@@ -34,6 +38,26 @@ export class StepsComponent implements OnInit {
 	
    }
  
+  cc()
+  {
+	  console.log("aa")
+	  $("#btnGet").click(function () {
+            var message = "Selected Headers\n";
+ 
+            //Loop through all checked CheckBoxes in GridView.
+            $("#Table1 input[type=checkbox]:checked").each(function () {
+                var row = $(this).closest("tr")[0];
+                message += row.cells[1].innerHTML;
+                
+                message += "\n";
+            });
+ 
+            //Display selected Row data in Alert Box.
+            alert(message);
+            return false;
+        });
+  }
+
 
   ngOnInit() {
 	this.isModalOneVisible=true;
