@@ -21,7 +21,7 @@ export class GeomapComponent implements OnInit {
   isShowDiv2 = true; 
   isShowDiv3 = true; 
   isShowDiv4 = true;
-  startDate="2017-01-01";
+  startDate="2020-01-01";
   endDate="";
   inputStartDate="";
   inputEndDate="";
@@ -29,10 +29,15 @@ export class GeomapComponent implements OnInit {
   datePicCount=0;
   malePercentVal;
   femalePercentVal
-
+  outputArray=[];
+  filtArray=[];
+  cityArray=[];
   outarr=[];
+  latt=[];
   countarr=[];
   len;
+  pages=[];
+  
   actdata1="+ Activity";
   actdata2="+ Compare";
   actdata3="+ Conversation";
@@ -136,6 +141,7 @@ export class GeomapComponent implements OnInit {
     });
     this.search = new H.places.Search(this.platform.getPlacesService());
     var lineData = [];
+    
     var outputArray1=[];
     var start1= false
     var count1=0
@@ -145,6 +151,7 @@ export class GeomapComponent implements OnInit {
     var tableHead;
     let lineNo = 0;
     let c=0;
+    var coun=[];
   this.endDate=enddate;
   this.startDate1;
   this.inputStartDate=this.startDate1;
@@ -203,41 +210,55 @@ export class GeomapComponent implements OnInit {
         /*console.log("index", index)*/
       }
       
-      var sum_user1=0;
-      
+      var sum_user1=[];
+      var city_na=[];
      /* console.log(index)
       console.log("diff",date_diff_indays(this.startDate1,this.endDate)+index)*/
-      for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
+      for( var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
         console.log("aaa")
-        sum_user1+=yahooOnly[z].count;
-        
+        if(yahooOnly[z].user_id!="No user"){
+        sum_user1.push(yahooOnly[z].user_id);
+        city_na.push(yahooOnly[z].city);
+        }
       }
       /*console.log("coi",sum_user1)*/
-      arr1.push(sum_user1)
+      //arr1.push(sum_user1)
+      var filterCity=city_na.filter(function(item, pos){
+        return city_na.indexOf(item)== pos; 
+      });
+      var filteredArray = sum_user1.filter(function(item, pos){
+        return sum_user1.indexOf(item)== pos; 
+      });
       
+      console.log( "datat",loc,filteredArray.length );
+      coun.push(filteredArray.length)
+      console.log("svdvdvvgh")
+      console.log("cpoune",coun);
     /*  console.log("datatatata",outputArray1[n],arr1[n])*/
-
       var loc=outputArray1[n]
+      if(filteredArray.length!=0)
+      {
       this.map.removeObjects(this.map.getObjects());
       this.search.request({ "q": loc, "at": yahooOnly[z].latitude + "," + yahooOnly[z].longitude }, {}, data => {
       for(let i = 0; i < data.results.items.length; i++) {
-          this.dropMarker({ "lat": data.results.items[i].position[0], "lng": data.results.items[i].position[1] }, data.results.items[i],arr1[n]);
+          this.dropMarker({ "lat": data.results.items[i].position[0], "lng": data.results.items[i].position[1] }, data.results.items[i],coun[n]);
       }
       
   }, error => {
       console.error(error);
   });
     
+  
 
-    markup = "<tr><td>"+ outputArray1[n]+ "</td><td>"+ arr1[n]+ "</td></tr>";
+    markup = '<tbody><tr class="parent" id="row123" title="Click to expand/collapse" style="cursor: pointer;"><td>'+ outputArray1[n]+ "</td><td>"+ filteredArray.length+ '</td></tr><tr class="child-row123" style="display:none;"><td>'+ filterCity+ "</td><td>"+filteredArray.length+"</td></tr></tbody>";
                  
-                tableBody = $("table tbody");
+                tableBody = $("table ");
                  
                 tableBody.append(markup);
                  
                 lineNo++; 
                 c++;
-                
+  }          
        
 
 }
@@ -248,13 +269,24 @@ export class GeomapComponent implements OnInit {
       this.countarr.push(arr1)
       this.len=outputArray1.length
 
+      $(document).ready(function () {  
+        $('tr.parent')  
+            .css("cursor", "pointer")  
+            .attr("title", "Click to expand/collapse")  
+            .click(function () {  
+                $(this).siblings('.child-' + this.id).toggle();  
+            });  
+        $('tr[@class^=child-]').hide().children('td');  
+  });  
 
-      $("#myTable").tablesorter({ sortList: [[1,1], [0,0]] });
+
+     /* $("#myTable").tablesorter({ sortList: [[1,1], [0,0]] });
       var usersTable = $(".tablesorter");
       usersTable.trigger("update")
   .trigger("sorton", [usersTable.get(0).config.sortList])
   .trigger("appendCache")
-  .trigger("applyWidgets");
+  .trigger("applyWidgets");*/
+  
       this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
                 
       this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
@@ -331,6 +363,16 @@ Exportcsv(){
 
 
     public ngOnInit() {
+      var lineData = [];
+      var start1= false
+      var count1=0
+      let arr1=[];
+      var sum_users=[];
+      var markup;
+      var tableBody;
+      var tableHead;
+      let lineNo = 0;
+      let c=0;
         this.platform = new H.service.Platform({
           "app_id": "X9DcM0CBArvBPJyKGlQR",
           "app_code":"KfC_mrDlgzyuID07ptoSsQ"
@@ -346,6 +388,92 @@ Exportcsv(){
           this.inputEndDate=this.endDate;
         });
        
+       var outArray=[];
+  var start
+  var count
+  this._httpService.getTimezoneCount().subscribe((res:any[])=>{
+    for (let j = 0; j < res.length; j++) { 
+      for (let k = 0; k < this.outputArray.length; k++) { 
+          if ( res[j].location == this.outputArray[k] ) { 
+              start = true; 
+          } 
+      } 
+      count++; 
+      if (count == 1 && start == false) { 
+        this.outputArray.push(res[j].location); 
+      } 
+      start = false; 
+      count = 0; 
+    }
+    console.log(this.outputArray)
+
+    for (var i=0;i<this.outputArray.length;i++){
+      var sum_users=[];
+      var city_name=[];
+      for (var l=0;l<res.length;l++){
+
+        if(res[l].location===this.outputArray[i])
+        {
+          if(res[l].user_id!="No user"){
+          sum_users.push(res[l].user_id)
+          }
+          city_name.push(res[l].city)
+
+        }
+      }
+   
+    var filteredCity = city_name.filter(function(item, pos){
+      return city_name.indexOf(item)== pos; 
+    });
+      var filteredArray = sum_users.filter(function(item, pos){
+        return sum_users.indexOf(item)== pos; 
+      });
+
+      console.log( "datat",this.outputArray[i],filteredArray.length );
+      this.filtArray.push(filteredArray.length)
+      this.cityArray.push(filteredCity)
+
+        markup = '<tbody><tr class="parent" id="row123" title="Click to expand/collapse" style="cursor: pointer;"><td>'+ this.outputArray[i]+ "</td><td>"+ filteredArray.length+ '</td></tr><tr class="child-row123" style="display:none;"><td>'+ filteredCity+ "</td><td>"+filteredArray.length+"</td></tr></tbody>";
+                 
+        //$("#myTable").addClass('parent'); 
+
+        tableBody = $("table");
+         
+        tableBody.append(markup);
+         
+        lineNo++; 
+        c++;  
+    
+    
+    }
+    console.log(this.cityArray)
+    for(let i=0;i<this.outputArray.length;i++){
+      var obj ={date:this.outputArray[i],count:this.filtArray[i],city:this.cityArray[i]};
+      console.log(obj)
+      this.pages.push(obj);
+    }
+
+    $(document).ready(function () {  
+      $('tr.parent')  
+          .css("cursor", "pointer")  
+          .attr("title", "Click to expand/collapse")  
+          .click(function () {  
+              $(this).siblings('.child-' + this.id).toggle();  
+              
+          });  
+      $('tr[@class^=child-]').hide().children('td');  
+
+});  
+
+   /* $("#myTable").tablesorter({ sortList: [[1,1], [0,0]] });
+    var usersTable = $(".tablesorter");
+    usersTable.trigger("update")
+.trigger("sorton", [usersTable.get(0).config.sortList])
+.trigger("appendCache")
+.trigger("applyWidgets");*/
+    });
+
+
  /* var outputArray=[];
   var start
   var count
@@ -399,7 +527,9 @@ Exportcsv(){
 
 
 */ }
+
     public ngAfterViewInit() {
+      
       let defaultLayers = this.platform.createDefaultLayers();
     this.map = new H.Map(
         this.mapElement.nativeElement,

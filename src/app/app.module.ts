@@ -40,6 +40,7 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AbandontrynextComponent } from './abandontrynext/abandontrynext.component';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 const appRoutes: Routes = [
@@ -148,7 +149,7 @@ const appRoutes: Routes = [
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-
+  
     
     Ng2SearchPipeModule,
 
