@@ -153,6 +153,7 @@ export class RetentionComponent implements OnInit {
               $("table tbody tr").remove();
               lineNo=0;
             }
+            
             $(".newdays").css("background-color","white"); 
             $(".newdays").css("color","gray");
             $(".newmonths").css("background-color","white"); 
@@ -219,6 +220,7 @@ this._httpService.getExistingDayCount().subscribe((res:any[])=>{
               $("table tbody tr").remove();
               lineNo=0;
             }
+            console.log(lineData)
             $(".exdays").css("background-color"," rgb(109, 109, 109)"); 
             $(".exdays").css("color","white");
             $(".exweeks").css("background-color","white"); 

@@ -16,6 +16,7 @@ export class DashdoardComponent implements OnInit {
   isShowDiv2 = true; 
   isShowDiv3 = true; 
   isShowDiv4 = true;
+  isShowDiv5 = true;
   newUserCount;
   returnUserCount;
   lifetimeUserCount;
@@ -33,6 +34,7 @@ export class DashdoardComponent implements OnInit {
   actdata2="+Compare";
   actdata3="+Conversation";
   actdata4="+Demographics";
+  actdata5="+Settings"
   toggleDisplayDiv1() {
     this.isShowDiv1 = !this.isShowDiv1;
     if(this.actdata1==="+Activity"){
@@ -68,6 +70,14 @@ export class DashdoardComponent implements OnInit {
       this.actdata4="-Demographics";
     }else{
       this.actdata4="+Demographics";
+    }
+  }
+  toggleDisplayDiv5() {
+    this.isShowDiv5= !this.isShowDiv5;
+    if(this.actdata5==="+Settings"){
+      this.actdata5="-Settings";
+    }else{
+      this.actdata5="+Settings";
     }
   }
   router1(search)

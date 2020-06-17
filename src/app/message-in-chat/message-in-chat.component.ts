@@ -119,12 +119,26 @@ isShowDiv1 = true;
     }
     var chat_id_list=[];
    
-      for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
+      for(var z=index;z<yahooOnly.length ;z++)
     {
+      if((new Date(yahooOnly[z].date))<=(new Date(end_date))) 
+      {
+      
+      console.log(yahooOnly.length-1)
+     
+
+      
       if(yahooOnly[z].chat_id=='No chats')
+      
               continue;
-      else
+    
+      else 
+      
           chat_id_list.push(yahooOnly[z].chat_id)
+         
+      
+          
+    }
     }
     console.log(chat_id_list)
     
@@ -141,6 +155,7 @@ isShowDiv1 = true;
      chat_id_chats = res.filter(function (entry) {
         return entry.chat_id === chat_id_list[row];
       });
+      
       chat_id_chats_list.push(chat_id_chats);
     }
     for(var row=0;row<chat_id_chats_list.length;row++)
@@ -168,16 +183,19 @@ isShowDiv1 = true;
          else
               line3=chat_id_chats_list[row][row1+1].converser+" : "+chat_id_chats_list[row][row1+1].text
          chats.push(line1,line2,line3)
+         
          chats_list.push(chats)
         }
-        
+        console.log(line2)
 
       }
     }
-    console.log(chats_list[0][0])
+ console.log(chats_list)
       var temp= -1; 
-   for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
+   for(var z=index;z<yahooOnly.length ;z++)
     {
+      if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
+      {
       if(yahooOnly[z].chat_id=='No chats')
       {
         continue;
@@ -206,6 +224,7 @@ document.getElementById('id').innerHTML = codeBlock*/
 
   
   }
+}
   });
   
   });
@@ -268,12 +287,15 @@ this._httpService.getMessageChatCount().subscribe((res:any[])=>{
   }
   var chat_id_list=[];
  
-    for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
+    for(var z=index;z<yahooOnly.length ;z++)
   {
+    if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
+    {
     if(yahooOnly[z].chat_id=='No chats')
             continue;
     else
         chat_id_list.push(yahooOnly[z].chat_id)
+    }
   }
   console.log(chat_id_list)
   
@@ -325,8 +347,11 @@ this._httpService.getMessageChatCount().subscribe((res:any[])=>{
   }
   console.log(chats_list[0][0])
     var temp= -1; 
- for(var z=index;(new Date(yahooOnly[z].date))<=(new Date(end_date)) ;z++)
+ 
+    for(var z=index;z<yahooOnly.length ;z++)
   {
+    if((new Date(yahooOnly[z].date))<=(new Date(end_date)))
+    {
     if(yahooOnly[z].chat_id=='No chats')
     {
       continue;
@@ -369,7 +394,7 @@ document.getElementById('id').innerHTML = codeBlock*/
 
   }
 
-
+  }
 }
 console.log("infoooo",jsono)
       

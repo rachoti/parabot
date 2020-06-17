@@ -6,7 +6,6 @@ import {HttpClient} from '@angular/common/http';
 export class SentimentService {
 
   constructor(private http:HttpClient) { }
-
   getSentimentDays(){
     return this.http.get('http://142.102.27.100:9946/');
   }

@@ -323,9 +323,14 @@ this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(
           word:res[i].word,
           size:res[i].count
         });
+        
         AllCount=AllCount+res[i].count;
       }
+<<<<<<< HEAD
      // console.log("data",myWords )
+=======
+    
+>>>>>>> e5a1b99a92e70e75994e1cdae11a0722ccbb8f41
       avarage=AllCount/res.length;
    // myWords=[{word: "Running", size: "1200"}, {word: "Surfing", size: "2000"}, {word: "Climbing", size: "1200"}, {word: "Kiting", size: "3000"}, {word: "Sailing", size: "2120"}, {word: "Snowboarding", size: "2534"} ]
     
@@ -346,7 +351,7 @@ var layout = cloud()
   .words(myWords.map(function(d) { return {text: d.word, size:d.size}; }))
   .padding(5)        //space between words
   .rotate(function() { return ~~(Math.random() * 2) * 90; })
-  .fontSize(function(d) { return d.size/(avarage*4); })      // font size of words
+  .fontSize(function(d) { return d.size/(avarage*2); })      // font size of words
   .on("end", draw);
 layout.start();
 
@@ -399,7 +404,7 @@ function handleMouseOver(d, i) {  // Add interactivity
   d3.select(this).transition()
                .duration('50')
                .attr('opacity', '.85');
-          let num = (d.text+" : "+(parseInt(d.size)*(avarage*4)*1.00084).toFixed(0)).toString();
+          let num = (d.text+" : "+(parseInt(d.size)*(avarage*2)*1.00084).toFixed(0)).toString();
   div.html(num)
      .style("left", (d3.event.pageX + 10) + "px")
      .style("top", (d3.event.pageY - 15) + "px");

@@ -18,7 +18,7 @@ export class RetentionService {
 
 
   getExistingDayCount(){
-    return this.http.get('http://142.102.27.100:9994/');
+    return this.http.get('http://142.102.27.100:9990/');
       }
   getExistingWeekCount(){
     return this.http.get('http://142.102.27.100:9986/');
