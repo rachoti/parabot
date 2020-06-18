@@ -356,3 +356,8 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
 .bold {
     font-weight: bold;
 }
+
+table.header
+{
+    cursor:pointer;
+}

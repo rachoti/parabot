@@ -151,7 +151,7 @@ const appRoutes: Routes = [
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-
+  
     
     Ng2SearchPipeModule,
 
