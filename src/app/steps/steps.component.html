@@ -21,7 +21,7 @@
   <fieldset class="container-fluid" [style.display]="this.isModalTwoVisible?'block':'none'">
    
     <h2 class="fs-title" >Step 2</h2>
-    <div id="aa">
+   <div id="aa">
       <table  cellspacing="0" rules="all" border="1" id="Table1" style="border-collapse: collapse">
         <tr>
             <th  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
@@ -29,20 +29,22 @@
             
         </tr>
        
-        <tr *ngFor="let i of aa">
+        <tr *ngFor="let i of bb">
             <td><input type="checkbox"/></td>
             <td>{{i}}</td>
        </tr>
     </table>
     </div>
-    
+   
+
+   
   <br />
   <input id = "btnGet" type="button" value="Get Selected" (click)='cc()'/>
     <input type="button" name="previous" class="previous action-button" value="Previous"(click)="onclick3()" />
     <input type="button" name="next" class="next action-button" value="Next" (click)="onclick1()"/>
   
   </fieldset>
-
+  
 
   <fieldset class="container-fluid" [style.display]="this.isModalThreeVisible?'block':'none'">
    
