@@ -22,16 +22,16 @@
    
     <h2 class="fs-title" >Step 2</h2>
    <div id="aa">
-      <table  cellspacing="0" rules="all" border="1" id="Table1" style="border-collapse: collapse">
+      <table  cellspacing="0" rules="all" id="Table1" style="border-collapse: collapse; border: none;">
         <tr>
-            <th  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th style="width:150px">Column Names</th>
+            <th style=" border: none;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th style="width:150px; border: none;">Column Names</th>
             
         </tr>
        
-        <tr *ngFor="let i of bb">
-            <td><input type="checkbox"/></td>
-            <td>{{i}}</td>
+        <tr  *ngFor="let i of bb">
+            <td style=" border: none;"><input type="checkbox"/></td>
+            <td style=" border: none;">{{i}}</td>
        </tr>
     </table>
     </div>
