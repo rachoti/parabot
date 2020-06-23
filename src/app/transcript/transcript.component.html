@@ -15,20 +15,43 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" routerLink="/dashboard">
-                            <span data-feather="home"></span> Dashboard <span class="sr-only">(current)</span>
+
+
+
+
+
+<a class="nav-link active" routerLink="/dashboard" style="font-size: 23px;">
+
+                            <span data-feather="home"></span><i class="fa fa-fw fa-tachometer"></i> Dashboard <span class="sr-only">(current)</span>
+
                         </a>
+
                     </li>
+
                     <li class="nav-item" >
+
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv1() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Different activities in parabot ">{{actdata1}}</button>
+
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link active" (click)=myFunction() style="font-size: 20px;font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Different activities in parabot ">
+
+                                <i class="fa fa-fw fa-address-card"></i> Activity&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i id="aa" (click)="myFunction(aa)"
+                                class="fa fa-plus-circle"></i> <span class="sr-only">(current)</span>
+
+                            </a>
+
+                        </li>
+
+
                           <div [hidden]="isShowDiv1">
   
-                              <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Count</button><br>
-                              <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates.  ">Retention </button><br>
+                              <button routerLink="/messagecount" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Count</button><br>
+                              <button routerLink="/retention" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates.  ">Retention </button><br>
                               
-                              <button routerLink="/message_in" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="the total number of incoming messages ">Message In </button><br>
-                              <button routerLink="/message_out" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="the total number of outgoing messages  ">Message Out </button><br>
+                              <button routerLink="/message_in" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="the total number of incoming messages ">Message In </button><br>
+                              <button routerLink="/message_out" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="the total number of outgoing messages  ">Message Out </button><br>
   
                               
   
@@ -37,45 +60,99 @@
                   </li>
                   <li class="nav-item" >
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv2() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Comparing the different features of parabot" >{{actdata2}}</button>
-                          <div [hidden]="isShowDiv2">
-                              <button routerLink="/compare" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
-                              <button class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates. ">Retention Percentile</button><br>
+                        <li class="nav-item">
+
+                            <a class="nav-link active"  (click)=myFunction1() style="font-family: 'Aleo';font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="Comparing the different features of parabot">
+
+                                <span data-feather="home"></span><i class="fa fa-fw fa-balance-scale"></i> Compare &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i id="compare" (click)="myFunction1()"
+                                class="fa fa-plus-circle"></i><span class="sr-only">(current)</span>
+
+                            </a>
+
+                        </li>                      
+                            <div [hidden]="isShowDiv2">
+                              <button routerLink="/compare" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="See what percentile your bot ranks in based on monthly and daily message counts ">Message Percentile</button><br>
+                              <!--<button class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Compare new user retention vs existing. View daily, weekly, or monthly retention rates. ">Retention Percentile</button><br>-->
                           </div>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv3() style="font-family: 'Aleo';"  data-toggle="tooltip" data-placement="bottom" title="Different activities related to messages">{{actdata3}}</button>
-                          <div [hidden]="isShowDiv3">
-                              <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Understanding the emotion behind the users message ">Sentiment</button><br>
-                              <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Find the most common words your bot receives or sends with Word Cloud ">Word Cloud</button><br>
-                              <button routerLink="/transcript" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="The total messages in a given range ">Transcript</button><br>
-                              <button routerLink="/unhandled" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Messages which are not handled by the bot ">Unhandled Messages</button><br>
+                        <li class="nav-item">
+
+                            <a class="nav-link active"  (click)=myFunction2() style="font-family: 'Aleo';font-size: 20px;"  data-toggle="tooltip" data-placement="bottom" title="Different activities related to messages">
+
+                                <span data-feather="home"></span><i class="fa fa-fw fa-comments"></i> Conversation&nbsp;&nbsp;&nbsp; <i id="conversation"(click)="myFunction2()"
+                                class="fa fa-plus-circle"></i> <span class="sr-only">(current)</span>
+
+                            </a>
+
+                        </li>                          <div [hidden]="isShowDiv3">
+                              <button routerLink="/sentiment" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="Understanding the emotion behind the users message ">Sentiment</button><br>
+                              <button routerLink="/recentTrans" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="Find the most common words your bot receives or sends with Word Cloud ">Word Cloud</button><br>
+                              <button routerLink="/transcript" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="The total messages in a given range ">Transcript</button><br>
+                              <button routerLink="/unhandled" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="Messages which are not handled by the bot ">Unhandled</button><br>
                               <!--<button routerLink="/abandon" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Users abandon the bot conversation ">Abandon Messages</button><br>-->
                           </div>
                       </a>
                   </li>
                   <li class="nav-item" >
                       <a class="nav-link">
-                          <button class=" button button4 " (click)=toggleDisplayDiv4() style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Statistical data relating to the population and particular groups within it">{{actdata4}}</button>
-                          <div [hidden]="isShowDiv4">
+                        <li class="nav-item">
+
+                            <a class="nav-link active"  (click)=myFunction3() style="font-family: 'Aleo';font-size: 20px;" data-toggle="tooltip" data-placement="bottom" title="Statistical data relating to the population and particular groups within it">
+
+                                <span data-feather="home"></span><i class="fa fa-fw fa-globe"></i>Demographics&nbsp;&nbsp; <i id="demograp"(click)="myFunction3()"
+                                class="fa fa-plus-circle"></i> <span class="sr-only">(current)</span>
+
+                            </a>
+
+                        </li>            
+                                      <div [hidden]="isShowDiv4">
   
-                              <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="individual's gender identity ">Gender</button><br>
-                              <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Location of people represented in a map">Geo Map</button><br>
+                              <button routerLink="/genderview" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="individual's gender identity ">Gender</button><br>
+                              <button routerLink="/geomap" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="Location of people represented in a map">Geo Map</button><br>
   
-                              <button routerLink="/timezone" class="button button4 innerbtn" style="font-family: 'Aleo';" data-toggle="tooltip" data-placement="bottom" title="Gives the timezone of different places ">TimeZone </button><br>
+                              <button routerLink="/timezone" class="button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom" title="Gives the timezone of different places ">TimeZone </button><br>
   
                             </div>
   
                       </a>
                   </li>
+                  <br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> <br><br> <br>
+                  <!--<div class="dropdown-container">
+                    <button data-toggle="dropdown"  type="button" aria-expanded="true">Settings 
+                    </button>
+                    <ul role="menu" class="dropdown-menu">
+                      <li><a href="#">Connect to bot</a> </li>
+                      </ul>
+                      </div>-->
+
+                      
+                       
+                            <li class="nav-item">
+
+                                <a class="nav-link active"  (click)=myFunction4() style="font-family: 'Aleo';font-size: 20px;" data-toggle="tooltip" data-placement="bottom" >
+    
+                                    <span data-feather="home"></span><i class="fa fa-fw fa-cog"></i> Settings&nbsp;&nbsp; <i id="settings"(click)="myFunction4()"
+                                    class="fa fa-plus-circle"></i><span class="sr-only">(current)</span>
+    
+                                </a>
+    
+                            </li>                          
+                              <div [hidden]="isShowDiv5">
+    
+                                <button routerLink="/steps" class=" button button4 innerbtn" style="font-family: 'Aleo';font-size: 19px;" data-toggle="tooltip" data-placement="bottom">Connect to bot</button><br>
+                              </div>
+    
+                    
+                  
   
-                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" title="total number of people represented in a map">
-                    <a class="nav-link">
-                        <button type="button"  data-toggle="modal" data-target="#myModal" class=" button button4 "  style="font-family: 'Aleo';">Send Feedback</button>
+                  <li class="nav-item" data-toggle="tooltip" data-placement="bottom" >
+                   
+                        <button type="button"  data-toggle="modal" data-target="#myModal" class=" button button4 "  style="font-family: 'Aleo';font-size: 20px;"><i class="fa fa-fw fa-volume-up"></i>Send Feedback</button>
                         
-                    </a>
+                 
                 </li>
                 </ul>
   

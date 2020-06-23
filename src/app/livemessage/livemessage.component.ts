@@ -19,6 +19,27 @@ export class LivemessageComponent implements OnInit {
   actdata3="+ Conversation";
   actdata4="+ Demographics";
   thData="New";
+  isShowDiv5 = true;
+  myFunction() {  
+    this.isShowDiv1 = !this.isShowDiv1;
+    $("#aa").toggleClass("fa-minus-circle")
+} 
+myFunction1() {  
+  this.isShowDiv2 = !this.isShowDiv2;
+  $("#compare").toggleClass("fa-minus-circle")
+} 
+myFunction2() {  
+  this.isShowDiv3= !this.isShowDiv3;
+  $("#conversation").toggleClass("fa-minus-circle")
+} 
+myFunction3() {  
+  this.isShowDiv4= !this.isShowDiv4;
+  $("#demograp").toggleClass("fa-minus-circle")
+} 
+myFunction4() {  
+  this.isShowDiv5= !this.isShowDiv5;
+  $("#settings").toggleClass("fa-minus-circle")
+}
   toggleDisplayDiv1() {
     this.isShowDiv1 = !this.isShowDiv1;
     if(this.actdata1==="+ Activity"){

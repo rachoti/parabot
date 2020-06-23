@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GeomapComponent } from '../geomap/geomap.component';
 import { attachEmbeddedView } from '@angular/core/src/view';
 import { template } from '@angular/core/src/render3';
+import { forEach } from '@angular/router/src/utils/collection';
+
 //import { getMaxListeners } from 'cluster';
 declare var $:any;
 
@@ -29,8 +31,10 @@ export class StepsComponent implements OnInit {
 		   reader.readAsText(file);
 		   reader.onload = (e) => {
 			  let csv: string = reader.result as string;
-			  this.ar= csv.split('\n');
-		console.log(this.ar.length)
+			  this.ar= csv.split(/\n(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+			//  var bb=this.ar[19576].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+			 
+			 
 			  var temp=this.ar[0]
 			  var temp1=temp.split(',')
 			  
@@ -39,6 +43,7 @@ export class StepsComponent implements OnInit {
 		   }
 
 			
+		   
 		}
 		}
 	
@@ -68,11 +73,8 @@ var col_index=[]
 				
                 
             });
-	
-		   
-		  
-		
-		var cells = ll[0].split(",");
+
+		var cells = ll[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
 		console.log(cells)
 		for(let i=0;i<neww.length;i++)
 		{
@@ -84,34 +86,44 @@ var col_index=[]
 				}
 			}
 		
+		}
+		var temp=[]
+			var lineData=[]
 		for(let i=0;i<col_index.length;i++)
 		{
-			this.filter_data.push(neww)
+			this.filter_data.push(neww[i])
 		}
-		console.log(this.filter_data)
-		/*for(let i=1;i<ll.length;i++)
+		var finall=[]
+		for(let i=1;i<ll.length;i++)
 		{
-			var temp=[]
-			var row = ll[i].split(",");	
+			temp=[]
+			var row = ll[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
 			for(let j=0;j<col_index.length;j++)
 			{
 				temp.push(row[col_index[j]])
-				console.log(temp)
-			}	
-		}*/
-		console.log(ll[19689])
+				
+			}
 		
-	}
-	
-	
+			var obj=[]
+			for(let i=0;i<temp.length;i++)
+			{
+			
+				obj.push({[this.filter_data[i]]:temp[i]});
+				
+				
+			}
 		
+			lineData.push(obj)
+			
+		}
 	
-		
-	}
+			
+	
+		console.log(lineData)
 
 
-	
-	
+		}
+			
 
   ngOnInit() {
 	this.isModalOneVisible=true;

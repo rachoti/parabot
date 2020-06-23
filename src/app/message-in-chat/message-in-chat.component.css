@@ -88,6 +88,7 @@ body {
 
 .sidebar .nav-link.active {
     color: #ffffff;
+    cursor: pointer;
 }
 
 .sidebar .nav-link:hover .feather,
@@ -331,12 +332,7 @@ input[type="date"]:hover::-webkit-calendar-picker-indicator:hover {
     border: 1px solid black;
 }
 
-.fa {
-    font-size: 18px;
-    margin-top: 44px;
-    margin-left: 32px;
-    font-weight: 100;
-}
+
 
 .pa {
     position: absolute;
