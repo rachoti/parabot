@@ -10,7 +10,7 @@
   
   <fieldset class="container-fluid" [style.display]="this.isModalOneVisible?'block':'none'">
     
-    <h2 class="fs-title">Step 1</h2>
+    <h2 class="fs-title">Choose the file</h2>
     
   <input type="file" class="upload" (change)="changeListener($event.target.files)">
     <input type="button" name="next" class="next action-button" value="Next" (click)="onclick()"/>
@@ -20,7 +20,7 @@
 
   <fieldset class="container-fluid" [style.display]="this.isModalTwoVisible?'block':'none'">
    
-    <h2 class="fs-title" >Step 2</h2>
+    <h2 class="fs-title" >Select the required headers</h2>
    <div id="aa">
       <table  cellspacing="0" rules="all" id="Table1" style="border-collapse: collapse; border: none;">
         <tr>
@@ -48,7 +48,7 @@
 
   <fieldset class="container-fluid" [style.display]="this.isModalThreeVisible?'block':'none'">
    
-    <h2 class="fs-title">Step 3</h2>
+    <h2 class="fs-title">CSV file is downloaded</h2>
     
     <input type="button" name="previous" class="previous action-button" value="Previous"(click)="onclick()" />
     <input type="submit" name="submit" class="submit action-button" value="Submit" (click)="onclick1()"/>
