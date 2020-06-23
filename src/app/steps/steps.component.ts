@@ -4,7 +4,6 @@ import { attachEmbeddedView } from '@angular/core/src/view';
 import { template } from '@angular/core/src/render3';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ExportToCsv } from 'export-to-csv';
-
 //import { getMaxListeners } from 'cluster';
 declare var $:any;
 
@@ -14,6 +13,7 @@ declare var $:any;
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
+	finall=[]
 	bb;
 	aa=[];
 	ar;
@@ -94,7 +94,7 @@ var col_index=[]
 		{
 			this.filter_data.push(neww[i])
 		}
-		var finall=[]
+	
 		for(let i=1;i<ll.length;i++)
 		{
 			temp=[]
@@ -121,26 +121,31 @@ var col_index=[]
 			
 	
 		console.log(lineData)
-		const options = { 
-			fieldSeparator: ',',
-			quoteStrings: '"',
-			decimalSeparator: '.',
-			showLabels: true, 
-			showTitle: true,
-			title: 'CSV file',
-			useTextFile: false,
-			useBom: true,
-			useKeysAsHeaders: true,
-			// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-		  };
-		 
-		const csvExporter = new ExportToCsv(options);
 		
-	  
-		//csvExporter.generateCsv(lineData);
-
-
+		
+		for(let i=0;i<lineData.length;i++)
+		{
+			var output={}
+		for(let j=0;j<lineData[i].length;j++)
+		{
+		
+		for (var key in lineData[i][j]) {
+			output[key] = lineData[i][j][key];
+			
+		   }
+		   
 		}
+		   
+		   this.finall.push(output)
+		   
+		}
+		
+		
+		   
+			
+		  
+		}
+		
 			
 
   ngOnInit() {
@@ -154,6 +159,7 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
+	
 	if(animating) return false;
 	animating = true;
 	
@@ -237,6 +243,23 @@ $(".submit").click(function(){
 	this.isModalThreeVisible=false;
 }
 onclick1(){
+	const options = { 
+		fieldSeparator: ',',
+		quoteStrings: '"',
+		decimalSeparator: '.',
+		showLabels: true, 
+		showTitle: true,
+		title: '',
+		useTextFile: false,
+		useBom: true,
+		useKeysAsHeaders: true,
+		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+	  };
+	 
+	const csvExporter = new ExportToCsv(options);
+	 
+   csvExporter.generateCsv(this.finall);
+	
 	this.isModalOneVisible=false;
 	this.isModalTwoVisible=false;
 	this.isModalThreeVisible=true;
