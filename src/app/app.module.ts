@@ -155,7 +155,7 @@ const appRoutes: Routes = [
     
     Ng2SearchPipeModule,
 
-    
+
     
     NgxSmartModalModule.forRoot(),
     ModalModule.forRoot(),
