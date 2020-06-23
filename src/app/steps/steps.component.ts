@@ -137,7 +137,7 @@ var col_index=[]
 		const csvExporter = new ExportToCsv(options);
 		
 	  
-		csvExporter.generateCsv(lineData);
+		//csvExporter.generateCsv(lineData);
 
 
 		}
