@@ -70,7 +70,7 @@ body {
 /*headings*/
 .fs-title {
 	font-size: 15px;
-	text-transform: uppercase;
+	
 	color: #2C3E50;
 	margin-bottom: 10px;
 }
@@ -91,7 +91,7 @@ body {
 	list-style-type: none;
 	color: blue;
 	text-transform: uppercase;
-	font-size: 9px;
+	font-size: 13px;
 	width: 33.33%;
 	float: left;
 	position: relative;
@@ -138,3 +138,7 @@ body {
   #Table1 {
 	align-self: center;
   }
+
+  
+
+
