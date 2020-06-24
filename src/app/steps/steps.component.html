@@ -25,13 +25,13 @@
       <table  cellspacing="0" rules="all" id="Table1" style="border-collapse: collapse; border: none;">
         <tr>
             <th style=" border: none;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th style="width:150px; border: none;">Column Names</th>
+            <th style="width:150px; border: none;font-family: 'Aleo';font-size: 20px;">Column Names</th>
             
         </tr>
        
         <tr  *ngFor="let i of bb">
             <td style=" border: none;"><input type="checkbox"/></td>
-            <td style=" border: none;">{{i}}</td>
+            <td style=" border: none;font-family: 'Aleo';font-size: 18px;">{{i}}</td>
        </tr>
     </table>
     </div>
@@ -39,8 +39,7 @@
 
    
 
-  <input id = "btnGet" type="button" class="previous action-button" style="width: 120px;" value="Get Selected" (click)='cc()'/>
-  <br>
+ 
     <input type="button" name="previous" class="previous action-button" value="Previous"(click)="onclick3()" />
     <input type="button" name="next" class="next action-button" value="Next" (click)="onclick1()"/>
   
