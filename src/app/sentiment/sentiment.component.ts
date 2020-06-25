@@ -79,12 +79,175 @@ export class SentimentComponent implements OnInit {
   constructor(private router: Router,private _httpService:SentimentService,public authService: AuthService) { }
   
   ngOnInit() {
+    var xData=[];
+    var nData=[];
     this._httpService.getMessageCount().subscribe((res:any[])=>{
     this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
     this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-    for(let i=0;i<res.length;i++){
+   /* for(let i=2;i<6;i++){
+
       console.log((new Date(res[i].date).toLocaleDateString()));
-    }  
+      var r=res[i].date
+           
+      var obj ={date:new Date(r),user_count:res[i].positive};
+      var obj1={date:new Date(r),user_count:res[i].negative};
+
+      nData.push(obj1);
+      xData.push(obj);
+   
+
+}
+console.log(xData)
+var height  = 300;
+var width   = 700;
+var hEach   = 40;
+var margin = {top: 15, right: 40, bottom: 20, left: 30};
+
+width =     width - margin.left - margin.right;
+height =    height - margin.top - margin.bottom;
+
+var sss = d3.select('svg')
+  .attr("width",  width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+var x = d3.scaleTime().range([0, width]);
+  
+x.domain(d3.extent(xData, function(d) { return d.date; }));
+
+
+var y = d3.scaleLinear().range([height, 0]);
+
+
+y.domain([d3.min(xData, function(d) { return d.user_count; }) - 5, 50]);
+
+var valueline = d3.line()
+        .x(function(d) { return x(d.date); })
+    .y(function(d) { return y(d.user_count);  })
+        .curve(d3.curveMonotoneX);
+
+sss.append("path")
+    .data([xData]) 
+    .attr("class", "line")  
+  .attr("d", valueline) 
+  .attr("fill","none")
+  .attr("stroke", "steelblue")
+  .attr("stroke-width", "3");
+
+//  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
+var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%d-%b")).tickValues(xData.map(d=>d.date));
+
+sss.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis_woy);
+
+        //d3_save_pdf.embedRasterImages(svg.node());
+
+//  Add the Y Axis
+//  svg.append("g").call(d3.axisLeft(y));
+
+sss.selectAll(".dot")
+    .data(xData)
+    .enter()
+    .append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d) { return x(d.date) })
+    .attr("cy", function(d) { return y(d.user_count) })
+    .attr("r", 5);  
+
+
+sss.selectAll(".text")
+    .data(xData)
+    .enter()
+    .append("text") // Uses the enter().append() method
+    .attr("class", "label") // Assign a class for styling
+    .attr("x", function(d, i) { return x(d.date) })
+    .attr("y", function(d) { return y(d.user_count) })
+    .attr("dy", "-5")
+    .text(function(d) {return d.user_count; });
+      sss.append('text')                                     
+      .attr('x', 10)              
+      .attr('y', -5)             
+
+
+
+
+      
+  console.log(nData)
+  var height  = 300;
+  var width   = 700;
+  var hEach   = 40;
+  var margin = {top: 15, right: 40, bottom: 20, left: 30};
+  
+  width =     width - margin.left - margin.right;
+  height =    height - margin.top - margin.bottom;
+  
+  var svg = d3.select('svg')
+    .attr("width",  width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  
+  var x = d3.scaleTime().range([0, width]);
+    
+  x.domain(d3.extent(nData, function(d) { return d.date; }));
+  
+  
+  var y = d3.scaleLinear().range([height, 0]);
+  
+  
+  y.domain([d3.min(nData, function(d) { return d.user_count; }) - 5, 50]);
+  
+  var valueline = d3.line()
+          .x(function(d) { return x(d.date); })
+      .y(function(d) { return y(d.user_count);  })
+          .curve(d3.curveMonotoneX);
+  
+  svg.append("path")
+      .data([nData]) 
+      .attr("class", "line")  
+    .attr("d", valueline) 
+    .attr("fill","none")
+    .attr("stroke", "red")
+    .attr("stroke-width", "3");
+  
+  //  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
+  var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%d-%b")).tickValues(nData.map(d=>d.date));
+  
+  svg.append("g")
+          .attr("class", "x axis")
+          .attr("transform", "translate(0," + height + ")")
+          .call(xAxis_woy);
+  
+          //d3_save_pdf.embedRasterImages(svg.node());
+  
+  //  Add the Y Axis
+  //  svg.append("g").call(d3.axisLeft(y));
+  
+  svg.selectAll(".dot")
+      .data(nData)
+      .enter()
+      .append("circle") // Uses the enter().append() method
+      .attr("class", "dot") // Assign a class for styling
+      .attr("cx", function(d) { return x(d.date) })
+      .attr("cy", function(d) { return y(d.user_count) })
+      .attr("r", 5);  
+  
+  
+  svg.selectAll(".text")
+      .data(nData)
+      .enter()
+      .append("text") // Uses the enter().append() method
+      .attr("class", "label") // Assign a class for styling
+      .attr("x", function(d, i) { return x(d.date) })
+      .attr("y", function(d) { return y(d.user_count) })
+      .attr("dy", "-5")
+      .text(function(d) {return d.user_count; });
+        svg.append('text')                                     
+        .attr('x', 10)              
+        .attr('y', -5)  */           
     
   });   
   
@@ -130,7 +293,7 @@ export class SentimentComponent implements OnInit {
 
       
       
-    this._httpService.getfulldate().subscribe((res:any[])=>{
+    this._httpService.getMessageCount().subscribe((res:any[])=>{
     
 
 
@@ -144,8 +307,10 @@ export class SentimentComponent implements OnInit {
         
       }
       index=index+1;
+      var negData = [];
       var lineData = [];
       var xData = [];
+      var nData= [];
       var count=0
       var sum=date_diff_indays(this.startDate1,this.endDate)
       
@@ -155,19 +320,25 @@ export class SentimentComponent implements OnInit {
 
             var r=res[i].date
            
-              var obj ={date:new Date(r),user_count:res[i].count};
-              
+              var obj ={date:new Date(r),user_count:res[i].positive};
+              var obj1 ={date:new Date(r),user_count:res[i].negative};
               
               xData.push(obj);
-           
+              nData.push(obj1);
       count=count+1;
     }
+    console.log(xData)
+
     if (count>7){
       console.log("len",xData.length)
     for(var j=xData.length-1;j>=(xData.length-7);j--){
     var s=xData[j]
     lineData.push(s);
     }
+    for(var j=nData.length-1;j>=(nData.length-7);j--){
+      var s=nData[j]
+      negData.push(s);
+      }
   }
     if (count<7){
       console.log("len",xData.length)
@@ -175,14 +346,91 @@ export class SentimentComponent implements OnInit {
     var l=xData[k]
     lineData.push(l);
     }
+    for(var k=0;k<=nData.length-1;k++){
+      var l=nData[k]
+      negData.push(l);
+      }
     
     
 } 
           
 
-  
-          var height  = 400;
-          var width   = 1000;
+          var height  = 300;
+          var width   = 700;
+          var hEach   = 40;
+          var margin = {top: 15, right: 40, bottom: 20, left: 30};
+    
+          width =     width - margin.left - margin.right;
+          height =    height - margin.top - margin.bottom;
+          
+          var sss = d3.select('svg')
+            .attr("width",  width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          
+          var x = d3.scaleTime().range([0, width]);
+            
+          x.domain(d3.extent(lineData, function(d) { return d.date; }));
+          
+          
+          var y = d3.scaleLinear().range([height, 0]);
+          
+          
+          y.domain([d3.min(lineData, function(d) { return d.user_count; }) - 5, 50]);
+          
+          var valueline = d3.line()
+                  .x(function(d) { return x(d.date); })
+              .y(function(d) { return y(d.user_count);  })
+                  .curve(d3.curveMonotoneX);
+          
+          sss.append("path")
+              .data([lineData]) 
+              .attr("class", "line")  
+            .attr("d", valueline) 
+            .attr("fill","none")
+            .attr("stroke", "steelblue")
+            .attr("stroke-width", "3");
+          
+          //  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
+          var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%d-%b-%y")).tickValues(lineData.map(d=>d.date));
+          
+          sss.append("g")
+                  .attr("class", "x axis")
+                  .attr("transform", "translate(0," + height + ")")
+                  .call(xAxis_woy);
+
+                  //d3_save_pdf.embedRasterImages(svg.node());
+          
+          //  Add the Y Axis
+          //  svg.append("g").call(d3.axisLeft(y));
+          
+          sss.selectAll(".dot")
+              .data(lineData)
+              .enter()
+              .append("circle") // Uses the enter().append() method
+              .attr("class", "dot") // Assign a class for styling
+              .attr("cx", function(d) { return x(d.date) })
+              .attr("cy", function(d) { return y(d.user_count) })
+              .attr("r", 5);  
+          
+          
+          sss.selectAll(".text")
+              .data(lineData)
+              .enter()
+              .append("text") // Uses the enter().append() method
+              .attr("class", "label") // Assign a class for styling
+              .attr("x", function(d, i) { return x(d.date) })
+              .attr("y", function(d) { return y(d.user_count) })
+              .attr("dy", "-5")
+              .text(function(d) {return d.user_count; });
+                sss.append('text')                                     
+                .attr('x', 10)              
+                .attr('y', -5)             
+
+
+          var height  = 300;
+          var width   = 700;
           var hEach   = 40;
           var margin = {top: 15, right: 40, bottom: 20, left: 30};
     
@@ -197,13 +445,13 @@ export class SentimentComponent implements OnInit {
           
           var x = d3.scaleTime().range([0, width]);
             
-          x.domain(d3.extent(lineData, function(d) { return d.date; }));
+          x.domain(d3.extent(negData, function(d) { return d.date; }));
           
           
           var y = d3.scaleLinear().range([height, 0]);
           
           
-          y.domain([d3.min(lineData, function(d) { return d.user_count; }) - 5, 2000]);
+          y.domain([d3.min(negData, function(d) { return d.user_count; }) - 5, 50]);
           
           var valueline = d3.line()
                   .x(function(d) { return x(d.date); })
@@ -211,15 +459,15 @@ export class SentimentComponent implements OnInit {
                   .curve(d3.curveMonotoneX);
           
           svg.append("path")
-              .data([lineData]) 
+              .data([negData]) 
               .attr("class", "line")  
             .attr("d", valueline) 
             .attr("fill","none")
-            .attr("stroke", "steelblue")
+            .attr("stroke", "red")
             .attr("stroke-width", "3");
           
           //  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
-          var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%b-%d")).tickValues(lineData.map(d=>d.date));
+          var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%d-%b-%y")).tickValues(negData.map(d=>d.date));
           
           svg.append("g")
                   .attr("class", "x axis")
@@ -232,7 +480,7 @@ export class SentimentComponent implements OnInit {
           //  svg.append("g").call(d3.axisLeft(y));
           
           svg.selectAll(".dot")
-              .data(lineData)
+              .data(negData)
               .enter()
               .append("circle") // Uses the enter().append() method
               .attr("class", "dot") // Assign a class for styling
@@ -242,7 +490,7 @@ export class SentimentComponent implements OnInit {
           
           
           svg.selectAll(".text")
-              .data(lineData)
+              .data(negData)
               .enter()
               .append("text") // Uses the enter().append() method
               .attr("class", "label") // Assign a class for styling
@@ -260,7 +508,7 @@ export class SentimentComponent implements OnInit {
                 var config = {
                   filename: 'customFileName',
                 }
-                d3_save_pdf.save(d3.select('svg').node(), config);  
+               // d3_save_pdf.save(d3.select('svg').node(), config);  
                // $( "div" ).remove( ".shadow" );               // $(".shadow").append();
 
 
