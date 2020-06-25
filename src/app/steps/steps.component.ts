@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GeomapComponent } from '../geomap/geomap.component';
 import { attachEmbeddedView } from '@angular/core/src/view';
+import { template } from '@angular/core/src/render3';
+import { forEach } from '@angular/router/src/utils/collection';
+import { ExportToCsv } from 'export-to-csv';
 //import { getMaxListeners } from 'cluster';
 declare var $:any;
 
@@ -10,12 +13,16 @@ declare var $:any;
   styleUrls: ['./steps.component.css']
 })
 export class StepsComponent implements OnInit {
-	aa;
+	finall=[]
+	bb;
+	aa=[];
+	ar;
+	filter_data=[];
 	isModalOneVisible=false;
 	isModalTwoVisible=false;
 	isModalThreeVisible=false;
 	public changeListener(files: FileList){
-	  console.log(files);
+	  console.log(files.item(0));
 	  if(files && files.length > 0) {
 		 let file : File = files.item(0); 
 		   console.log(file.name);
@@ -25,39 +32,37 @@ export class StepsComponent implements OnInit {
 		   reader.readAsText(file);
 		   reader.onload = (e) => {
 			  let csv: string = reader.result as string;
-			  var ar= csv.split('\n');
-			  var temp=ar[0]
+			  this.ar= csv.split(/\n(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+			//  var bb=this.ar[19576].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+			 
+			 
+			  var temp=this.ar[0]
 			  var temp1=temp.split(',')
 			  
-			  this.aa=(temp1);
-			  console.log(this.aa)
+			  this.bb=(temp1);
+			  
 		   }
+
+			
+		   
 		}
-	}
+		}
+	
   constructor() {
 	
    }
  
   cc()
   {
-	  console.log("aa")
-	  $("#btnGet").click(function () {
-            var message = "Selected Headers\n";
- 
-            //Loop through all checked CheckBoxes in GridView.
-            $("#Table1 input[type=checkbox]:checked").each(function () {
-                var row = $(this).closest("tr")[0];
-                message += row.cells[1].innerHTML;
-                
-                message += "\n";
-            });
- 
-            //Display selected Row data in Alert Box.
-            alert(message);
-            return false;
-        });
-  }
-
+	
+		
+		
+		   
+			
+		  
+		}
+		
+			
 
   ngOnInit() {
 	this.isModalOneVisible=true;
@@ -70,6 +75,7 @@ var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
 $(".next").click(function(){
+	
 	if(animating) return false;
 	animating = true;
 	
@@ -153,6 +159,107 @@ $(".submit").click(function(){
 	this.isModalThreeVisible=false;
 }
 onclick1(){
+	var ll=this.ar;
+	this.aa=[]
+	var col_index=[]
+		
+		  console.log("aa")
+		  var neww=[]
+		
+			
+			var message = "Selected Headers\n";
+	 
+				//Loop through all checked CheckBoxes in GridView.
+				$("#Table1 input[type=checkbox]:checked").each(function () {
+					
+					var row = $(this).closest("tr")[0];
+					message += row.cells[1].innerHTML;
+					message += "\n";
+				neww.push ( row.cells[1].innerHTML)
+					
+					
+				});
+	
+			var cells = ll[0].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+			console.log(cells)
+			for(let i=0;i<neww.length;i++)
+			{
+				for(let j=0;j<cells.length;j++)
+				{
+					if(neww[i]==cells[j])
+					{
+					col_index.push(j)
+					}
+				}
+			
+			}
+			var temp=[]
+				var lineData=[]
+			for(let i=0;i<col_index.length;i++)
+			{
+				this.filter_data.push(neww[i])
+			}
+		
+			for(let i=1;i<ll.length;i++)
+			{
+				temp=[]
+				var row = ll[i].split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/)
+				for(let j=0;j<col_index.length;j++)
+				{
+					temp.push(row[col_index[j]])
+					
+				}
+			
+				var obj=[]
+				for(let i=0;i<temp.length;i++)
+				{
+				
+					obj.push({[this.filter_data[i]]:temp[i]});
+					
+					
+				}
+			
+				lineData.push(obj)
+				
+			}
+		
+				
+		
+			console.log(lineData)
+			
+			
+			for(let i=0;i<lineData.length;i++)
+			{
+				var output={}
+			for(let j=0;j<lineData[i].length;j++)
+			{
+			
+			for (var key in lineData[i][j]) {
+				output[key] = lineData[i][j][key];
+				
+			   }
+			   
+			}
+			  this.finall.push(output)
+			   
+			}
+	const options = { 
+		fieldSeparator: ',',
+		quoteStrings: '"',
+		decimalSeparator: '.',
+		showLabels: true, 
+		showTitle: true,
+		title: '',
+		useTextFile: false,
+		useBom: true,
+		useKeysAsHeaders: true,
+		// headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
+	  };
+	 
+	const csvExporter = new ExportToCsv(options);
+	 
+   csvExporter.generateCsv(this.finall);
+	
 	this.isModalOneVisible=false;
 	this.isModalTwoVisible=false;
 	this.isModalThreeVisible=true;

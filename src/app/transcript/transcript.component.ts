@@ -13,7 +13,7 @@ export class TranscriptComponent implements OnInit {
   isShowDiv2 = true; 
   isShowDiv3 = true; 
   isShowDiv4 = true;
-  startDate="2016-01-01";
+  startDate="2017-01-01";
   endDate="";
   inputStartDate="";
   inputEndDate="";
@@ -28,6 +28,27 @@ export class TranscriptComponent implements OnInit {
   thData="New";
   d1;
   d2;
+  isShowDiv5 = true;
+  myFunction() {  
+    this.isShowDiv1 = !this.isShowDiv1;
+    $("#aa").toggleClass("fa-minus-circle")
+} 
+myFunction1() {  
+  this.isShowDiv2 = !this.isShowDiv2;
+  $("#compare").toggleClass("fa-minus-circle")
+} 
+myFunction2() {  
+  this.isShowDiv3= !this.isShowDiv3;
+  $("#conversation").toggleClass("fa-minus-circle")
+} 
+myFunction3() {  
+  this.isShowDiv4= !this.isShowDiv4;
+  $("#demograp").toggleClass("fa-minus-circle")
+} 
+myFunction4() {  
+  this.isShowDiv5= !this.isShowDiv5;
+  $("#settings").toggleClass("fa-minus-circle")
+}
   toggleDisplayDiv1() {
     this.isShowDiv1 = !this.isShowDiv1;
     if(this.actdata1==="+ Activity"){
@@ -296,66 +317,5 @@ export class TranscriptComponent implements OnInit {
    
       
     });
-  
-    
-
     }
-        
-        
-      
-      
-      /*aa="<i><small>"+this.startDate1+"-"+this.endDate+"</small></i>"
-      markup = "<tr><td><a href="+"/messageinchat/"+encodeURI(outputArray[i])+"/"+this.inputStartDate+"/"+this.inputEndDate+">"+outputArray[i]+ "</a></td><td>"+ sum_user1+ "</td></tr>"; 
-      tableBody = $("table tbody"); 
-      tableHead=$("shadow")
-      tableHead.append(aa)
-      tableBody.append(markup); 
-      lineNo++; 
-      c++;
-      */
-
-      /*var xx=outputArray[i]
-      var yy=sum_user1
-      
-      
-      let modelData = {
-      TimeZone: xx,
-        Users: yy,
-        
-  }; 
-
-  jsono.push(modelData);
-
-       }
-       console.log("infoooo",jsono)
-      
-        const options = { 
-          fieldSeparator: ',',
-          quoteStrings: '"',
-          decimalSeparator: '.',
-          showLabels: true, 
-          showTitle: true,
-          title: 'Report',
-          useTextFile: false,
-          useBom: true,
-          useKeysAsHeaders: true,
-          // headers: ['Column 1', 'Column 2', etc...] <-- Won't work with useKeysAsHeaders present!
-        };
-       
-      const csvExporter = new ExportToCsv(options);
-      jsono.splice(0,1);
-  
-      csvExporter.generateCsv(jsono);
-    //console.log(index)
-      this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
-        
-      this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-   
-      
-    });
-    }
-    
-
-  }
-  */
 }

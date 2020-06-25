@@ -27,6 +27,7 @@ export class AbandonMessageComponent implements OnInit {
   actdata3="+ Conversation";
   actdata4="+ Demographics";
   thData="New";
+  isShowDiv5 = true;
   d1;
   d2;
   toggleDisplayDiv1() {
@@ -65,6 +66,26 @@ export class AbandonMessageComponent implements OnInit {
       this.actdata4="+ Demographics";
     }
   }
+  myFunction() {  
+    this.isShowDiv1 = !this.isShowDiv1;
+    $("#aa").toggleClass("fa-minus-circle")
+} 
+myFunction1() {  
+  this.isShowDiv2 = !this.isShowDiv2;
+  $("#compare").toggleClass("fa-minus-circle")
+} 
+myFunction2() {  
+  this.isShowDiv3= !this.isShowDiv3;
+  $("#conversation").toggleClass("fa-minus-circle")
+} 
+myFunction3() {  
+  this.isShowDiv4= !this.isShowDiv4;
+  $("#demograp").toggleClass("fa-minus-circle")
+} 
+myFunction4() {  
+  this.isShowDiv5= !this.isShowDiv5;
+  $("#settings").toggleClass("fa-minus-circle")
+}
   dateChanger(startdate: string){
     
     

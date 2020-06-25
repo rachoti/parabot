@@ -7,9 +7,9 @@ export class RecenttransService {
 
   constructor(private http:HttpClient) { }
   getAllWords(){
-    return this.http.get('http://142.102.27.100:9926/');
-  }
-  getWords(){
     return this.http.get('http://142.102.27.100:9983/');
   }
+ /* getWords(){
+    return this.http.get('http://142.102.27.100:9983/');
+  }*/
 }
