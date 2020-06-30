@@ -4,6 +4,7 @@ import { attachEmbeddedView } from '@angular/core/src/view';
 import { template } from '@angular/core/src/render3';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ExportToCsv } from 'export-to-csv';
+
 //import { getMaxListeners } from 'cluster';
 declare var $:any;
 
@@ -68,6 +69,7 @@ export class StepsComponent implements OnInit {
 	this.isModalOneVisible=true;
 	this.isModalTwoVisible=false;
 	this.isModalThreeVisible=false;
+	
 	  
   //jQuery time
 var current_fs, next_fs, previous_fs; //fieldsets
@@ -87,6 +89,7 @@ $(".next").click(function(){
 	
 	//show the next fieldset
 	next_fs.show(); 
+	
 	//hide the current fieldset with style
 	current_fs.animate({opacity: 0}, {
 		step: function(now, mx) {
@@ -114,17 +117,18 @@ $(".next").click(function(){
 });
 
 $(".previous").click(function(){
+	console.log("aa"+current_fs)
 	if(animating) return false;
 	animating = true;
 	
-	current_fs = $(this).parent();
+	current_fs = $(this).parent()
 	previous_fs = $(this).parent().prev();
 	
 	//de-activate current step on progressbar
-	$("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+	$("#progressbar li").eq($("fieldset").index(previous_fs)).removeClass("active");
 	
 	//show the previous fieldset
-	previous_fs.show(); 
+	previous_fs.show()
 	//hide the current fieldset with style
 	current_fs.animate({opacity: 0}, {
 		step: function(now, mx) {

@@ -22,16 +22,16 @@
    
     <h2 class="fs-title" >Select the required headers</h2>
    <div id="aa">
-      <table  cellspacing="0" rules="all" id="Table1" style="border-collapse: collapse; border: none;">
+      <table  cellspacing="0" border="1" rules="all" id="Table1" style="border-collapse: collapse;border: none;">
         <tr>
-            <th style=" border: none;" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
-            <th style="width:150px; border: none;font-family: 'Aleo';font-size: 20px;">Column Names</th>
+            <th style="border:none">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+            <th style="width:150px;font-family: 'Aleo';font-size: 20px;text-align: left;border:none"></th>
             
         </tr>
        
         <tr  *ngFor="let i of bb">
             <td style=" border: none;"><input type="checkbox"/></td>
-            <td style=" border: none;font-family: 'Aleo';font-size: 18px;">{{i}}</td>
+            <td id="align1" style=" border: none;font-family: 'Aleo';font-size: 18px;text-align: left;">{{i}}</td>
        </tr>
     </table>
     </div>
