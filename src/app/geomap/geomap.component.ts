@@ -442,7 +442,7 @@ Exportcsv(){
 
         }
       }
-   
+                  
     var filteredCity = city_name.filter(function(item, pos){
       return city_name.indexOf(item)== pos; 
     });
