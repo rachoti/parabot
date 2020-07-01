@@ -14,7 +14,7 @@ import * as $ from 'jquery';
   styleUrls: ['./sentiment.component.css']
 })
 export class SentimentComponent implements OnInit {
-  startDate="2017-01-01";
+  startDate="2016-01-01";
   endDate="";
   startDate1="";
   datePicCount=0;
@@ -103,9 +103,11 @@ myFunction4() {
     var xData=[];
     var nData=[];
     this._httpService.getMessageCount().subscribe((res:any[])=>{
-    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
-    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-   /* for(let i=2;i<6;i++){
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-0"+(new Date(res[0].date).getDate());
+    console.log(this.startDate)
+    this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-0"+(new Date(res[res.length-1].date).getDate());
+  
+    /* for(let i=2;i<6;i++){
 
       console.log((new Date(res[i].date).toLocaleDateString()));
       var r=res[i].date
@@ -522,9 +524,9 @@ sss.selectAll(".text")
                 svg.append('text')                                     
                 .attr('x', 10)              
                 .attr('y', -5)             
-                this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+                this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-0"+(new Date(res[0].date).getDate()-1);
         
-                this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+                this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-0"+(new Date(res[res.length-1].date).getDate());
                 ;  
                 var config = {
                   filename: 'customFileName',
@@ -678,9 +680,9 @@ console.log(lineData)
             svg.append('text')                                     
             .attr('x', 10)              
             .attr('y', -5)             
-            this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
+            this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-0"+(new Date(res[0].date).getDate()-1);
     
-            this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
+            this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-0"+(new Date(res[res.length-1].date).getDate());
             ;  
   
 });

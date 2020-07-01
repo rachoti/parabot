@@ -425,10 +425,25 @@
                                       </div>
                                   </div>
                               </div>-->
+                              <div class="card ">
+                                <div id="shadow" class="card-body">
+                                    <div class="btn-toolbar mb-2 mb-md-0">
+              
+                                        <div class="btn-group mr-2">
+                                            <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}"  value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
+                                            <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+              
+                    
+               
+                      
                 
                               <div class="card mt-4" style="height:700px">
                                   <div id="shadow" class="card-body">
-                                      <h3>Word Cloud</h3>
+                                    <i id="sInfo"><small>From {{inputStartDate}} TO {{inputEndDate}}</small></i>
                                       <div id="my_dataviz"></div>
                                   </div>
                               </div>

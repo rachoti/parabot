@@ -15,7 +15,7 @@ export class SentimentService {
 
 
   getfulldate(){
-    return this.http.get('http://142.102.27.100:9946//');
+    return this.http.get('http://142.102.27.100:9946/');
 
 
 
