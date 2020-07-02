@@ -146,8 +146,10 @@ body {
   }
   
   #Table1 {
-	align-self: center;
+
 	font-family: 'Aleo';
+	margin-left:10%; 
   }
+  
  
 

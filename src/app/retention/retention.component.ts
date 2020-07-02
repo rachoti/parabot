@@ -77,6 +77,371 @@ myFunction4() {
       this.actdata4="+ Demographics";
     }
   }
+  type1;
+  type2;
+
+  existing(type)
+  {
+    var lineData = [];
+    var markup;
+    var tableBody;
+    let lineNo = 0;
+    this.type2
+    console.log(this.type2)
+   this.type1=type;
+   console.log(type)
+   if(type=='exist'   )
+   {
+    this._httpService.getExistingDayCount().subscribe((res:any[])=>{
+      lineData=[]
+     console.log("exist")
+      let c=0;
+      $("table tbody tr").remove();
+      lineNo=0;
+    
+      for(let i=res.length-1;i>=0;i--){
+        var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+        lineData.push(obj);
+    
+        
+                
+                 
+               
+                $(".exdays").css("background-color"," rgb(109, 109, 109)"); 
+                $(".exdays").css("color","white");
+                $(".exweeks").css("background-color","white"); 
+                $(".exweeks").css("color","gray");
+                $(".exmonths").css("background-color","white"); 
+                $(".exmonths").css("color","gray");
+                markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
+                tableBody = $("table tbody"); 
+                tableBody.append(markup); 
+                lineNo++; 
+                c++;
+    
+        
+      }
+      
+    });
+   }
+   else if(type=='new')
+   {
+     lineData=[]
+    this._httpService.getNewDayCount().subscribe((res:any[])=>{
+      let c=0;
+     console.log("new")
+        $("table tbody tr").remove();
+        lineNo=0;
+     
+			for(let i=res.length-1;i>=0;i--){
+				var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+        lineData.push(obj);
+        
+               
+                 
+                $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
+                $(".newdays").css("color","white");
+                $(".newweeks").css("background-color","white"); 
+                $(".newweeks").css("color","gray");
+                $(".newmonths").css("background-color","white"); 
+                $(".newmonths").css("color","gray");
+                markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
+                tableBody = $("table tbody"); 
+                tableBody.append(markup); 
+                lineNo++; 
+                c++;
+
+
+              
+            
+            $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
+            $(".newdays").css("color","white");
+            $(".newweeks").css("background-color","white"); 
+            $(".newweeks").css("color","gray");
+            $(".newmonths").css("background-color","white"); 
+            $(".newmonths").css("color","gray");
+            markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
+            tableBody = $("table tbody"); 
+            tableBody.append(markup); 
+            lineNo++; 
+            c++;
+   
+        
+      }
+      
+    });
+
+   }
+   
+  
+   }
+  
+  days(type)
+  {
+    var lineData = [];
+    var markup;
+    var tableBody;
+    let lineNo = 0;
+    this.type1;
+    this.type2=type
+    if(type=='newweek' && this.type1==null)
+    {
+      lineData = [];
+      this._httpService.getNewWeekCount().subscribe((res:any[])=>{
+        let c=0;
+        $("table tbody tr").remove();
+        lineNo=0;
+      
+        for(let i=res.length-1;i>=0;i--){
+          
+            
+               
+              
+              $(".newdays").css("background-color","white"); 
+              $(".newdays").css("color","gray");
+              $(".newmonths").css("background-color","white"); 
+              $(".newmonths").css("color","gray");
+              $(".newdays").css("background-color","white"); 
+              $(".newdays").css("color","gray");
+              $(".newweeks").css("background-color"," rgb(109, 109, 109)"); 
+              $(".newweeks").css("color","white");
+                  markup = "<tr><td>"+ new Date(res[i].start_date).toLocaleDateString()+ " -- "+new Date(res[i].end_date).toLocaleDateString()+"</td><td>"+ res[i].count+ "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+        }
+        
+      });
+
+    }
+    else if(type=='newmonth' && this.type1==null)
+    {
+      this._httpService.getNewMonthCount().subscribe((res:any[])=>{
+        let c=0;
+        $("table tbody tr").remove();
+                lineNo=0;
+        for(let i=res.length-1;i>=0;i--){
+          var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+          lineData.push(obj);
+          $(".newdays").css("background-color","white"); 
+          $(".newdays").css("color","gray");
+          $(".newweeks").css("background-color","white"); 
+              $(".newweeks").css("color","gray");
+              $(".newdays").css("background-color","white"); 
+              $(".newdays").css("color","gray");
+              $(".newmonths").css("background-color"," rgb(109, 109, 109)"); 
+              $(".newmonths").css("color","white");
+                  markup = "<tr><td>"+ res[i].Month+ "</td><td>"+ res[i].count + "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+          
+        }
+        
+      });
+    }
+    if(type=='exday' && this.type1=='exist' )
+    {
+      lineData = [];
+      console.log(this.type1+" "+type)
+     this._httpService.getExistingDayCount().subscribe((res:any[])=>{
+       console.log("exiday")
+       let c=0;
+       $("table tbody tr").remove();
+       lineNo=0;
+     
+       for(let i=res.length-1;i>=0;i--){
+         var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+         lineData.push(obj);
+              $(".exdays").css("background-color"," rgb(109, 109, 109)"); 
+                 $(".exdays").css("color","white");
+                 $(".exweeks").css("background-color","white"); 
+                 $(".exweeks").css("color","gray");
+                 $(".exmonths").css("background-color","white"); 
+                 $(".exmonths").css("color","gray");
+                 markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
+                 tableBody = $("table tbody"); 
+                 tableBody.append(markup); 
+                 lineNo++; 
+                 c++;
+     
+         
+       }
+       
+     });
+   }
+     else if(type=='newday' && this.type1=='new')
+     {
+      lineData = [];
+      this._httpService.getNewDayCount().subscribe((res:any[])=>{
+        let c=0;
+       console.log("new")
+          $("table tbody tr").remove();
+          lineNo=0;
+       
+        for(let i=res.length-1;i>=0;i--){
+          var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+          lineData.push(obj);
+          
+                 
+                   
+                  $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
+                  $(".newdays").css("color","white");
+                  $(".newweeks").css("background-color","white"); 
+                  $(".newweeks").css("color","gray");
+                  $(".newmonths").css("background-color","white"); 
+                  $(".newmonths").css("color","gray");
+                  markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+  
+  
+                
+              
+              $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
+              $(".newdays").css("color","white");
+              $(".newweeks").css("background-color","white"); 
+              $(".newweeks").css("color","gray");
+              $(".newmonths").css("background-color","white"); 
+              $(".newmonths").css("color","gray");
+              markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
+              tableBody = $("table tbody"); 
+              tableBody.append(markup); 
+              lineNo++; 
+              c++;
+     
+          
+        }
+        
+      });
+     }
+     if(type=='exxweek' && this.type1=='exist')
+    {
+      lineData = [];
+      console.log(this.type1+" "+type)
+      this._httpService.getExistingWeekCount().subscribe((res:any[])=>{
+        let c=0;
+        $("table tbody tr").remove();
+                lineNo=0;
+              
+        for(let i=res.length-1;i>=0;i--){
+         
+            
+                
+              $(".exdays").css("background-color","white"); 
+              $(".exdays").css("color","gray");
+              $(".exmonths").css("background-color","white"); 
+              $(".exmonths").css("color","gray");
+              $(".exdays").css("background-color","white"); 
+              $(".exdays").css("color","gray");
+              $(".exweeks").css("background-color"," rgb(109, 109, 109)"); 
+              $(".exweeks").css("color","white");
+                  markup = "<tr><td>"+ new Date(res[i].start_date).toLocaleDateString()+ " -- "+new Date(res[i].end_date).toLocaleDateString()+"</td><td>"+ res[i].count+ "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+           
+        }
+        
+      });
+     
+   }
+     else if(type=='newweek' && this.type1=='new')
+     {
+      lineData = [];
+      this._httpService.getNewWeekCount().subscribe((res:any[])=>{
+        let c=0;
+        $("table tbody tr").remove();
+        lineNo=0;
+      
+        for(let i=res.length-1;i>=0;i--){
+          
+            
+               
+              
+              $(".newdays").css("background-color","white"); 
+              $(".newdays").css("color","gray");
+              $(".newmonths").css("background-color","white"); 
+              $(".newmonths").css("color","gray");
+              $(".newdays").css("background-color","white"); 
+              $(".newdays").css("color","gray");
+              $(".newweeks").css("background-color"," rgb(109, 109, 109)"); 
+              $(".newweeks").css("color","white");
+                  markup = "<tr><td>"+ new Date(res[i].start_date).toLocaleDateString()+ " -- "+new Date(res[i].end_date).toLocaleDateString()+"</td><td>"+ res[i].count+ "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+        }
+        
+      });
+
+    
+      
+     }
+     if(type=='exmonth' && this.type1=='exist')
+     {
+      this._httpService.getExistingMonthCount().subscribe((res:any[])=>{
+        let c=0;
+        $("table tbody tr").remove();
+                lineNo=0;
+        for(let i=res.length-1;i>=0;i--){
+          var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+          lineData.push(obj);
+          
+              
+              $(".exdays").css("background-color","white"); 
+              $(".exdays").css("color","gray");
+              $(".exweeks").css("background-color","white"); 
+              $(".exweeks").css("color","gray");
+              $(".exdays").css("background-color","white"); 
+              $(".exdays").css("color","gray");
+              $(".exmonths").css("background-color"," rgb(109, 109, 109)"); 
+              $(".exmonths").css("color","white");
+                  markup = "<tr><td>"+ res[i].Month+ "</td><td>"+ res[i].count + "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+           
+        }
+        
+      });
+     }
+     if(type=='newmonth' && this.type1=='new')
+     {
+      this._httpService.getNewMonthCount().subscribe((res:any[])=>{
+        let c=0;
+        $("table tbody tr").remove();
+                lineNo=0;
+        for(let i=res.length-1;i>=0;i--){
+          var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
+          lineData.push(obj);
+          $(".newdays").css("background-color","white"); 
+          $(".newdays").css("color","gray");
+          $(".newweeks").css("background-color","white"); 
+              $(".newweeks").css("color","gray");
+              $(".newdays").css("background-color","white"); 
+              $(".newdays").css("color","gray");
+              $(".newmonths").css("background-color"," rgb(109, 109, 109)"); 
+              $(".newmonths").css("color","white");
+                  markup = "<tr><td>"+ res[i].Month+ "</td><td>"+ res[i].count + "</td></tr>"; 
+                  tableBody = $("table tbody"); 
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+          
+        }
+        
+      });
+     }
+     
+  }
   constructor(private router: Router,private _httpService:RetentionService,public authService: AuthService) { }
 
   ngOnInit() {  
@@ -143,7 +508,7 @@ myFunction4() {
                 c++;
 
 
-          $(".newdays").click(function () {     
+              
             if(lineNo!=0 && c==0){
               $("table tbody tr").remove();
               lineNo=0;
@@ -159,164 +524,27 @@ myFunction4() {
             tableBody.append(markup); 
             lineNo++; 
             c++;
-      });
+   
         });
       }
       
     });
+    
 
-    this._httpService.getNewWeekCount().subscribe((res:any[])=>{
-      let c=0;
-			for(let i=res.length-1;i>=0;i--){
-        $(document).ready(function () {
-          $(".newweeks").click(function () {
-            if(lineNo!=0 && c==0){
-              $("table tbody tr").remove();
-              lineNo=0;
-            }
-            
-            $(".newdays").css("background-color","white"); 
-            $(".newdays").css("color","gray");
-            $(".newmonths").css("background-color","white"); 
-            $(".newmonths").css("color","gray");
-            $(".newdays").css("background-color","white"); 
-            $(".newdays").css("color","gray");
-            $(".newweeks").css("background-color"," rgb(109, 109, 109)"); 
-            $(".newweeks").css("color","white");
-                markup = "<tr><td>"+ new Date(res[i].start_date).toLocaleDateString()+ " -- "+new Date(res[i].end_date).toLocaleDateString()+"</td><td>"+ res[i].count+ "</td></tr>"; 
-                tableBody = $("table tbody"); 
-                tableBody.append(markup); 
-                lineNo++; 
-                c++;
-          });
-        });
-      }
-      
-    });
+    
 
-    this._httpService.getNewMonthCount().subscribe((res:any[])=>{
-      let c=0;
-			for(let i=res.length-1;i>=0;i--){
-				var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
-        lineData.push(obj);
-         
-        $(document).ready(function () {
-          $(".newmonths").click(function () {
-            if(lineNo!=0 && c==0){
-              $("table tbody tr").remove();
-              lineNo=0;
-            }
-            $(".newdays").css("background-color","white"); 
-            $(".newdays").css("color","gray");
-            $(".newweeks").css("background-color","white"); 
-            $(".newweeks").css("color","gray");
-            $(".newdays").css("background-color","white"); 
-            $(".newdays").css("color","gray");
-            $(".newmonths").css("background-color"," rgb(109, 109, 109)"); 
-            $(".newmonths").css("color","white");
-                markup = "<tr><td>"+ res[i].Month+ "</td><td>"+ res[i].count + "</td></tr>"; 
-                tableBody = $("table tbody"); 
-                tableBody.append(markup); 
-                lineNo++; 
-                c++;
-          });
-        });
-      }
-      
-    });
+   
 
 
 
 ///////////////////////////////  existing user /////////////////////////////////////////
 
 
-this._httpService.getExistingDayCount().subscribe((res:any[])=>{
-  let c=0;
-  for(let i=res.length-1;i>=0;i--){
-    var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
-    lineData.push(obj);
-    $(document).ready(function () {
-      $(".exdays").click(function () {
-            if(lineNo!=0 && c==0){
-              $("table tbody tr").remove();
-              lineNo=0;
-            }
-            console.log(lineData)
-            $(".exdays").css("background-color"," rgb(109, 109, 109)"); 
-            $(".exdays").css("color","white");
-            $(".exweeks").css("background-color","white"); 
-            $(".exweeks").css("color","gray");
-            $(".exmonths").css("background-color","white"); 
-            $(".exmonths").css("color","gray");
-            markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
-            tableBody = $("table tbody"); 
-            tableBody.append(markup); 
-            lineNo++; 
-            c++;
-      });
-    });
-  }
-  
-});
 
-this._httpService.getExistingWeekCount().subscribe((res:any[])=>{
-  let c=0;
-  for(let i=res.length-1;i>=0;i--){
-    $(document).ready(function () {
-      $(".exweeks").click(function () {
-        if(lineNo!=0 && c==0){
-          $("table tbody tr").remove();
-          lineNo=0;
-        }
-        $(".exdays").css("background-color","white"); 
-        $(".exdays").css("color","gray");
-        $(".exmonths").css("background-color","white"); 
-        $(".exmonths").css("color","gray");
-        $(".exdays").css("background-color","white"); 
-        $(".exdays").css("color","gray");
-        $(".exweeks").css("background-color"," rgb(109, 109, 109)"); 
-        $(".exweeks").css("color","white");
-            markup = "<tr><td>"+ new Date(res[i].start_date).toLocaleDateString()+ " -- "+new Date(res[i].end_date).toLocaleDateString()+"</td><td>"+ res[i].count+ "</td></tr>"; 
-            tableBody = $("table tbody"); 
-            tableBody.append(markup); 
-            lineNo++; 
-            c++;
-      });
-    });
-  }
-  
-});
 
-this._httpService.getExistingMonthCount().subscribe((res:any[])=>{
-  let c=0;
-  for(let i=res.length-1;i>=0;i--){
-    var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
-    lineData.push(obj);
-     
-    $(document).ready(function () {
-      $(".exmonths").click(function () {
-        if(lineNo!=0 && c==0){
-          $("table tbody tr").remove();
-          lineNo=0;
-        }
-        $(".exdays").css("background-color","white"); 
-        $(".exdays").css("color","gray");
-        $(".exweeks").css("background-color","white"); 
-        $(".exweeks").css("color","gray");
-        $(".exdays").css("background-color","white"); 
-        $(".exdays").css("color","gray");
-        $(".exmonths").css("background-color"," rgb(109, 109, 109)"); 
-        $(".exmonths").css("color","white");
-            markup = "<tr><td>"+ res[i].Month+ "</td><td>"+ res[i].count + "</td></tr>"; 
-            tableBody = $("table tbody"); 
-            tableBody.append(markup); 
-            lineNo++; 
-            c++;
-      });
-    });
-  }
-  
-});
+
+
+
 
 }
 router1(search)
@@ -341,3 +569,5 @@ this.router.navigate(['/searchpagenew/'+search+'/retention'])
   }
 
 }
+
+
