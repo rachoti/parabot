@@ -182,6 +182,22 @@
                         <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
                         <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}" (change)="dateChangerEnd(enddate.value)" /> &#160;&#160;&#160;
                     </div>
+                    <div class="col-md-2.5 ml-sm-auto col-lg-15 px-4">
+
+                     
+                                    
+                    
+                        <select  class="search_categories" #mySelect1 (change)="myFunction_drop(mySelect1.value)">
+                          <!--   <option value="new_user">New User Count</option>
+                          <option value="ret_user">Returning User Count</option>
+                          <option value="message">Message Count</option>-->
+                          <option value="in">Incoming Message Count</option>
+                          <option value="out">Outgoing Message Count</option>
+                          <option value="tot">Total Message Count</option>
+                          
+      
+                        </select>
+          </div>
                 </div>
             </div>
         </div>
