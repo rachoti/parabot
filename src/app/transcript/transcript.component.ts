@@ -12,7 +12,7 @@ export class TranscriptComponent implements OnInit {
   isShowDiv1 = true;  
   isShowDiv2 = true; 
   isShowDiv3 = true; 
-  isShowDiv4 = true;
+  isShowDiv4 = true;5
   startDate="2017-01-01";
   endDate="";
   inputStartDate="";
