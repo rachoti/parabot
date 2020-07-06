@@ -92,6 +92,7 @@ myFunction4() {
    console.log(type)
    if(type=='exist'   )
    {
+    this.thData="Existing";
     this._httpService.getExistingDayCount().subscribe((res:any[])=>{
       lineData=[]
      console.log("exist")
@@ -126,6 +127,7 @@ myFunction4() {
    }
    else if(type=='new')
    {
+    this.thData="New";
      lineData=[]
     this._httpService.getNewDayCount().subscribe((res:any[])=>{
       let c=0;
@@ -217,6 +219,7 @@ myFunction4() {
     }
     else if(type=='newmonth' && this.type1==null)
     {
+      this.thData="New";
       this._httpService.getNewMonthCount().subscribe((res:any[])=>{
         let c=0;
         $("table tbody tr").remove();
@@ -244,6 +247,7 @@ myFunction4() {
     }
     if(type=='exday' && this.type1=='exist' )
     {
+      this.thData="Existing";
       lineData = [];
       console.log(this.type1+" "+type)
      this._httpService.getExistingDayCount().subscribe((res:any[])=>{
@@ -274,6 +278,7 @@ myFunction4() {
    }
      else if(type=='newday' && this.type1=='new')
      {
+      this.thData="New";
       lineData = [];
       this._httpService.getNewDayCount().subscribe((res:any[])=>{
         let c=0;
@@ -321,6 +326,7 @@ myFunction4() {
      }
      if(type=='exxweek' && this.type1=='exist')
     {
+      this.thData="Existing";
       lineData = [];
       console.log(this.type1+" "+type)
       this._httpService.getExistingWeekCount().subscribe((res:any[])=>{
@@ -353,6 +359,7 @@ myFunction4() {
    }
      else if(type=='newweek' && this.type1=='new')
      {
+      this.thData="New";
       lineData = [];
       this._httpService.getNewWeekCount().subscribe((res:any[])=>{
         let c=0;
@@ -386,6 +393,7 @@ myFunction4() {
      }
      if(type=='exmonth' && this.type1=='exist')
      {
+      this.thData="Existing";
       this._httpService.getExistingMonthCount().subscribe((res:any[])=>{
         let c=0;
         $("table tbody tr").remove();
@@ -415,6 +423,7 @@ myFunction4() {
      }
      if(type=='newmonth' && this.type1=='new')
      {
+      this.thData="New";
       this._httpService.getNewMonthCount().subscribe((res:any[])=>{
         let c=0;
         $("table tbody tr").remove();
@@ -562,7 +571,7 @@ this.router.navigate(['/searchpagenew/'+search+'/retention'])
     }
     changeName(val){
       if(val==1){
-        this.thData="New";
+       
       }else{
         this.thData="Existing";
       }  
