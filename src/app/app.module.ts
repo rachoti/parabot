@@ -40,6 +40,8 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AbandontrynextComponent } from './abandontrynext/abandontrynext.component';
 import { StepsComponent } from './steps/steps.component';
+import { SentinextComponent } from './sentinext/sentinext.component';
+import { SentichatdispComponent } from './sentichatdisp/sentichatdisp.component';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -75,8 +77,8 @@ const appRoutes: Routes = [
  //{ path: 'searchpagenew/:id1', component: SearchPageNewComponent,canActivate: [AuthGuard] },
  { path: 'logindum', component: LogindumComponent,canActivate: [AuthGuard] },
 
-
-
+ { path: 'sentichatdisp/:id1/:id2', component: SentichatdispComponent,canActivate: [AuthGuard] },
+ { path: 'sentinext/:id1', component: SentinextComponent,canActivate: [AuthGuard] },
  { path: 'searchpage', component: SearchPageComponent,canActivate: [AuthGuard] },
  { path: 'searchpagenew/:id1/:id2', component: SearchPageNewComponent,canActivate: [AuthGuard] },
  { path: 'transnext/:id1', component: TransnextComponent,canActivate: [AuthGuard] },
@@ -128,7 +130,9 @@ const appRoutes: Routes = [
     TransnextComponent,
     CompareComponent,
     AbandontrynextComponent,
-    StepsComponent
+    StepsComponent,
+    SentinextComponent,
+    SentichatdispComponent
    
 
 

@@ -290,7 +290,8 @@ myFunction4() {
       this.countarr.push(arr1)
       this.len=outputArray1.length
 
-      $(document).ready(function () {  
+      $(document).ready(function () { 
+        console.log("inside") 
         $('tr.parent')  
             .css("cursor", "pointer")  
             .attr("title", "Click to expand/collapse")  

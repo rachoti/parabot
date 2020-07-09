@@ -5,9 +5,8 @@ import * as d3 from "d3";
 import { AuthService } from '../auth.service';
 import { SentimentService } from './sentiment.service';
 import { Alert } from 'selenium-webdriver';
-import * as $ from 'jquery';
 
-
+declare var $:any;
 @Component({
   selector: 'app-sentiment',
   templateUrl: './sentiment.component.html',
@@ -29,6 +28,7 @@ export class SentimentComponent implements OnInit {
   thData="New";
   d1;
   d2;
+  sss;
 
   malePercentVal;
   femalePercentVal
@@ -100,12 +100,30 @@ myFunction4() {
   constructor(private router: Router,private _httpService:SentimentService,public authService: AuthService) { }
   
   ngOnInit() {
+    var lineData = [];
+    
+    var outputArray1=[];
+    var start1= false
+    var count1=0
+    let arr1=[];
+    var markup;
+    var tableBody;
+    var tableHead;
+    let lineNo = 0;
+    let c=0;
+
     var xData=[];
     var nData=[];
     this._httpService.getMessageCount().subscribe((res:any[])=>{
     this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
     this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-   /* for(let i=2;i<6;i++){
+   
+    
+
+   
+          
+   
+    for(let i=res.length-3;i>=(res.length-9);i--){
 
       console.log((new Date(res[i].date).toLocaleDateString()));
       var r=res[i].date
@@ -119,15 +137,15 @@ myFunction4() {
 
 }
 console.log(xData)
-var height  = 300;
-var width   = 700;
+var height  = 400;
+var width   = 800;
 var hEach   = 40;
 var margin = {top: 15, right: 40, bottom: 20, left: 30};
 
 width =     width - margin.left - margin.right;
 height =    height - margin.top - margin.bottom;
 
-var sss = d3.select('svg')
+ this.sss = d3.select('svg')
   .attr("width",  width + margin.left + margin.right)
   .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -148,7 +166,7 @@ var valueline = d3.line()
     .y(function(d) { return y(d.user_count);  })
         .curve(d3.curveMonotoneX);
 
-sss.append("path")
+  this.sss.append("path")
     .data([xData]) 
     .attr("class", "line")  
   .attr("d", valueline) 
@@ -157,9 +175,9 @@ sss.append("path")
   .attr("stroke-width", "3");
 
 //  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
-var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%d-%b")).tickValues(xData.map(d=>d.date));
+var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%d-%b-%y")).tickValues(xData.map(d=>d.date));
 
-sss.append("g")
+this.sss.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis_woy);
@@ -169,7 +187,7 @@ sss.append("g")
 //  Add the Y Axis
 //  svg.append("g").call(d3.axisLeft(y));
 
-sss.selectAll(".dot")
+this.sss.selectAll(".dot")
     .data(xData)
     .enter()
     .append("circle") // Uses the enter().append() method
@@ -179,7 +197,7 @@ sss.selectAll(".dot")
     .attr("r", 5);  
 
 
-sss.selectAll(".text")
+    this.sss.selectAll(".text")
     .data(xData)
     .enter()
     .append("text") // Uses the enter().append() method
@@ -188,7 +206,7 @@ sss.selectAll(".text")
     .attr("y", function(d) { return y(d.user_count) })
     .attr("dy", "-5")
     .text(function(d) {return d.user_count; });
-      sss.append('text')                                     
+    this.sss.append('text')                                     
       .attr('x', 10)              
       .attr('y', -5)             
 
@@ -197,8 +215,8 @@ sss.selectAll(".text")
 
       
   console.log(nData)
-  var height  = 300;
-  var width   = 700;
+  var height  = 400;
+  var width   = 800;
   var hEach   = 40;
   var margin = {top: 15, right: 40, bottom: 20, left: 30};
   
@@ -235,7 +253,7 @@ sss.selectAll(".text")
     .attr("stroke-width", "3");
   
   //  var xAxis_woy = d3.axisBottom(x).tickFormat(d3.timeFormat("Week %V"));
-  var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%y-%d-%b")).tickValues(nData.map(d=>d.date));
+  var xAxis_woy = d3.axisBottom(x).ticks(11).tickFormat(d3.timeFormat("%d-%b-%y")).tickValues(nData.map(d=>d.date));
   
   svg.append("g")
           .attr("class", "x axis")
@@ -268,9 +286,38 @@ sss.selectAll(".text")
       .text(function(d) {return d.user_count; });
         svg.append('text')                                     
         .attr('x', 10)              
-        .attr('y', -5)  */           
-    
+        .attr('y', -5) 
+
+
+        for ( var j=0;j<xData.length;j++){
+        
+          if(xData[j].user_count==0 && nData[j].user_count==0)
+          {
+            //var date=(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())
+            markup="<tr><td>"+(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())+"</td><td>"+xData[j].user_count+"</td><td>"+nData[j].user_count+"</td></tr>"  
+            tableBody = $("table tbody"); 
+            tableHead=$("shadow")
+           //tableHead.append(aa)
+            tableBody.append(markup); 
+            lineNo++; 
+            c++;
+          }
+          else
+          {
+
+        var date=(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())
+        markup="<tr><td>"+(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())+"</td><td>"+xData[j].user_count+'<br><a href=/sentinext/'+date+'>(View Chat_Id)'+"</a></td><td>"+nData[j].user_count+"</td></tr>"  
+        tableBody = $("table tbody"); 
+        tableHead=$("shadow")
+       //tableHead.append(aa)
+        tableBody.append(markup); 
+        lineNo++; 
+        c++;
+        }
+      }
+
   });   
+
   
 
   }
@@ -279,13 +326,28 @@ sss.selectAll(".text")
         dateChanger(startdate: string){
           this.startDate1=startdate;
           this.datePicCount+=1;
-          //$("#div").remove(".shadow1");
+          console.log("changeeeeeeeeeeeeeee")
+        $('#sss').remove();
+        
+          
         }
 
         dateChangerEnd(enddate: string)
         {
+           // $('svg').append('svg');
+           
 
-          	
+          var chat=[];
+          var lineData = [];
+          var markup;
+          var mp;
+          var mp1;
+          var tableBody;
+          var ty;
+          var ty1;
+          var tableHead;
+          var c=0;
+          let lineNo = 0;
         this.endDate=enddate;
         this.startDate1;
 
@@ -317,7 +379,7 @@ sss.selectAll(".text")
     this._httpService.getMessageCount().subscribe((res:any[])=>{
     
 
-
+      
       let arr=[];
       let index=0;
       for(var i=0;i<res.length-1;i++){
@@ -334,7 +396,7 @@ sss.selectAll(".text")
       var nData= [];
       var count=0
       var sum=date_diff_indays(this.startDate1,this.endDate)
-      
+      index=index-1
       for(var i=index;i<date_diff_indays(this.startDate1,this.endDate)+index+1;i++){
         
          
@@ -374,10 +436,10 @@ sss.selectAll(".text")
     
     
 } 
-          
 
-          var height  = 300;
-          var width   = 700;
+
+          var height  = 400;
+          var width   = 800;
           var hEach   = 40;
           var margin = {top: 15, right: 40, bottom: 20, left: 30};
     
@@ -447,11 +509,14 @@ sss.selectAll(".text")
               .text(function(d) {return d.user_count; });
                 sss.append('text')                                     
                 .attr('x', 10)              
-                .attr('y', -5)             
+                .attr('y', -5)  
+                
+                
+        
+ 
 
-
-          var height  = 300;
-          var width   = 700;
+          var height  = 400;
+          var width   = 800;
           var hEach   = 40;
           var margin = {top: 15, right: 40, bottom: 20, left: 30};
     
@@ -521,7 +586,16 @@ sss.selectAll(".text")
               .text(function(d) {return d.user_count; });
                 svg.append('text')                                     
                 .attr('x', 10)              
-                .attr('y', -5)             
+                .attr('y', -5) 
+
+                
+                ty = $("#graph"); 
+                mp=$("#sss")
+                //mp1=$("#svg")
+                ty.append(mp);
+                //ty.append(mp1);
+           
+
                 this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate()-1);
         
                 this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
@@ -529,11 +603,72 @@ sss.selectAll(".text")
                 var config = {
                   filename: 'customFileName',
                 }
+                console.log(res.length)
+
+                $("table tbody tr").remove();
+                this._httpService.getChatid().subscribe((ser:any[])=>{
+
                // d3_save_pdf.save(d3.select('svg').node(), config);  
-               // $( "div" ).remove( ".shadow" );               // $(".shadow").append();
-
-
+               // $( "div" ).remove( ".shadow" );    
                
+               // $(".shadow").append();
+               
+               
+               
+                for (j=0;j<lineData.length;j++){
+                  chat=[];
+                 var date=(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())
+                  console.log(date)
+                  for (k=0;k<ser.length;k++){
+                    console.log(ser[k].date)
+
+                    if(date==ser[k].date && ser[k].predict_output==1)
+                    {
+                      
+                      var a=ser[k].date
+                      chat.push(ser[k].chat_id)
+                    }
+                      
+                  }
+                  console.log(a,chat)
+                  console.log("-----------------------------------------------------")
+
+                  
+                  if(lineData[j].user_count==0 && negData[j].user_count==0)
+                  {
+                    //var date=(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())
+                    markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+"</td><td>"+negData[j].user_count+"</td></tr>"  
+                    tableBody = $("table tbody"); 
+                    tableHead=$("shadow")
+                  //tableHead.append(aa)
+                    tableBody.append(markup); 
+                    lineNo++; 
+                    c++;
+                  }
+                  else
+                  {
+                          //markup="<tr><td>"+(new Date(res[z].date).getDate())+"-0"+(new Date(res[z].date).getMonth()+1)+"-"+(new Date(res[z].date).getFullYear())+"</td><td>"+res[z].chat_id+'<br><a href=/transnext/'+res[z].chat_id+'>(Read chats)'+"</a></td><td>"+res[z].user_id+"</td></tr>"  
+
+                  //markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+"</td><td>"+negData[j].user_count+"</td></tr>"  
+
+                  markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+'<br><a href=/sentinext/'+date+'>(View Chat_Id)'+"</a></td><td>"+negData[j].user_count+"</td></tr>"  
+                  tableBody = $("table tbody"); 
+                  tableHead=$("shadow")
+                 //tableHead.append(aa)
+                  tableBody.append(markup); 
+                  lineNo++; 
+                  c++;
+          }
+
+                }
+                 
+          
+               
+                
+               
+              });
+              
+
     });
 
     
