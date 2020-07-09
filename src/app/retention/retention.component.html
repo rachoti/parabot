@@ -179,18 +179,18 @@
                   <div id="shadow" class="card-body">
                       <div class="btn-toolbar mb-2 mb-md-0">
                           <div class="btn-group mr-2">
-                              <button type="button" class="btn btn-sm btn-outline-secondary existing" (click)="changeName(0)">Existing User</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary newuser" (click)="changeName(1)">New User</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary existing"  (click)="existing('exist')">Existing User</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary newuser" (click)="existing('new')">New User</button>
                           </div>
                           <div class="btn-group mr-2 newDiv">
-                              <button type="button" class="btn btn-sm btn-outline-secondary newdays" (click)="changeName(1)">Day</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary newweeks" (click)="changeName(1)">Week</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary newmonths" (click)="changeName(1)">Month</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary newdays" (click)="days('newday')">Day</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary newweeks" (click)="days('newweek')">Week</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary newmonths" (click)="days('newmonth')">Month</button>
                           </div>
                           <div class="btn-group mr-2 exDiv">
-                              <button type="button" class="btn btn-sm btn-outline-secondary exdays" (click)="changeName(0)">Day</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary exweeks" (click)="changeName(0)">Week</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary exmonths" (click)="changeName(0)">Month</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary exdays" (click)="days('exday')">Day</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary exweeks" (click)="days('exxweek')">Week</button>
+                              <button type="button" class="btn btn-sm btn-outline-secondary exmonths" (click)="days('exmonth')">Month</button>
                           </div>
 
 
@@ -221,3 +221,5 @@
       </main>
   </div>
 </div>
+
+
