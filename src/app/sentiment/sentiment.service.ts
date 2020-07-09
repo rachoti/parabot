@@ -12,6 +12,9 @@ export class SentimentService {
   getMessageCount(){
     return this.http.get('http://142.102.27.100:9946/');
       }
+  getChatid(){
+        return this.http.get('http://142.102.27.100:9964/');
+          }
 
 
   getfulldate(){

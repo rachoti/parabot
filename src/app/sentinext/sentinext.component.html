@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" routerLink="/dashboard" style="font-size: 25px;">Parabot<img id="logo" src="../../assets/Logo.png" /></a>
-    <input class="form-control form-control-dark w-100" type="text"  placeholder="Search" on-keyup="router1(searchText)" aria-label="Search" [(ngModel)]="searchText" >
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a href="javascript:void(0);" (click)="logout()">Sign out</a>
@@ -158,79 +158,55 @@
   
             </div>
         </nav>
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <span class="bold">Sentiment</span>
-              <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group mr-2">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                    <button  (click)="dateChangerEndexport(enddate.value)"  class="btn btn-sm btn-outline-secondary">Export</button>
+  
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <span class="bold">Sentiment</span>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button (click)="ExportCSV()" class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                  <span data-feather="calendar"></span>
+                  This week
+                </button>
                 </div>
-                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-              <span data-feather="calendar"></span>
-              This week
-            </button>
             </div>
-          </div>
-
-
-          <div>
-              <div class="card ">
-                  <div id="shadow" class="card-body">
-                      <div class="btn-toolbar mb-2 mb-md-0">
-
-                          <div class="btn-group mr-2">
-                                  <input type="date" #startdate class="form-control" name="startdate" id="startdate" min="{{startDate}}" max="{{endDate}}" value="{{startDate}}" (change)="dateChanger(startdate.value)" /> &#160;&#160;&#160;
-                                  <input type="date" #enddate class="form-control" name="enddate" id="enddate" min="{{startDate1}}" max="{{endDate}}" value="{{startDate1}}"  /> &#160;&#160;&#160;
-                              
-                              <button (click)="dateChangerEnd(enddate.value)"  class="btn btn-sm btn-outline-secondary">Day</button>
-                              <button (click)="dateChangerEndWeek(enddate.value)" class="btn btn-sm btn-outline-secondary">Week</button>
-                              <button type="button" class="btn btn-sm btn-outline-secondary">Month</button>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-
-              <div class="card mt-4" style="height:700px">
-                  <div id="shadow1" class="card-body">
-                        <div class="row card-deck mt-4">
-                                <div id="graph" class="col-sm-7"><br><br>
-                                    <svg id="sss"></svg>
-                                    <svg id="svg"></svg> 
-                                </div>
-                                <div class="col-sm-4">
-
-                                       <table class="table table-striped"  id="myTable">
-                          
-                                                <thead id="table1">
-                                                    <tr>
-                                                      <th scope="col">Date</th>
-                                                        <th scope="col">Positive </th>
-                                                        <th scope="col">Negative</th>
-                                                        
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                
-                                             <tbody>
-
-                                             </tbody>
-
-                                               
-                                                
-                                            </table>
-                                            
-                                           
-                                               
-                                           
-                                </div>
-
-                               
-                          
+  
+  
+            <div>
+               
+  
+              
+                <div class="card mt-4" style="overflow:auto;">
+                    <div id="shadow" class="card-body ex3" style="overflow:auto;"> 
+                       <!-- <i id="sInfo"><small>{{temp_start}}-{{temp_end}}</small></i>-->
+                       <h5><b>Date :- {{chat_id}}</b></h5>
+                        <table class="table table-striped">
                             
-                    
-                  </div>
-              </div>
-             
-                      
-
+                            <thead>
+                                <tr>
+                                    <th scope="col">Positive Chat Id</th>
+                                    <th scope="col">Negative Chat Id</th>
+                                    
+                                    
+                                    
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+  
+                <br>
+            </div>
+  
+        </main>
+    </div>
+  </div>
+  
+  
