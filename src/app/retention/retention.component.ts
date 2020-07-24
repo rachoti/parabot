@@ -141,18 +141,7 @@ myFunction4() {
         
                
                  
-                $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
-                $(".newdays").css("color","white");
-                $(".newweeks").css("background-color","white"); 
-                $(".newweeks").css("color","gray");
-                $(".newmonths").css("background-color","white"); 
-                $(".newmonths").css("color","gray");
-                markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
-                tableBody = $("table tbody"); 
-                tableBody.append(markup); 
-                lineNo++; 
-                c++;
-
+               
 
               
             
@@ -306,18 +295,7 @@ myFunction4() {
   
   
                 
-              
-              $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
-              $(".newdays").css("color","white");
-              $(".newweeks").css("background-color","white"); 
-              $(".newweeks").css("color","gray");
-              $(".newmonths").css("background-color","white"); 
-              $(".newmonths").css("color","gray");
-              markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
-              tableBody = $("table tbody"); 
-              tableBody.append(markup); 
-              lineNo++; 
-              c++;
+             
      
           
         }
@@ -500,22 +478,7 @@ myFunction4() {
 				var obj ={date:new Date(res[i].Date),user_count:res[i].count_users};
         lineData.push(obj);
         $(document).ready(function () {    
-                if(lineNo!=0 && c==0){
-                  $("table tbody tr").remove();
-                  lineNo=0;
-                }
-                $(".newdays").css("background-color"," rgb(109, 109, 109)"); 
-                $(".newdays").css("color","white");
-                $(".newweeks").css("background-color","white"); 
-                $(".newweeks").css("color","gray");
-                $(".newmonths").css("background-color","white"); 
-                $(".newmonths").css("color","gray");
-                markup = "<tr><td>"+ res[i].Date+ "</td><td>"+ res[i].count_users + "</td></tr>"; 
-                tableBody = $("table tbody"); 
-                tableBody.append(markup); 
-                lineNo++; 
-                c++;
-
+               
 
               
             if(lineNo!=0 && c==0){
