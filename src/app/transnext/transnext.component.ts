@@ -81,6 +81,8 @@ myFunction4() {
   }
 
   ngOnInit() {
+    let myObject = { Converser:"value1", Conversation: "67676877"};
+let output = {};
     var temp_chat_id;
     var lineData = [];
     var markup;
@@ -88,7 +90,23 @@ myFunction4() {
     var tableHead;
     let lineNo = 0;
     let c=0;
+    let app;
+ 
     temp_chat_id=this.router.snapshot.paramMap.get("id1");
+    function mask(value: string) {
+      let maskedvalue="";
+      /*var arr = value.split("@");
+      // process text before @
+       var letter1 = arr[0][0] + "*".repeat(arr[0].length - 2) + arr[0].slice(-1);
+      // process text after @
+       var letter2 = arr[1][0] + "*".repeat(arr[1].length - 2) + arr[1].slice(-1);
+      return letter1 + "@" + letter2; */
+      for (let i=0;i<value.length;i++) {
+        maskedvalue+="*";
+      } 
+      return maskedvalue;
+    }
+   
     //console.log(this.chat_id)
     this._httpService.getChats().subscribe((res:any[])=>{
       var yahooOnly = res.filter(function (entry) {
@@ -99,6 +117,8 @@ myFunction4() {
     //console.log(yahooOnly)
     for(var z=0;z<yahooOnly.length ;z++)
     {
+
+      //var b=mask(yahooOnly[z].text1)
       markup = '<tr><td>'+yahooOnly[z].converser+"</td><td>"+yahooOnly[z].text1+"</td></tr>"; 
     tableBody = $("table tbody"); 
     tableHead=$("shadow")
@@ -109,6 +129,11 @@ myFunction4() {
       
     }
     });
+    Object.keys(myObject).forEach(key => {
+      output[key]= mask(myObject[key]);
+});
+console.log(output);
+
   }
 
   ExportCSV(){
@@ -142,6 +167,7 @@ myFunction4() {
     //console.log(yahooOnly)
     for(var z=0;z<yahooOnly.length ;z++)
     {
+      
       markup = '<tr><td>'+yahooOnly[z].converser+"</td><td>"+yahooOnly[z].text1+"</td></tr>"; 
     tableBody = $("table tbody"); 
     tableHead=$("shadow")
