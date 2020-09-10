@@ -30,6 +30,9 @@ export class DashdoardComponent implements OnInit {
   WizardMessPercent;
   Useractpercentage;
   returnactpercentage;
+  resolvedchats;
+  pendingchats;
+  assignedchats;
   actdata1="+Activity";
   actdata2="+Compare";
   actdata3="+Conversation";
