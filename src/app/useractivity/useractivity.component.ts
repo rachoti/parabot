@@ -398,13 +398,13 @@ else if(type=="new" && this.startDate1!="")
      }
       index++;
     }
-    var lineData1 = [];
+    var lineData = [];
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
       var obj ={date:new Date(res[z].Date),user_count:res[z].count_users};
       console.log(obj)
-      lineData1.push(obj);
+      lineData.push(obj);
     }
-    var lineData2=[]
+    /*var lineData2=[]
     var lineData=[]
     if(lineData1.length>7)
     {
@@ -425,7 +425,7 @@ else if(type=="new" && this.startDate1!="")
         var s=lineData1[j]
         lineData.push(s)
       }
-    }
+    }*/
     var height  = 400;
  var width   = 1000;
  var hEach   = 40;
@@ -524,13 +524,13 @@ else if(type=="ret" && this.startDate1!="")
      }
       index++;
     }
-    var lineData1 = [];
+    var lineData = [];
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
       var obj ={date:new Date(res[z].date),user_count:res[z].count};
       console.log(obj)
-      lineData1.push(obj);
+      lineData.push(obj);
     }
-    var lineData2=[]
+    /*var lineData2=[]
     var lineData=[]
     if(lineData1.length>7)
     {
@@ -551,7 +551,7 @@ else if(type=="ret" && this.startDate1!="")
         var s=lineData1[j]
         lineData.push(s)
       }
-    }
+    }*/
     var height  = 400;
  var width   = 1000;
  var hEach   = 40;
@@ -648,13 +648,13 @@ var date_diff_indays = function(date1, date2) {
    }
     index++;
   }
-  var lineData1 = [];
+  var lineData = [];
   for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
     var obj ={date:new Date(res[z].date),user_count:res[z].count};
     console.log(obj)
-    lineData1.push(obj);
+    lineData.push(obj);
   }
-  var lineData2=[]
+  /*var lineData2=[]
   var lineData=[]
   if(lineData1.length>7)
   {
@@ -675,7 +675,7 @@ var date_diff_indays = function(date1, date2) {
       var s=lineData1[j]
       lineData.push(s)
     }
-  }
+  }*/
   var height  = 400;
 var width   = 1000;
 var hEach   = 40;
@@ -764,7 +764,10 @@ svg.append('text')
   dateChangerEnd(enddate: string){
   
   this.endDate=enddate;
-  this._httpService.getRetUserCount().subscribe((res:any[])=>{
+  this.startDate1;
+    this.inputStartDate=this.startDate1;
+    this.inputEndDate=this.endDate;
+  /*this._httpService.getRetUserCount().subscribe((res:any[])=>{
     this.startDate1= ""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
     var b;
     for(var j=res.length-1;j>=0;j--)
@@ -784,9 +787,9 @@ svg.append('text')
       this.inputStartDate=this.startDate1;
     }
     this.inputEndDate=this.endDate;
-    });
+    });*/
     
-  this.inputEndDate=this.endDate;
+  
   if(this.type1=='new' || this.type1==null)
   {
     
@@ -811,13 +814,13 @@ svg.append('text')
       index++;
     }
     
-    var lineData1= [];
+    var lineData= [];
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
       var obj ={date:new Date(res[z].Date),user_count:res[z].count_users};
       console.log(obj)
-      lineData1.push(obj);
+      lineData.push(obj);
     }
-    var lineData2=[]
+    /*var lineData2=[]
     var lineData=[]
     if(lineData1.length>7)
     {
@@ -838,7 +841,7 @@ svg.append('text')
         var s=lineData1[j]
         lineData.push(s)
       }
-    }
+    }*/
     console.log(lineData)
    console.log(lineData.length)
     var height  = 400;
@@ -941,13 +944,13 @@ svg.append('text')
      }
       index++;
     }
-    var lineData1 = [];
+    var lineData = [];
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
       var obj ={date:new Date(res[z].date),user_count:res[z].count};
       console.log(obj)
-      lineData1.push(obj);
+      lineData.push(obj);
     }
-    var lineData2=[]
+    /*var lineData2=[]
     var lineData=[]
     if(lineData1.length>7)
     {
@@ -968,7 +971,7 @@ svg.append('text')
         var s=lineData1[j]
         lineData.push(s)
       }
-    }
+    }*/
    
     var height  = 400;
  var width   = 1000;
@@ -1071,13 +1074,13 @@ var date_diff_indays = function(date1, date2) {
    }
     index++;
   }
-  var lineData1 = [];
+  var lineData = [];
   for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
     var obj ={date:new Date(res[z].date),user_count:res[z].count};
     console.log(obj)
-    lineData1.push(obj);
+    lineData.push(obj);
   }
-  var lineData2=[]
+  /*var lineData2=[]
   var lineData=[]
   if(lineData1.length>7)
   {
@@ -1098,7 +1101,7 @@ var date_diff_indays = function(date1, date2) {
       var s=lineData1[j]
       lineData.push(s)
     }
-  }
+  }*/
   var height  = 400;
 var width   = 1000;
 var hEach   = 40;
