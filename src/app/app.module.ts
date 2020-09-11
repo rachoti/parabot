@@ -42,6 +42,7 @@ import { AbandontrynextComponent } from './abandontrynext/abandontrynext.compone
 import { StepsComponent } from './steps/steps.component';
 import { SentinextComponent } from './sentinext/sentinext.component';
 import { SentichatdispComponent } from './sentichatdisp/sentichatdisp.component';
+import { TicketscountComponent } from './ticketscount/ticketscount.component';
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -50,6 +51,7 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashdoardComponent,canActivate: [AuthGuard]  },
 
   { path: 'login', component: LoginComponent},
+  { path: 'ticketscount', component: TicketscountComponent,canActivate: [AuthGuard]},
   { path: 'tranSearch', component: TranSearchComponent,canActivate: [AuthGuard] },
   { path: 'messagecount', component: MessagecountComponent,canActivate: [AuthGuard] },
   { path: 'useractivity', component: UseractivityComponent,canActivate: [AuthGuard] },
@@ -132,7 +134,8 @@ const appRoutes: Routes = [
     AbandontrynextComponent,
     StepsComponent,
     SentinextComponent,
-    SentichatdispComponent
+    SentichatdispComponent,
+    TicketscountComponent
    
 
 
