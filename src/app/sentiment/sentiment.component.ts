@@ -13,7 +13,7 @@ declare var $:any;
   styleUrls: ['./sentiment.component.css']
 })
 export class SentimentComponent implements OnInit {
-  startDate="2017-01-01";
+  startDate="2016-01-01";
   endDate="";
   startDate1="";
   datePicCount=0;
@@ -115,12 +115,12 @@ myFunction4() {
     var xData=[];
     var nData=[];
     this._httpService.getMessageCount().subscribe((res:any[])=>{
-    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
+    this.startDate=""+(new Date(res[2].date).getFullYear())+"-0"+(new Date(res[2].date).getMonth()+1)+"-"+(new Date(res[2].date).getDate());
     this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-   
+    console.log(this.startDate)
     
-
-   
+    var aa=new Date(res[2].date)
+   console.log(aa)
           
    
     for(let i=res.length-3;i>=(res.length-9);i--){

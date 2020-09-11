@@ -30,6 +30,9 @@ export class DashdoardComponent implements OnInit {
   WizardMessPercent;
   Useractpercentage;
   returnactpercentage;
+  resolvedchats;
+  pendingchats;
+  assignedchats;
   actdata1="+Activity";
   actdata2="+Compare";
   actdata3="+Conversation";
@@ -164,6 +167,24 @@ router1(search)
       this.userMessPercent=(this.userMessageCount/this.totalMessageCount)*100;
       this.userMessPercent = this.userMessPercent.toFixed(2);
     });
+    /////ticket
+    this._httpService.getTicketsDetails().subscribe((res:any[])=>{
+      console.log(res[0].status);
+      
+     // for (let index = 0; index < res.length; index++) {
+        this.resolvedchats=res[2].count;
+        this.pendingchats=res[1].count;
+        this.assignedchats=res[0].count;
+        
+
+      
+  
+      //}
+      /*this.WizardMessPercent=(this.wizardMessageCount/this.totalMessageCount)*100;
+      this.WizardMessPercent = this.WizardMessPercent.toFixed(2);
+      this.userMessPercent=(this.userMessageCount/this.totalMessageCount)*100;
+      this.userMessPercent = this.userMessPercent.toFixed(2);*/
+    });
 
 
 
@@ -171,7 +192,7 @@ router1(search)
 
     ////////////////////////////////////////////////live message Graph//////////////////////////////////////
 
-    var lineData = [];
+    /*var lineData = [];
     var maxCount=0;
     var countArray=[];
     this._httpService.getLiveActivity().subscribe((res:any[])=>{
@@ -259,7 +280,7 @@ router1(search)
         .attr('x', 10)              
         .attr('y', -5)             
     
-    });
+    });*/
     
   }
 

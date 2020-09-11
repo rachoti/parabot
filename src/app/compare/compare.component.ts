@@ -3557,13 +3557,7 @@ svg.append("text")
     document.getElementById("colorFillFeMale").style.background = "orange";
     document.getElementById("colorFillMale").style.border ="1px solid black";
     document.getElementById("colorFillFeMale").style.border ="1px solid black";
-    
-    
-    
    
-  
-      
- 
     });
        
       }

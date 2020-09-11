@@ -386,13 +386,34 @@ svg.append('text')
      }
       index++;
     }
-    var lineData = [];
+    var lineData= [];
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
       var obj ={date:new Date(res[z].date),user_count:res[z].user_count};
       console.log(obj)
       lineData.push(obj);
     }
-   
+    /*var lineData2=[]
+    var lineData=[]
+    /*if(lineData1.length>7)
+    {
+    for(var j=lineData1.length-1;j>=(lineData1.length-7);j--){
+      var s=lineData1[j]
+      lineData2.push(s);
+    }
+    
+    for(var j=lineData2.length-1;j>=(lineData2.length-7);j--){
+      var s=lineData2[j]
+      lineData.push(s);
+      }
+    }
+    else if(lineData1.length<=7)
+    {
+      for(var j=0;j<lineData1.length;j++)
+      {
+        var s=lineData1[j]
+        lineData.push(s)
+      }
+    }*/
     var height  = 400;
     var width   = 1000;
     var hEach   = 40;
@@ -496,7 +517,28 @@ else if(type=="out" && this.startDate1!="")
       console.log(obj)
       lineData.push(obj);
     }
-   
+    /*var lineData2=[]
+    var lineData=[]
+    if(lineData1.length>7)
+    {
+    for(var j=lineData1.length-1;j>=(lineData1.length-7);j--){
+      var s=lineData1[j]
+      lineData2.push(s);
+    }
+    
+    for(var j=lineData2.length-1;j>=(lineData2.length-7);j--){
+      var s=lineData2[j]
+      lineData.push(s);
+      }
+    }
+    else if(lineData1.length<=7)
+    {
+      for(var j=0;j<lineData1.length;j++)
+      {
+        var s=lineData1[j]
+        lineData.push(s)
+      }
+    }*/
     var height  = 400;
     var width   = 1000;
     var hEach   = 40;
@@ -601,7 +643,28 @@ else if(type=="tot" && this.startDate1!="")
       console.log(obj)
       lineData.push(obj);
     }
-   
+    /*var lineData2=[]
+    var lineData=[]
+    if(lineData1.length>7)
+    {
+    for(var j=lineData1.length-1;j>=(lineData1.length-7);j--){
+      var s=lineData1[j]
+      lineData2.push(s);
+    }
+    
+    for(var j=lineData2.length-1;j>=(lineData2.length-7);j--){
+      var s=lineData2[j]
+      lineData.push(s);
+      }
+    }
+    else if(lineData1.length<=7)
+    {
+      for(var j=0;j<lineData1.length;j++)
+      {
+        var s=lineData1[j]
+        lineData.push(s)
+      }
+    }*/
     var height  = 400;
     var width   = 1000;
     var hEach   = 40;
@@ -687,13 +750,34 @@ else if(type=="tot" && this.startDate1!="")
     this.startDate1=startdate;
     
     this.datePicCount+=1;
-
-  } dateChangerEnd(enddate: string){
+  }
+  dateChangerEnd(enddate: string){
     
   this.endDate=enddate;
-  this.startDate1;
-  this.inputStartDate=this.startDate1;
+  
+    this.startDate1;
+    this.inputStartDate=this.startDate1;
+    this.inputEndDate=this.endDate;
+  /*this._httpService.getMessageCount().subscribe((res:any[])=>{
+  this.startDate1= ""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-0"+(new Date(res[0].date).getDate());
+  /*var b;
+  for(var j=res.length-1;j>=0;j--)
+  {
+    if(new Date(res[j].date).toLocaleDateString()==new Date(this.endDate).toLocaleDateString())
+    {
+      b=j-6;
+    }
+  }
+  if(b>=0)
+  {
+  this.inputStartDate=""+(new Date(res[b].date).getFullYear())+"-0"+(new Date(res[b].date).getMonth()+1)+"-"+(new Date(res[b].date).getDate());;
+  }
+  else if(b<0)
+  {
+    this.inputStartDate=this.startDate1;
+  }
   this.inputEndDate=this.endDate;
+  });*/
   if(this.type1=='in' || this.type1==null)
   {
  console.log("indate")
@@ -723,7 +807,28 @@ else if(type=="tot" && this.startDate1!="")
       console.log(obj)
       lineData.push(obj);
     }
-   
+    /*var lineData2=[]
+    var lineData=[]
+    if(lineData1.length>7)
+    {
+    for(var j=lineData1.length-1;j>=(lineData1.length-7);j--){
+      var s=lineData1[j]
+      lineData2.push(s);
+    }
+    
+    for(var j=lineData2.length-1;j>=(lineData2.length-7);j--){
+      var s=lineData2[j]
+      lineData.push(s);
+      }
+    }
+    else if(lineData1.length<=7)
+    {
+      for(var j=0;j<lineData1.length;j++)
+      {
+        var s=lineData1[j]
+        lineData.push(s)
+      }
+    }*/
     var height  = 400;
     var width   = 1000;
     var hEach   = 40;
@@ -830,6 +935,28 @@ else if(type=="tot" && this.startDate1!="")
       console.log(obj)
       lineData.push(obj);
     }
+    /*var lineData2=[]
+    var lineData=[]
+    if(lineData1.length>7)
+    {
+    for(var j=lineData1.length-1;j>=(lineData1.length-7);j--){
+      var s=lineData1[j]
+      lineData2.push(s);
+    }
+    
+    for(var j=lineData2.length-1;j>=(lineData2.length-7);j--){
+      var s=lineData2[j]
+      lineData.push(s);
+      }
+    }
+    else if(lineData1.length<=7)
+    {
+      for(var j=0;j<lineData1.length;j++)
+      {
+        var s=lineData1[j]
+        lineData.push(s)
+      }
+    }*/
    
     var height  = 400;
     var width   = 1000;
@@ -919,6 +1046,8 @@ else if(type=="tot" && this.startDate1!="")
     }
     this._httpService.getMessageTotalCount().subscribe((res:any[])=>{
       var index=0
+      //this.startDate1= ""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
+
   
     for(var j=0;j<res.length;j++){
       
@@ -929,13 +1058,34 @@ else if(type=="tot" && this.startDate1!="")
      }
       index++;
     }
-    var lineData = [];
+    var lineData= [];
     for(var z=index;z<=date_diff_indays(this.startDate1,this.endDate)+index;z++){
       var obj ={date:new Date(res[z].date),user_count:res[z].count};
       console.log(obj)
       lineData.push(obj);
     }
-   
+    /*var lineData2=[]
+    var lineData=[]
+    if(lineData1.length>7)
+    {
+    for(var j=lineData1.length-1;j>=(lineData1.length-7);j--){
+      var s=lineData1[j]
+      lineData2.push(s);
+    }
+    
+    for(var j=lineData2.length-1;j>=(lineData2.length-7);j--){
+      var s=lineData2[j]
+      lineData.push(s);
+      }
+    }
+    else if(lineData1.length<=7)
+    {
+      for(var j=0;j<lineData1.length;j++)
+      {
+        var s=lineData1[j]
+        lineData.push(s)
+      }
+    }*/
     var height  = 400;
     var width   = 1000;
     var hEach   = 40;
