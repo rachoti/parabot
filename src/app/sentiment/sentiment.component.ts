@@ -13,7 +13,7 @@ declare var $:any;
   styleUrls: ['./sentiment.component.css']
 })
 export class SentimentComponent implements OnInit {
-  startDate="2016-01-01";
+  startDate="2017-01-01";
   endDate="";
   startDate1="";
   datePicCount=0;
@@ -115,12 +115,12 @@ myFunction4() {
     var xData=[];
     var nData=[];
     this._httpService.getMessageCount().subscribe((res:any[])=>{
-    this.startDate=""+(new Date(res[2].date).getFullYear())+"-0"+(new Date(res[2].date).getMonth()+1)+"-"+(new Date(res[2].date).getDate());
+    this.startDate=""+(new Date(res[0].date).getFullYear())+"-0"+(new Date(res[0].date).getMonth()+1)+"-"+(new Date(res[0].date).getDate());
     this.endDate=""+(new Date(res[res.length-1].date).getFullYear())+"-0"+(new Date(res[res.length-1].date).getMonth()+1)+"-"+(new Date(res[res.length-1].date).getDate());
-    console.log(this.startDate)
+   
     
-    var aa=new Date(res[2].date)
-   console.log(aa)
+
+   
           
    
     for(let i=res.length-3;i>=(res.length-9);i--){
@@ -294,7 +294,7 @@ this.sss.selectAll(".dot")
           if(xData[j].user_count==0 && nData[j].user_count==0)
           {
             //var date=(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())
-            markup="<tr><td>"+(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())+"</td><td>"+xData[j].user_count+"</td><td>"+nData[j].user_count+"</td></tr>"  
+            markup="<tr><td>"+(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())+"</td><td>"+xData[j].user_count+"</td><td>"+nData[j].user_count+"</td><td></td></tr>"  
             tableBody = $("table tbody"); 
             tableHead=$("shadow")
            //tableHead.append(aa)
@@ -306,7 +306,7 @@ this.sss.selectAll(".dot")
           {
 
         var date=(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())
-        markup="<tr><td>"+(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())+"</td><td>"+xData[j].user_count+'<br><a href=/sentinext/'+date+'>(View Chat_Id)'+"</a></td><td>"+nData[j].user_count+"</td></tr>"  
+        markup="<tr><td>"+(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())+"</td><td>"+xData[j].user_count+"</td><td>"+nData[j].user_count+'</td><td><a href=/sentinext/'+date+'>View Chat_Id</a></td></tr>'  
         tableBody = $("table tbody"); 
         tableHead=$("shadow")
        //tableHead.append(aa)
@@ -637,7 +637,7 @@ this.sss.selectAll(".dot")
                   if(lineData[j].user_count==0 && negData[j].user_count==0)
                   {
                     //var date=(new Date(xData[j].date).getDate())+"-0"+(new Date(xData[j].date).getMonth()+1)+"-"+(new Date(xData[j].date).getFullYear())
-                    markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+"</td><td>"+negData[j].user_count+"</td></tr>"  
+                    markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+"</td><td>"+negData[j].user_count+"</td><td></td></tr>"  
                     tableBody = $("table tbody"); 
                     tableHead=$("shadow")
                   //tableHead.append(aa)
@@ -651,7 +651,8 @@ this.sss.selectAll(".dot")
 
                   //markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+"</td><td>"+negData[j].user_count+"</td></tr>"  
 
-                  markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+'<br><a href=/sentinext/'+date+'>(View Chat_Id)'+"</a></td><td>"+negData[j].user_count+"</td></tr>"  
+
+                  markup="<tr><td>"+(new Date(lineData[j].date).getDate())+"-0"+(new Date(lineData[j].date).getMonth()+1)+"-"+(new Date(lineData[j].date).getFullYear())+"</td><td>"+lineData[j].user_count+"</td><td>"+negData[j].user_count+'</td><td><a href=/sentinext/'+date+'>View Chat_Id</a></td></tr>'  
                   tableBody = $("table tbody"); 
                   tableHead=$("shadow")
                  //tableHead.append(aa)

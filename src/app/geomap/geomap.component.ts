@@ -253,7 +253,7 @@ myFunction4() {
       
       console.log( "datat",loc,filteredArray.length );
       coun.push(filteredArray.length)
-      console.log("svdvdvvgh")
+      console.log("svdvdvvgh",filterCity)
       console.log("cpoune",coun);
     /*  console.log("datatatata",outputArray1[n],arr1[n])*/
       var loc=outputArray1[n]
@@ -557,10 +557,10 @@ Exportcsv(){
         this.mapElement.nativeElement,
         defaultLayers.normal.map,
         {
-            zoom: 10,
-            center: { lat: "37.7397", lng: "-121.4252"}
+            zoom: 2.5,
+            center: { lat: "30", lng: "150"}
         }
-    );
+    )
     let behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(this.map));
     this.ui = H.ui.UI.createDefault(this.map, defaultLayers);
   }
