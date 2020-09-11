@@ -12,8 +12,9 @@ export class DashboardserviceService {
   getMessageActivity(){
     return this.http.get('http://142.102.27.100:9995/');
      }
-  getLiveActivity(){
-    return this.http.get('http://142.102.27.100:9960/');
+  
+  getTicketsDetails(){
+    return this.http.get('http://142.102.27.100:9851/');
   }
   sendEmail(url, data) {
     

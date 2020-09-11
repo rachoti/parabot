@@ -195,11 +195,11 @@
                               <div class="row">
                                   <div id="outCount">
                                       <p id="outCountTitle"><small> Total Message</small></p>
-                                      <p id="outCountP">{{this.totalMessageCount}}&#160;&#160; <small>{{percentage}}</small></p>
+                                      <p id="outCountP">{{this.totalMessageCount}}</p>
                                   </div>
                                   <div id="outCount">
                                       <p id="outCountTitle"><small>Todays Total Message</small></p>
-                                      <p id="outCountP">{{this.totalTodayMessageCount}}&#160;&#160; <small>{{percentage}}</small></p>
+                                      <p id="outCountP">{{this.totalTodayMessageCount}}</p>
                                   </div>
                               </div>
 
@@ -211,24 +211,26 @@
                       <div id="shadow" class="card border border-light" style="height: 300px;">
                           <div class="card-body">
                               <h5 class="card-title bttm">User Activity</h5>
-                              <i id="sInfo"><small>Last seven days</small></i>
+                              <!--<i id="sInfo"><small>Last seven days</small></i>-->
+                              &nbsp;&nbsp;&nbsp;
                               <div class="row">
+                                <div id="outCount">
+                                    <p id="outCountTitle"><small>Total Number of users</small></p>
+                                    <!--<p id="outCountP">{{this.lifetimeUserCount}}</p>-->
+                                    <p id="outCountP">500</p>
+                                </div>
                                   <div id="outCount">
                                       <p id="outCountTitle"> <small>New Users</small></p>
-                                      <p id="outCountP">{{this.newUserCount}}&#160;&#160; &#65130;<small>{{Useractpercentage}}</small></p>
+                                      <p id="outCountP">{{this.newUserCount}}</p>
                                   </div>
                                   <div id="outCount">
                                       <p id="outCountTitle"> <small>Returning Users</small></p>
-                                      <p id="outCountP">{{this.returnUserCount}}&#160;&#160; &#65130;<small>{{returnactpercentage}}</small></p>
+                                      <p id="outCountP">{{this.returnUserCount}}</p>
                                   </div>
-                              </div>
-                              <div class="row">
-                                  <div id="outCount">
-                                      <p id="outCountTitle"><small>Total number of registered chatbot users</small></p>
-                                      <p id="outCountP">{{this.lifetimeUserCount}}&#160;&#160; <small>{{percentage}}</small></p>
                                   </div>
-
-                              </div>
+                          
+                            
+                              
                               <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
                           </div>
                       </div>
@@ -237,18 +239,33 @@
 
               <div class="row card-deck mt-4">
                   <div class="col-sm-6">
-                      <div id="shadow" class="card border-light" style="height: 250px;">
-                          <div class="card-body">
-                              <h5 class="card-title">Live Message Rate</h5>
-                              <div class="card-body">
-                                  <svg id="svg"></svg>
-                              </div>
-                              <button routerLink="/liveMessage" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">Live Message Rate report</i> ></button>
-                          </div>
-                      </div>
+                    <div id="shadow" class="card border border-light" style="height: 300px;">
+                        <div class="card-body">
+                            <h5 class="card-title bttm">Ticket Status</h5>
+                            <!--<i id="sInfo"><small>Last seven days</small></i>-->
+                            <div class="row">
+                                <div id="outCount">
+                                    <p id="outCountTitle"> <small>Resolved Chats</small></p>
+                                    <p id="outCountP">{{this.resolvedchats}}</p>
+                                </div>
+                                <div id="outCount">
+                                    <p id="outCountTitle"> <small>Pending Chats</small></p>
+                                    <p id="outCountP">{{this.pendingchats}}</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="outCount">
+                                    <p id="outCountTitle"><small>Assigned Chats</small></p>
+                                    <p id="outCountP">{{this.assignedchats}}</p>
+                                </div>
+
+                            </div>
+                            <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
+                        </div>
+                    </div>
                   </div>
                   <div class="col-sm-6">
-                      <div id="shadow" class="card border-light" style="height: 250px;">
+                      <div id="shadow" class="card border-light" style="height: 300px;">
                           <div class="card-body">
                               <h5 class="card-title">Word Cloud</h5>
                               <div style="text-align: center;"><img id="recentTrans"  src="../../assets/recentTrans1.png" /></div>
