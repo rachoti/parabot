@@ -211,12 +211,15 @@
                       <div id="shadow" class="card border border-light" style="height: 300px;">
                           <div class="card-body">
                               <h5 class="card-title bttm">User Activity</h5>
+
                               <i id="sInfo"><small>Last seven days</small></i><br><br>
+                             
                               <div class="row">
-                                    <div id="outCount">
-                                            <p id="outCountTitle"><small>Total Number of users</small></p>
-                                            <p id="outCountP">500</p>
-                                        </div>
+                                <div id="outCount">
+                                    <p id="outCountTitle"><small>Total Number of users</small></p>
+                                    <!--<p id="outCountP">{{this.lifetimeUserCount}}</p>-->
+                                    <p id="outCountP">500</p>
+                                </div>
                                   <div id="outCount">
                                       <p id="outCountTitle"> <small>New Users</small></p>
                                       <p id="outCountP">{{this.newUserCount}}</p>
@@ -225,6 +228,7 @@
                                       <p id="outCountTitle"> <small>Returning Users</small></p>
                                       <p id="outCountP">{{this.returnUserCount}}</p>
                                   </div>
+
                                   
                               </div>
                              <!--- <div class="row">
@@ -234,6 +238,12 @@
                                   </div>
 
                               </div>-->
+
+                                  
+                          
+                            
+                              
+
                               <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
                           </div>
                       </div>
