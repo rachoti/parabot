@@ -211,8 +211,12 @@
                       <div id="shadow" class="card border border-light" style="height: 300px;">
                           <div class="card-body">
                               <h5 class="card-title bttm">User Activity</h5>
-                              <i id="sInfo"><small>Last seven days</small></i>
+                              <i id="sInfo"><small>Last seven days</small></i><br><br>
                               <div class="row">
+                                    <div id="outCount">
+                                            <p id="outCountTitle"><small>Total Number of users</small></p>
+                                            <p id="outCountP">500</p>
+                                        </div>
                                   <div id="outCount">
                                       <p id="outCountTitle"> <small>New Users</small></p>
                                       <p id="outCountP">{{this.newUserCount}}</p>
@@ -221,14 +225,15 @@
                                       <p id="outCountTitle"> <small>Returning Users</small></p>
                                       <p id="outCountP">{{this.returnUserCount}}</p>
                                   </div>
+                                  
                               </div>
-                              <div class="row">
+                             <!--- <div class="row">
                                   <div id="outCount">
                                       <p id="outCountTitle"><small>Total Number of registered chatbot users</small></p>
                                       <p id="outCountP">{{this.lifetimeUserCount}}</p>
                                   </div>
 
-                              </div>
+                              </div>-->
                               <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
                           </div>
                       </div>
@@ -239,7 +244,7 @@
                   <div class="col-sm-6">
                     <div id="shadow" class="card border border-light" style="height: 300px;">
                         <div class="card-body">
-                            <h5 class="card-title bttm">Ticket Status</h5>
+                            <h5 class="card-title bttm">Ticket Status</h5><br><br>
                             <!--<i id="sInfo"><small>Last seven days</small></i>-->
                             <div class="row">
                                 <div id="outCount">
@@ -250,14 +255,18 @@
                                     <p id="outCountTitle"> <small>Pending Chats</small></p>
                                     <p id="outCountP">{{this.pendingchats}}</p>
                                 </div>
+                                <div id="outCount">
+                                    <p id="outCountTitle"><small>Assigned Chats</small></p>
+                                    <p id="outCountP">{{this.assignedchats}}</p>
+                                </div>
                             </div>
-                            <div class="row">
+                           <!-- <div class="row">
                                 <div id="outCount">
                                     <p id="outCountTitle"><small>Assigned Chats</small></p>
                                     <p id="outCountP">{{this.assignedchats}}</p>
                                 </div>
 
-                            </div>
+                            </div>-->
                             <button routerLink="/useractivity" id="messbtn"><i style="color: rgb(219, 46, 124); font-weight: bold;">View User Activity report</i> ></button>
                         </div>
                     </div>
